@@ -40,7 +40,7 @@ Our original copy of any test will comprise of a few parts;
 
 ## Phase 1
 
-In this phase we will allow adding custom text fields to the compressive strength tests. During this phase we will not be concerned with the complete base tests (and by extention we will not be concerned with the test kernal or stock fields), instead the CS test will be used in its place.
+In this phase we will allow adding custom text (string) fields to the compressive strength tests. During this phase we will not be concerned with the complete base tests (and by extention we will not be concerned with the test kernal or stock fields), instead the CS test will be used in its place.
 
 In this phase we will allow custom string/text fields to be added to a custom test configuration. Those custom fields will then be appended to the CS form and stored in the DB. 
 
@@ -52,6 +52,7 @@ In this phase we will allow custom string/text fields to be added to a custom te
 - Base test configuration
 - Base form generator
 - Base dto/zod schema generator
+- Base report generator
 - Storage of custom field values in the DB
 
 ### Proposal
@@ -62,10 +63,26 @@ In this phase we will allow custom string/text fields to be added to a custom te
 
 A component that accepts a custom test configuration and generators a form. The form should be validated using the zod schema described below
 
-#### 
+#### Base dto/zod schema generator
 
 A function that accepts a test configuration and generates a zod schema
+
+#### Base report generator
+
+The custom fields will be appended to the report
 
 #### Storage of a custom field values in DB
 
 The custom fields should be validated in the mongoose pre `validate` hook using the zod schema described above. The values should then be stored as key value pairs 
+
+## Phase 2
+
+A fully featured test configuration
+
+## Phase 3
+
+A GUI for editing test configurations
+
+## Phase 4
+
+A market place
