@@ -19,7 +19,7 @@ type BaseTest =
 
 type TestConfig = 
   | { baseTest: BaseTest, testConfig?: ObjectID }
-  | { baseTest: "other", testConfig?: ObjectID };
+  | { baseTest: "none", testConfig?: ObjectID };
 
 type LabConfig = {
   tests: TestConfig[]
