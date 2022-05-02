@@ -10,7 +10,7 @@ const nameSchema = z
 // Form [ ]
 // Report [ ]
 export type PathToField = z.infer<typeof pathToFieldSchema>;
-export const pathToFieldSchema = z.string().array();
+export const pathToFieldSchema = z.union([z.string(), z.number()]).array();
 
 // Form [ ]
 // Report [ ]
@@ -25,7 +25,10 @@ export const validationSchema = z.any();
 // Form [ ]
 // Report [ ]
 export type MathEquation = z.infer<typeof mathEquationSchema>;
-export const mathEquationSchema = z.any();
+export const mathEquationSchema = z.object({
+  expression: z.string(),
+  scope: z.record(pathToFieldSchema),
+});
 
 // Form [x]
 // Report [ ]
