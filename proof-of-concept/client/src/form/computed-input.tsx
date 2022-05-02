@@ -24,7 +24,7 @@ export const ComputedInput = ({ config, pathPrefix }: ComputedInputProps) => {
       disabled={true}
       fullWidth
       type="number"
-      value={value}
+      value={value ?? ""}
     />
   );
 };

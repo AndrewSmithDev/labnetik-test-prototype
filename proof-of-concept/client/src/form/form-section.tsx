@@ -5,6 +5,7 @@ import {
   SectionConfig,
 } from "../type";
 import { BooleanInput } from "./boolean-input";
+import { ComputedInput } from "./computed-input";
 import { NumberEnumInput } from "./number-enum-input";
 import { NumberInput } from "./number-input";
 import { StringEnumInput } from "./string-enum-input";
@@ -56,6 +57,8 @@ export const FormSection = ({ config, pathPrefix }: FormSectionProps) => {
               pathPrefix={path}
             />
           );
+        if (fieldConfig.type === "computed")
+          return <ComputedInput config={fieldConfig} pathPrefix={path} />;
         if (fieldConfig.type === "array") return null;
 
         return null;

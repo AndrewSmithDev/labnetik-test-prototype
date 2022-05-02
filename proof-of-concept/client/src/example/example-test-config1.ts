@@ -58,6 +58,43 @@ export const exampleConfig1: TestConfig = {
         },
       },
     },
+    computedExample: {
+      name: "computedExample",
+      label: "Computed field Demo",
+      fields: {
+        computedExample: {
+          type: "computed",
+          label: "10 + 5",
+          name: "computedExample",
+          equation: {
+            expression: "x + y",
+            variables: { x: 10, y: 5 },
+          },
+        },
+        number1: {
+          type: "number",
+          label: "Number 1 Input",
+          name: "number1",
+        },
+        number2: {
+          type: "number",
+          label: "Number 2 Input",
+          name: "number2",
+        },
+        computed: {
+          type: "computed",
+          label: "Average",
+          name: "computed",
+          equation: {
+            expression: "(x + y) / 2",
+            variables: {
+              x: ["computedExample", "number1"],
+              y: ["computedExample", "number2"],
+            },
+          },
+        },
+      },
+    },
   },
 };
 

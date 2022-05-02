@@ -13,10 +13,10 @@ export const FormGenerator = ({ config }: FormGeneratorProps) => {
 
   const methods = useForm();
 
-  const values = methods.watch();
-  useEffect(() => {
-    console.log(values);
-  }, [values]);
+  // const values = methods.watch();
+  // useEffect(() => {
+  //   console.log(values);
+  // }, [values]);
 
   const onSubmit = console.log;
 
