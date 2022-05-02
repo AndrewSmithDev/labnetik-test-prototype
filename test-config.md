@@ -217,7 +217,7 @@ const schema = {
 parser(expression, schema); 
 // The calculated average length
 // 
-// Value = ((field: Length 1) + (feild: Length 2)) / 2
+// Value = (`Length 1` + `Length 2`) / 2
 ```
 
 
