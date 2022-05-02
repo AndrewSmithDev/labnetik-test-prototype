@@ -25,7 +25,7 @@ export const validationSchema = z.any();
 export type MathEquation = z.infer<typeof mathEquationSchema>;
 export const mathEquationSchema = z.object({
   expression: z.string(),
-  variables: z.record(z.union([pathToFieldSchema, z.number()])),
+  scope: z.record(z.union([pathToFieldSchema, z.number()])),
 });
 
 // Form [x]

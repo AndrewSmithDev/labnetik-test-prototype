@@ -3,7 +3,7 @@ import { MathEquation } from "../type";
 import * as R from "ramda";
 
 export const evaluateEquation = (mathEquation: MathEquation, value: any) => {
-  const scope = Object.entries(mathEquation.variables).reduce(
+  const scope = Object.entries(mathEquation.scope).reduce(
     (output, [key, path]) => {
       if (typeof path === "number") output[key] = path;
       else output[key] = parseFloat(R.view(R.lensPath(path), value));
