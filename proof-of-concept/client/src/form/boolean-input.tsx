@@ -1,8 +1,8 @@
-import { Checkbox, FormControlLabel, TextField } from "@mui/material";
-import { CustomBooleanField } from "../type";
+import { Checkbox, FormControlLabel } from "@mui/material";
+import { CustomBooleanConfig } from "../type";
 
 export type BooleanInputProps = {
-  config: CustomBooleanField;
+  config: CustomBooleanConfig;
   pathPrefix: string;
 };
 

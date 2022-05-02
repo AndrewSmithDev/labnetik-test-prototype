@@ -1,6 +1,6 @@
-import { CustomTestConfig } from "../type";
+import { TestConfig } from "../type";
 
-export const exampleConfig1: CustomTestConfig = {
+export const exampleConfig1: TestConfig = {
   title: "Example Test Configuration 1",
   stages: ["creation", "submission"],
   sections: {

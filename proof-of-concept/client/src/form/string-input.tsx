@@ -1,8 +1,8 @@
 import { TextField } from "@mui/material";
-import { CustomStringField } from "../type";
+import { CustomStringConfig } from "../type";
 
 export type StringInputProps = {
-  config: CustomStringField;
+  config: CustomStringConfig;
   pathPrefix: string;
 };
 

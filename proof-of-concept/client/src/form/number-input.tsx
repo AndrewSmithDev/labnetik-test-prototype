@@ -1,8 +1,8 @@
 import { TextField } from "@mui/material";
-import { CustomNumberField } from "../type";
+import { CustomNumberConfig } from "../type";
 
 export type NumberInputProps = {
-  config: CustomNumberField;
+  config: CustomNumberConfig;
   pathPrefix: string;
 };
 
