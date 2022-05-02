@@ -27,7 +27,7 @@ export const ConfigEditor = ({ config, setConfig }: ConfigEditorProps) => {
       <pre>
         <code style={{ color: "red" }}>{error}</code>
       </pre>
-      <textarea style={{ width: "90%", height: "90vh" }} onBlur={handleUpdate}>
+      <textarea style={{ width: "100%", height: "90vh" }} onBlur={handleUpdate}>
         {JSON.stringify(config, null, 2)}
       </textarea>
     </div>
