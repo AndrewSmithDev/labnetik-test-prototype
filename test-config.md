@@ -39,7 +39,6 @@ WIP
 - enum (elector)
 - booleans (checkbox)
 - numbers
-- dates
 - computed
   - use [mathjs parsing](https://mathjs.org/docs/expressions/parsing.html)
 - arrays
@@ -50,6 +49,9 @@ WIP
       - for sections that contain only a few fields display inline
       - for sections with a lot of fields use a modal to input values
         - use a table to show the values (allow a way to display/hide fields)
+- dates
+- units (length, weight, etc)
+- selectors (projects, contractors, etc)
 
 ## Field Validation
 - Phase 0
