@@ -1,22 +1,37 @@
 import { Typography } from "@mui/material";
-import { CustomTestConfig } from "../type";
+import { useEffect } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { TestConfig } from "../type";
 import { FormSection } from "./form-section";
 
 export type FormGeneratorProps = {
-  config: CustomTestConfig;
+  config: TestConfig;
 };
 
 export const FormGenerator = ({ config }: FormGeneratorProps) => {
   const { sections } = config;
 
+  const methods = useForm();
+
+  const values = methods.watch();
+  useEffect(() => {
+    console.log(values);
+  }, [values]);
+
+  const onSubmit = console.log;
+
   return (
     <div style={{ width: "50%" }}>
       <Typography variant="h4" align="center" gutterBottom>
-        Form Title
+        {config.title}
       </Typography>
-      {Object.values(sections).map((section) => (
-        <FormSection config={section} />
-      ))}
+      <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit(onSubmit)}>
+          {Object.values(sections).map((section) => (
+            <FormSection config={section} />
+          ))}
+        </form>
+      </FormProvider>
     </div>
   );
 };

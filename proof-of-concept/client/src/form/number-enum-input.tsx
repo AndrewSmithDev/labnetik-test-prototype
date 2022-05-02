@@ -5,7 +5,7 @@ import {
   Select,
   SelectProps,
 } from "@mui/material";
-import { useState } from "react";
+import { useController } from "react-hook-form";
 import { CustomNumberEnumConfig } from "../type";
 
 export type NumberInputProps = {
@@ -14,14 +14,16 @@ export type NumberInputProps = {
 };
 
 export const NumberEnumInput = ({ config, pathPrefix }: NumberInputProps) => {
-  const [value, setValue] = useState<number | undefined>();
   const { label, name, options, tooltip, hidden, validation } = config;
   const path = `${pathPrefix}.${name}`;
 
-  const handlechange: SelectProps<number>["onChange"] = (e) => {
-    const { value } = e.target;
+  const controller = useController({ name: path });
+
+  const handlechange: SelectProps<number>["onChange"] = (event) => {
+    const { value } = event.target;
     const newNumber = typeof value === "string" ? parseFloat(value) : value;
-    if (typeof newNumber === "number" && !isNaN(newNumber)) setValue(newNumber);
+    if (typeof newNumber === "number" && !isNaN(newNumber))
+      controller.field.onChange(event, newNumber);
   };
 
   return (
@@ -30,7 +32,7 @@ export const NumberEnumInput = ({ config, pathPrefix }: NumberInputProps) => {
       <Select
         id={path + ".selector"}
         labelId={path}
-        value={value}
+        value={controller.field.value}
         label={label}
         onChange={handlechange}
       >

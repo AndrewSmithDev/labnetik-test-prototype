@@ -1,4 +1,5 @@
 import { TextField } from "@mui/material";
+import { useFormContext } from "react-hook-form";
 import { CustomStringConfig } from "../type";
 
 export type StringInputProps = {
@@ -7,8 +8,9 @@ export type StringInputProps = {
 };
 
 export const StringInput = ({ config, pathPrefix }: StringInputProps) => {
+  const { register } = useFormContext();
   const { label, name, tooltip, hidden, validation } = config;
   const path = `${pathPrefix}.${name}`;
 
-  return <TextField label={label} fullWidth />;
+  return <TextField {...register(path)} label={label} fullWidth />;
 };

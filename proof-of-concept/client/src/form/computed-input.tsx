@@ -1,25 +1,25 @@
 import { TextField } from "@mui/material";
+import { useFormContext } from "react-hook-form";
 import { evaluateEquation } from "../evaluator";
 import { CustomComputedConfig } from "../type";
 
 export type ComputedInputProps = {
   config: CustomComputedConfig;
   pathPrefix: string;
-  values: any;
 };
 
-export const ComputedInput = ({
-  config,
-  pathPrefix,
-  values,
-}: ComputedInputProps) => {
+export const ComputedInput = ({ config, pathPrefix }: ComputedInputProps) => {
+  const { watch, register } = useFormContext();
+  const data = watch();
+
   const { label, name, tooltip, hidden, validation } = config;
   const path = `${pathPrefix}.${name}`;
 
-  const value = evaluateEquation(config.equation, values);
+  const value = evaluateEquation(config.equation, data);
 
   return (
     <TextField
+      {...register(path)}
       label={label}
       disabled={true}
       fullWidth

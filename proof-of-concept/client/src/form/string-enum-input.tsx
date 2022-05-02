@@ -5,7 +5,7 @@ import {
   Select,
   SelectProps,
 } from "@mui/material";
-import { useState } from "react";
+import { useController } from "react-hook-form";
 import { CustomStringEnumConfig } from "../type";
 
 export type StringInputProps = {
@@ -14,12 +14,13 @@ export type StringInputProps = {
 };
 
 export const StringEnumInput = ({ config, pathPrefix }: StringInputProps) => {
-  const [value, setValue] = useState<string | undefined>();
   const { label, name, options, tooltip, hidden, validation } = config;
   const path = `${pathPrefix}.${name}`;
 
+  const controller = useController({ name: path });
+
   const handlechange: SelectProps<string>["onChange"] = (e) => {
-    setValue(e.target.value);
+    controller.field.onChange(e);
   };
 
   return (
@@ -28,7 +29,7 @@ export const StringEnumInput = ({ config, pathPrefix }: StringInputProps) => {
       <Select
         id={path + ".selector"}
         labelId={path}
-        value={value}
+        value={controller.field.value}
         label={label}
         onChange={handlechange}
       >
