@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import { SectionConfig } from "../type";
 import { StringInput } from "./string-input";
 
@@ -11,8 +12,8 @@ export const FormSection = ({ config, pathPrefix }: FormSectionProps) => {
   const path = pathPrefix ? `${pathPrefix}.${name}` : name;
 
   return (
-    <section>
-      <h1>{label}</h1>
+    <section style={{ display: "flex", gap: 16, flexDirection: "column", marginBottom: 16 }}>
+      <Typography variant="h5">{label}</Typography>
       {Object.values(fields).map((fieldConfig) => {
         if (fieldConfig.type === "string")
           return <StringInput config={fieldConfig} pathPrefix={path} />;
