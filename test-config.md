@@ -33,14 +33,14 @@ WIP
 
 ## Custom Field Types
 - string / text
-- sections
-  - Objects with nested fields
-  - with custom sections/titles
 - enum (elector)
 - booleans (checkbox)
 - numbers
 - computed
   - use [mathjs parsing](https://mathjs.org/docs/expressions/parsing.html)
+- sections
+  - Objects with nested fields
+  - with custom sections/titles
 - arrays
   - of primitives (strings, enum, numbers)
     - display as a list of inputs
