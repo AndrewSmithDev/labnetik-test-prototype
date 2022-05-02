@@ -7,21 +7,33 @@ const nameSchema = z
     "Can only contain letters, numbers and underscores"
   );
 
+// Form [ ]
+// Report [ ]
 export type PathToField = z.infer<typeof pathToFieldSchema>;
 export const pathToFieldSchema = z.string().array();
 
+// Form [ ]
+// Report [ ]
 export type Predicate = z.infer<typeof predicateSchema>;
 export const predicateSchema = z.any();
 
+// Form [ ]
+// Report [ ]
 export type Validation = z.infer<typeof validationSchema>;
 export const validationSchema = z.any();
 
+// Form [ ]
+// Report [ ]
 export type MathEquation = z.infer<typeof mathEquationSchema>;
 export const mathEquationSchema = z.any();
 
+// Form [ ]
+// Report [ ]
 export type Literal = z.infer<typeof literalSchema>;
 export const literalSchema = z.union([z.number(), z.boolean(), z.string()]); // regex?
 
+// Form [x]
+// Report [ ]
 export type BaseCustomField = z.infer<typeof baseCustomFieldSchema>;
 export const baseCustomFieldSchema = z.object({
   label: z.string(),
@@ -35,27 +47,37 @@ export const baseCustomFieldSchema = z.object({
   hideInReport: z.boolean().optional(),
 });
 
+// Form [x]
+// Report [ ]
 export type CustomStringConfig = z.infer<typeof customStringConfigSchema>;
 export const customStringConfigSchema = baseCustomFieldSchema.extend({
   type: z.literal("string"),
 });
 
+// Form [x]
+// Report [ ]
 export type CustomNumberConfig = z.infer<typeof customNumberConfigSchema>;
 export const customNumberConfigSchema = baseCustomFieldSchema.extend({
   type: z.literal("number"),
 });
 
+// Form [ ]
+// Report [ ]
 export type CustomComputedConfig = z.infer<typeof customComputedConfigSchema>;
 export const customComputedConfigSchema = baseCustomFieldSchema.extend({
   type: z.literal("computed"),
   equation: mathEquationSchema,
 });
 
+// Form [x]
+// Report [ ]
 export type CustomBooleanConfig = z.infer<typeof customBooleanConfigSchema>;
 export const customBooleanConfigSchema = baseCustomFieldSchema.extend({
   type: z.literal("boolean"),
 });
 
+// Form [ ]
+// Report [ ]
 export type CustomStringEnumConfig = z.infer<
   typeof customStringEnumConfigSchema
 >;
@@ -64,12 +86,16 @@ export const customStringEnumConfigSchema = baseCustomFieldSchema.extend({
   options: z.object({ type: z.literal("string"), values: z.array(z.string()) }),
 });
 
+// Form [ ]
+// Report [ ]
 export type CustomNumbernumConfig = z.infer<typeof customNumbernumConfigSchema>;
 export const customNumbernumConfigSchema = baseCustomFieldSchema.extend({
   type: z.literal("enum"),
   options: z.object({ type: z.literal("number"), values: z.array(z.number()) }),
 });
 
+// Form [ ]
+// Report [ ]
 export type CustomArrayField = z.infer<typeof customArrayFieldConfig>;
 export const customArrayFieldConfig = z.union([
   customStringConfigSchema.extend({
@@ -89,6 +115,8 @@ export const customArrayFieldConfig = z.union([
   }),
 ]);
 
+// Form [ ]
+// Report [ ]
 export type CustomArraySection = z.infer<typeof customArraySectionSchema>;
 export const customArraySectionSchema = z.object({
   label: z.string(),
@@ -96,6 +124,8 @@ export const customArraySectionSchema = z.object({
   fields: z.record(customArrayFieldConfig),
 });
 
+// Form [ ]
+// Report [ ]
 export type CustomArrayConfig = z.infer<typeof customArrayConfigSchema>;
 export const customArrayConfigSchema = baseCustomFieldSchema.extend({
   type: z.literal("array"),
@@ -106,6 +136,8 @@ export const customArrayConfigSchema = baseCustomFieldSchema.extend({
   ]),
 });
 
+// Form [ ]
+// Report [ ]
 export type CustomFieldConfig = z.infer<typeof customFieldConfigSchema>;
 export const customFieldConfigSchema = z.union([
   customStringConfigSchema,
@@ -116,6 +148,8 @@ export const customFieldConfigSchema = z.union([
   customArrayConfigSchema,
 ]);
 
+// Form [ ]
+// Report [ ]
 export type SectionConfig = z.infer<typeof sectionConfigSchema>;
 export const sectionConfigSchema = z.object({
   name: nameSchema,
@@ -124,6 +158,8 @@ export const sectionConfigSchema = z.object({
   hideInReport: z.boolean().optional(),
 });
 
+// Form [ ]
+// Report [ ]
 export type TestConfig = z.infer<typeof testConfigSchema>;
 export const testConfigSchema = z.object({
   title: z.string(),
