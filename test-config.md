@@ -75,7 +75,6 @@ WIP
         - i cant think of a good way to resolve indexing
     - will require a custom parser similiar to [math js's parser](https://mathjs.org/docs/expressions/parsing.html)
       - see example below
-  - conditionally hided fields using predicates
 - phase 6
   - conditionally hide fields
     - use the same predicate method described in the section above
