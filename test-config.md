@@ -226,6 +226,8 @@ parser(expression, schema);
 
 ## Predicates
 
+predicate operators `==`, `===`, `!=`, `!==`, `>`, `<`, `>=`, `<=`, `&&`, `||`, `()`
+
 ```typescript
 type KeyInExpression = string;
 type Literal = number | boolean | string | RegExp;
