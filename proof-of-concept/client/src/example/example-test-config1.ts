@@ -29,20 +29,20 @@ export const exampleConfig1: CustomTestConfig = {
       name: "additionalSections",
       label: "Additional  Section",
       fields: {
-        string1: {
-          type: "string",
-          label: "First Additional String Input",
-          name: "string1",
+        num: {
+          type: "number",
+          label: "Number Input",
+          name: "number",
         },
-        string2: {
+        str: {
           type: "string",
-          label: "Second Additional String Input",
-          name: "string2",
+          label: "String Input",
+          name: "string",
         },
-        string3: {
-          type: "string",
-          label: "Third Additional String Input",
-          name: "string3",
+        bool: {
+          type: "boolean",
+          label: "Boolean Input",
+          name: "boolean",
         },
       },
     },

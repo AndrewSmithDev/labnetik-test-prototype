@@ -113,7 +113,9 @@ export type Predicate = {
 
 export type Language = "en" | "fr";
 
-export type Validation<T extends string | number | boolean | Date | Array<unknown>> = {
+export type Validation<
+  T extends string | number | boolean | Date | Array<unknown>
+> = {
   message: { [l in Language]?: string };
   validation: T extends string
     ? StringValidationOptions
