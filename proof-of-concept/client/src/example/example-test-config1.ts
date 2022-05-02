@@ -27,7 +27,7 @@ export const exampleConfig1: CustomTestConfig = {
     },
     additionalSections: {
       name: "additionalSections",
-      label: "Addtional Section",
+      label: "Additional  Section",
       fields: {
         string1: {
           type: "string",

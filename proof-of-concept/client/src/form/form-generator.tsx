@@ -3,14 +3,14 @@ import { CustomTestConfig } from "../type";
 import { FormSection } from "./form-section";
 
 export type FormGeneratorProps = {
-  testConfig: CustomTestConfig;
+  config: CustomTestConfig;
 };
 
-export const FormGenerator = ({ testConfig }: FormGeneratorProps) => {
-  const { sections } = testConfig;
+export const FormGenerator = ({ config }: FormGeneratorProps) => {
+  const { sections } = config;
 
   return (
-    <div style={{ maxWidth: 960, margin: "32px auto" }}>
+    <div style={{ width: "50%" }}>
       <Typography variant="h4" align="center" gutterBottom>
         Form Title
       </Typography>
