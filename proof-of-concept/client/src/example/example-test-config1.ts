@@ -78,7 +78,7 @@ export const exampleConfig1: TestConfig = {
           name: "computed",
           equation: {
             expression: "(x + y) / 2",
-            variables: {
+            scope: {
               x: ["computedExample", "number1"],
               y: ["computedExample", "number2"],
             },
@@ -90,7 +90,7 @@ export const exampleConfig1: TestConfig = {
           name: "cos",
           equation: {
             expression: "cos(x)",
-            variables: {
+            scope: {
               x: ["computedExample", "number1"],
             },
           },
@@ -101,7 +101,7 @@ export const exampleConfig1: TestConfig = {
           name: "computedExample",
           equation: {
             expression: "x inch to cm",
-            variables: {
+            scope: {
               x: ["computedExample", "number1"],
             },
           },

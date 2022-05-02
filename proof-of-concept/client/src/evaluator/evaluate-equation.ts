@@ -13,9 +13,7 @@ export const evaluateEquation = (mathEquation: MathEquation, value: any) => {
     {} as Record<string, number | undefined>
   );
 
-  console.log(scope);
-
   if (Object.values(scope).includes(NaN)) return undefined;
 
-  return math.evaluate(mathEquation.expression, scope);
+  return math.evaluate(mathEquation.expression, scope).toString();
 };

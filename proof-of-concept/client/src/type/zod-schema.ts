@@ -147,7 +147,7 @@ export const customFieldConfigSchema = z.union([
   customArrayConfigSchema,
 ]);
 
-// Form [ ]
+// Form [x]
 // Report [ ]
 export type SectionConfig = z.infer<typeof sectionConfigSchema>;
 export const sectionConfigSchema = z.object({

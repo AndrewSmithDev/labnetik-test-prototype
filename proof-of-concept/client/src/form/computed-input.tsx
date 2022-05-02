@@ -16,7 +16,6 @@ export const ComputedInput = ({ config, pathPrefix }: ComputedInputProps) => {
   const path = `${pathPrefix}.${name}`;
 
   let value = evaluateEquation(config.equation, data);
-  if (value?.value) value = value.value;
 
   return (
     <TextField
@@ -24,7 +23,6 @@ export const ComputedInput = ({ config, pathPrefix }: ComputedInputProps) => {
       label={label}
       disabled={true}
       fullWidth
-      type="number"
       value={value ?? ""}
     />
   );
