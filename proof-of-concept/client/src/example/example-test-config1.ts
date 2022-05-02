@@ -4,40 +4,6 @@ export const exampleConfig1: TestConfig = {
   title: "Example Test Configuration 1",
   stages: ["creation", "submission"],
   sections: {
-    // arrayDemo: {
-    //   type: "array-section",
-    //   name: "arrayDemo",
-    //   label: "Array Demo",
-    //   fields: {
-    //     number1: {
-    //       type: "number",
-    //       label: "Number 1 Input",
-    //       name: "number1",
-    //     },
-    //     number2: {
-    //       type: "number",
-    //       label: "Number 2 Input",
-    //       name: "number2",
-    //     },
-    //   },
-    // },
-
-    //   type: "array-section",
-    //   name: "arrayDemo",
-    //   label: "Array Demo",
-    //   fields: {
-    //     number1: {
-    //       type: "number",
-    //       label: "Number 1 Input",
-    //       name: "number1",
-    //     },
-    //     number2: {
-    //       type: "number",
-    //       label: "Number 2 Input",
-    //       name: "number2",
-    //     },
-    //   },
-    // },
     firstSection: {
       type: "section",
       name: "firstSection",
@@ -185,6 +151,23 @@ export const exampleConfig1: TestConfig = {
             label: "String Enum Input",
             name: "strEnum",
           },
+        },
+      },
+    },
+    arraySectionDemo: {
+      type: "array-section",
+      name: "arrayDemo",
+      label: "Array Section Demo",
+      fields: {
+        number1: {
+          type: "number",
+          label: "Number 1 Input",
+          name: "number1",
+        },
+        number2: {
+          type: "number",
+          label: "Number 2 Input",
+          name: "number2",
         },
       },
     },
