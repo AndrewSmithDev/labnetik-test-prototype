@@ -27,11 +27,6 @@ export const validationSchema = z.any();
 export type MathEquation = z.infer<typeof mathEquationSchema>;
 export const mathEquationSchema = z.any();
 
-// Form [ ]
-// Report [ ]
-export type Literal = z.infer<typeof literalSchema>;
-export const literalSchema = z.union([z.number(), z.boolean(), z.string()]); // regex?
-
 // Form [x]
 // Report [ ]
 export type BaseCustomField = z.infer<typeof baseCustomFieldSchema>;
