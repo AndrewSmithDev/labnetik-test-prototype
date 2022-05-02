@@ -11,9 +11,14 @@ import { CustomStringEnumConfig } from "../type";
 export type StringInputProps = {
   config: CustomStringEnumConfig;
   pathPrefix: string;
+  showLabel?: boolean;
 };
 
-export const StringEnumInput = ({ config, pathPrefix }: StringInputProps) => {
+export const StringEnumInput = ({
+  config,
+  pathPrefix,
+  showLabel = true,
+}: StringInputProps) => {
   const { label, name, options, tooltip, hidden, validation } = config;
   const path = `${pathPrefix}.${name}`;
 
@@ -25,12 +30,12 @@ export const StringEnumInput = ({ config, pathPrefix }: StringInputProps) => {
 
   return (
     <FormControl fullWidth>
-      <InputLabel id={path}>{label}</InputLabel>
+      {showLabel && <InputLabel id={path}>{label}</InputLabel>}
       <Select
         id={path + ".selector"}
-        labelId={path}
+        labelId={showLabel ? path : undefined}
         value={controller.field.value}
-        label={label}
+        label={showLabel ? label : undefined}
         onChange={handlechange}
       >
         {options.values.map((option) => (

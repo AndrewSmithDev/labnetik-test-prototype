@@ -21,6 +21,23 @@ export const exampleConfig1: TestConfig = {
     //     },
     //   },
     // },
+
+    //   type: "array-section",
+    //   name: "arrayDemo",
+    //   label: "Array Demo",
+    //   fields: {
+    //     number1: {
+    //       type: "number",
+    //       label: "Number 1 Input",
+    //       name: "number1",
+    //     },
+    //     number2: {
+    //       type: "number",
+    //       label: "Number 2 Input",
+    //       name: "number2",
+    //     },
+    //   },
+    // },
     firstSection: {
       type: "section",
       name: "firstSection",
@@ -124,6 +141,34 @@ export const exampleConfig1: TestConfig = {
             scope: {
               x: ["computedExample", "number1"],
             },
+          },
+        },
+      },
+    },
+    arrayDemo: {
+      type: "section",
+      name: "firstSection",
+      label: "Array Demos",
+      fields: {
+        str: {
+          type: "array",
+          label: "String Array Input",
+          name: "str",
+          config: {
+            type: "string",
+            label: "Number Input",
+            name: "str",
+          },
+        },
+        strEnum: {
+          type: "array",
+          label: "String Enum Array Input",
+          name: "strEnum",
+          config: {
+            type: "enum",
+            options: { type: "string", values: ["a", "b", "c"] },
+            label: "String Enum Input",
+            name: "strEnum",
           },
         },
       },

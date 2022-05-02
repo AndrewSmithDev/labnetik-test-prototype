@@ -5,6 +5,7 @@ import {
   CustomArraySection,
   SectionConfig,
 } from "../type";
+import { ArrayInput } from "./array-input";
 import { ArraySection } from "./array-section";
 import { BooleanInput } from "./boolean-input";
 import { ComputedInput } from "./computed-input";
@@ -63,8 +64,8 @@ export const FormSection = ({ config, pathPrefix }: FormSectionProps) => {
           return <ComputedInput config={fieldConfig} pathPrefix={path} />;
         if (fieldConfig.type === "array-section")
           return <ArraySection config={fieldConfig} pathPrefix={path} />;
-
-        return null;
+        if (fieldConfig.type === "array")
+          return <ArrayInput config={fieldConfig} pathPrefix={path} />;
       })}
     </section>
   );

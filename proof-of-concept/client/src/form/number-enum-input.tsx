@@ -11,9 +11,14 @@ import { CustomNumberEnumConfig } from "../type";
 export type NumberInputProps = {
   config: CustomNumberEnumConfig;
   pathPrefix: string;
+  showLabel?: boolean;
 };
 
-export const NumberEnumInput = ({ config, pathPrefix }: NumberInputProps) => {
+export const NumberEnumInput = ({
+  config,
+  pathPrefix,
+  showLabel = true,
+}: NumberInputProps) => {
   const { label, name, options, tooltip, hidden, validation } = config;
   const path = `${pathPrefix}.${name}`;
 
@@ -28,12 +33,12 @@ export const NumberEnumInput = ({ config, pathPrefix }: NumberInputProps) => {
 
   return (
     <FormControl fullWidth>
-      <InputLabel id={path}>{label}</InputLabel>
+      {showLabel && <InputLabel id={path}>{label}</InputLabel>}
       <Select
         id={path + ".selector"}
-        labelId={path}
+        labelId={showLabel ? path : undefined}
         value={controller.field.value}
-        label={label}
+        label={showLabel ? label : undefined}
         onChange={handlechange}
       >
         {options.values.map((option) => (

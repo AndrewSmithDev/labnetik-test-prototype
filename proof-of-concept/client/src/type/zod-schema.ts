@@ -134,7 +134,8 @@ export const customArrayConfigSchema = baseCustomFieldSchema.extend({
   config: z.union([
     customStringConfigSchema,
     customNumberConfigSchema,
-    customArraySectionSchema,
+    customStringEnumConfigSchema,
+    customNumberEnumConfigSchema,
   ]),
 });
 
@@ -149,6 +150,7 @@ export const customFieldConfigSchema = z.union([
   customStringEnumConfigSchema,
   customNumberEnumConfigSchema,
   customArraySectionSchema,
+  customArrayConfigSchema,
 ]);
 
 // Form [x]
