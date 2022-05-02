@@ -1,7 +1,13 @@
 import { Typography } from "@mui/material";
-import { SectionConfig } from "../type";
+import {
+  CustomStringEnumConfig,
+  CustomNumberEnumConfig,
+  SectionConfig,
+} from "../type";
 import { BooleanInput } from "./boolean-input";
+import { NumberEnumInput } from "./number-enum-input";
 import { NumberInput } from "./number-input";
+import { StringEnumInput } from "./string-enum-input";
 import { StringInput } from "./string-input";
 
 export type FormSectionProps = {
@@ -34,13 +40,22 @@ export const FormSection = ({ config, pathPrefix }: FormSectionProps) => {
           fieldConfig.type === "enum" &&
           fieldConfig.options.type === "string"
         )
-          return null;
+          return (
+            <StringEnumInput
+              config={fieldConfig as CustomStringEnumConfig}
+              pathPrefix={path}
+            />
+          );
         if (
           fieldConfig.type === "enum" &&
           fieldConfig.options.type === "number"
         )
-          return null;
-        if (fieldConfig.type === "computed") return null;
+          return (
+            <NumberEnumInput
+              config={fieldConfig as CustomNumberEnumConfig}
+              pathPrefix={path}
+            />
+          );
         if (fieldConfig.type === "array") return null;
 
         return null;

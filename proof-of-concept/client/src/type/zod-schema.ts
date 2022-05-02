@@ -76,7 +76,7 @@ export const customBooleanConfigSchema = baseCustomFieldSchema.extend({
   type: z.literal("boolean"),
 });
 
-// Form [ ]
+// Form [x]
 // Report [ ]
 export type CustomStringEnumConfig = z.infer<
   typeof customStringEnumConfigSchema
@@ -86,9 +86,11 @@ export const customStringEnumConfigSchema = baseCustomFieldSchema.extend({
   options: z.object({ type: z.literal("string"), values: z.array(z.string()) }),
 });
 
-// Form [ ]
+// Form [x]
 // Report [ ]
-export type CustomNumbernumConfig = z.infer<typeof customNumbernumConfigSchema>;
+export type CustomNumberEnumConfig = z.infer<
+  typeof customNumbernumConfigSchema
+>;
 export const customNumbernumConfigSchema = baseCustomFieldSchema.extend({
   type: z.literal("enum"),
   options: z.object({ type: z.literal("number"), values: z.array(z.number()) }),

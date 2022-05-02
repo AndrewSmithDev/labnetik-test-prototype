@@ -29,6 +29,11 @@ export const exampleConfig1: TestConfig = {
       name: "additionalSections",
       label: "Additional  Section",
       fields: {
+        bool: {
+          type: "boolean",
+          label: "Boolean Input",
+          name: "boolean",
+        },
         num: {
           type: "number",
           label: "Number Input",
@@ -39,10 +44,17 @@ export const exampleConfig1: TestConfig = {
           label: "String Input",
           name: "string",
         },
-        bool: {
-          type: "boolean",
-          label: "Boolean Input",
-          name: "boolean",
+        strEnum: {
+          type: "enum",
+          options: { type: "string", values: ["a", "b", "c"] },
+          label: "String Enum Input",
+          name: "strEnum",
+        },
+        numEnum: {
+          type: "enum",
+          options: { type: "number", values: [10, 20, 30] },
+          label: "Number Enum Input",
+          name: "numEnum",
         },
       },
     },
