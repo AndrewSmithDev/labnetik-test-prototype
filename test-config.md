@@ -61,9 +61,6 @@ WIP
   - basic zod validation
     - i.e. options on, `z.string()` or, `z.number()`
     - no `refine`s or `superRefine`
-  - validation can be set differently for each stage
-    - by default set the same validation on all following stages
-    - allow user to override if they want
 - phase 3
   - hide properties based on stage
     - i.e. dont show in creation but show in login
