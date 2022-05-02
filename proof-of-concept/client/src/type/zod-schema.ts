@@ -7,13 +7,8 @@ const nameSchema = z
     "Can only contain letters, numbers and underscores"
   );
 
-// Form [ ]
-// Report [ ]
 export type PathToField = z.infer<typeof pathToFieldSchema>;
-export const pathToFieldSchema = z.union([
-  z.union([z.string(), z.number()]).array(),
-  z.number(),
-]);
+export const pathToFieldSchema = z.union([z.string(), z.number()]).array();
 
 // Form [ ]
 // Report [ ]
@@ -25,12 +20,12 @@ export const predicateSchema = z.any();
 export type Validation = z.infer<typeof validationSchema>;
 export const validationSchema = z.any();
 
-// Form [ ]
+// Form [x]
 // Report [ ]
 export type MathEquation = z.infer<typeof mathEquationSchema>;
 export const mathEquationSchema = z.object({
   expression: z.string(),
-  variables: z.record(pathToFieldSchema),
+  variables: z.record(z.union([pathToFieldSchema, z.number()])),
 });
 
 // Form [x]
@@ -62,7 +57,7 @@ export const customNumberConfigSchema = baseCustomFieldSchema.extend({
   type: z.literal("number"),
 });
 
-// Form [ ]
+// Form [x]
 // Report [ ]
 export type CustomComputedConfig = z.infer<typeof customComputedConfigSchema>;
 export const customComputedConfigSchema = baseCustomFieldSchema.extend({
