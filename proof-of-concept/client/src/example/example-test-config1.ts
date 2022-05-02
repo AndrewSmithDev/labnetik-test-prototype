@@ -4,7 +4,25 @@ export const exampleConfig1: TestConfig = {
   title: "Example Test Configuration 1",
   stages: ["creation", "submission"],
   sections: {
+    // arrayDemo: {
+    //   type: "array-section",
+    //   name: "arrayDemo",
+    //   label: "Array Demo",
+    //   fields: {
+    //     number1: {
+    //       type: "number",
+    //       label: "Number 1 Input",
+    //       name: "number1",
+    //     },
+    //     number2: {
+    //       type: "number",
+    //       label: "Number 2 Input",
+    //       name: "number2",
+    //     },
+    //   },
+    // },
     firstSection: {
+      type: "section",
       name: "firstSection",
       label: "First Section",
       fields: {
@@ -26,6 +44,7 @@ export const exampleConfig1: TestConfig = {
       },
     },
     additionalSections: {
+      type: "section",
       name: "additionalSections",
       label: "Additional  Section",
       fields: {
@@ -59,6 +78,7 @@ export const exampleConfig1: TestConfig = {
       },
     },
     computedExample: {
+      type: "section",
       name: "computedExample",
       label: "Computed Fields Demo",
       fields: {
@@ -107,18 +127,6 @@ export const exampleConfig1: TestConfig = {
           },
         },
       },
-    },
-  },
-};
-
-export const exampleValue1 = {
-  sections: {
-    firstSection: {
-      string1: "string 1",
-      string2: "string 2",
-    },
-    additionalSection: {
-      string1: "additional string 1",
     },
   },
 };

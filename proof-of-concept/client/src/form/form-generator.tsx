@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
-import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { TestConfig } from "../type";
+import { ArraySection } from "./array-section";
 import { FormSection } from "./form-section";
 
 export type FormGeneratorProps = {
@@ -27,9 +27,11 @@ export const FormGenerator = ({ config }: FormGeneratorProps) => {
       </Typography>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
-          {Object.values(sections).map((section) => (
-            <FormSection config={section} />
-          ))}
+          {Object.values(sections).map((section) => {
+            if (section.type === "section")
+              return <FormSection config={section} />;
+            else return <ArraySection config={section} />;
+          })}
         </form>
       </FormProvider>
     </div>

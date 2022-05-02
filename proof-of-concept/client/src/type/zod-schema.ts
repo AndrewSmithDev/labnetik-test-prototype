@@ -85,9 +85,9 @@ export const customStringEnumConfigSchema = baseCustomFieldSchema.extend({
 // Form [x]
 // Report [ ]
 export type CustomNumberEnumConfig = z.infer<
-  typeof customNumbernumConfigSchema
+  typeof customNumberEnumConfigSchema
 >;
-export const customNumbernumConfigSchema = baseCustomFieldSchema.extend({
+export const customNumberEnumConfigSchema = baseCustomFieldSchema.extend({
   type: z.literal("enum"),
   options: z.object({ type: z.literal("number"), values: z.array(z.number()) }),
 });
@@ -108,7 +108,10 @@ export const customArrayFieldConfig = z.union([
   customStringEnumConfigSchema.extend({
     showInFormPreview: z.boolean().optional(),
   }),
-  customNumbernumConfigSchema.extend({
+  customNumberEnumConfigSchema.extend({
+    showInFormPreview: z.boolean().optional(),
+  }),
+  customComputedConfigSchema.extend({
     showInFormPreview: z.boolean().optional(),
   }),
 ]);
@@ -117,8 +120,9 @@ export const customArrayFieldConfig = z.union([
 // Report [ ]
 export type CustomArraySection = z.infer<typeof customArraySectionSchema>;
 export const customArraySectionSchema = z.object({
-  label: z.string(),
+  type: z.literal("array-section"),
   name: nameSchema,
+  label: z.string(),
   fields: z.record(customArrayFieldConfig),
 });
 
@@ -134,7 +138,7 @@ export const customArrayConfigSchema = baseCustomFieldSchema.extend({
   ]),
 });
 
-// Form [ ]
+// Form [x]
 // Report [ ]
 export type CustomFieldConfig = z.infer<typeof customFieldConfigSchema>;
 export const customFieldConfigSchema = z.union([
@@ -143,14 +147,15 @@ export const customFieldConfigSchema = z.union([
   customComputedConfigSchema,
   customBooleanConfigSchema,
   customStringEnumConfigSchema,
-  customNumbernumConfigSchema,
-  customArrayConfigSchema,
+  customNumberEnumConfigSchema,
+  customArraySectionSchema,
 ]);
 
 // Form [x]
 // Report [ ]
 export type SectionConfig = z.infer<typeof sectionConfigSchema>;
 export const sectionConfigSchema = z.object({
+  type: z.literal("section"),
   name: nameSchema,
   label: z.string(),
   fields: z.record(customFieldConfigSchema),
@@ -164,5 +169,5 @@ export const testConfigSchema = z.object({
   title: z.string(),
   stages: z.array(z.string()).optional(),
   disabledStockFields: pathToFieldSchema.array().optional(),
-  sections: z.record(sectionConfigSchema),
+  sections: z.record(z.union([sectionConfigSchema, customArraySectionSchema])),
 });

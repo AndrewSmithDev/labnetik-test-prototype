@@ -2,8 +2,10 @@ import { Typography } from "@mui/material";
 import {
   CustomStringEnumConfig,
   CustomNumberEnumConfig,
+  CustomArraySection,
   SectionConfig,
 } from "../type";
+import { ArraySection } from "./array-section";
 import { BooleanInput } from "./boolean-input";
 import { ComputedInput } from "./computed-input";
 import { NumberEnumInput } from "./number-enum-input";
@@ -59,7 +61,8 @@ export const FormSection = ({ config, pathPrefix }: FormSectionProps) => {
           );
         if (fieldConfig.type === "computed")
           return <ComputedInput config={fieldConfig} pathPrefix={path} />;
-        if (fieldConfig.type === "array") return null;
+        if (fieldConfig.type === "array-section")
+          return <ArraySection config={fieldConfig} pathPrefix={path} />;
 
         return null;
       })}
