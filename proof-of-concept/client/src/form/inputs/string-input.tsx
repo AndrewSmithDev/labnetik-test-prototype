@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { TextField, Tooltip } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { CustomStringConfig } from "../../type";
 
@@ -17,11 +17,19 @@ export const StringInput = ({
   const { label, name, tooltip, hidden, validation } = config;
   const path = `${pathPrefix}.${name}`;
 
-  return (
+  const input = (
     <TextField
       {...register(path)}
       label={showLabel ? label : undefined}
       fullWidth
     />
+  );
+
+  if (!tooltip) return input;
+
+  return (
+    <Tooltip title={tooltip} placement="top-start" arrow>
+      {input}
+    </Tooltip>
   );
 };

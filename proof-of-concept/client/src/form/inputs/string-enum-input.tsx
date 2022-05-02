@@ -4,6 +4,7 @@ import {
   MenuItem,
   Select,
   SelectProps,
+  Tooltip,
 } from "@mui/material";
 import { useController } from "react-hook-form";
 import { CustomStringEnumConfig } from "../../type";
@@ -18,7 +19,7 @@ export const StringEnumInput = ({
   config,
   pathPrefix,
   showLabel = true,
-}: StringInputProps) => {
+}: StringEnumInputProps) => {
   const { label, name, options, tooltip, hidden, validation } = config;
   const path = `${pathPrefix}.${name}`;
 
@@ -28,7 +29,7 @@ export const StringEnumInput = ({
     controller.field.onChange(e);
   };
 
-  return (
+  const input = (
     <FormControl fullWidth>
       {showLabel && <InputLabel id={path}>{label}</InputLabel>}
       <Select
@@ -45,5 +46,13 @@ export const StringEnumInput = ({
         ))}
       </Select>
     </FormControl>
+  );
+
+  if (!tooltip) return input;
+
+  return (
+    <Tooltip title={tooltip} placement="top-start" arrow>
+      {input}
+    </Tooltip>
   );
 };

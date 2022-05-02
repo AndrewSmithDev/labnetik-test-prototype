@@ -4,6 +4,7 @@ import {
   MenuItem,
   Select,
   SelectProps,
+  Tooltip,
 } from "@mui/material";
 import { useController } from "react-hook-form";
 import { CustomNumberEnumConfig } from "../../type";
@@ -18,7 +19,7 @@ export const NumberEnumInput = ({
   config,
   pathPrefix,
   showLabel = true,
-}: NumberInputProps) => {
+}: NumberEnumInputProps) => {
   const { label, name, options, tooltip, hidden, validation } = config;
   const path = `${pathPrefix}.${name}`;
 
@@ -31,7 +32,7 @@ export const NumberEnumInput = ({
       controller.field.onChange(event, newNumber);
   };
 
-  return (
+  const input = (
     <FormControl fullWidth>
       {showLabel && <InputLabel id={path}>{label}</InputLabel>}
       <Select
@@ -48,5 +49,13 @@ export const NumberEnumInput = ({
         ))}
       </Select>
     </FormControl>
+  );
+
+  if (!tooltip) return input;
+
+  return (
+    <Tooltip title={tooltip} placement="top-start" arrow>
+      {input}
+    </Tooltip>
   );
 };

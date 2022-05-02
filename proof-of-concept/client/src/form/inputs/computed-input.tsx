@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { TextField, Tooltip } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { evaluateEquation } from "../../evaluator";
 import { CustomComputedConfig } from "../../type";
@@ -17,7 +17,7 @@ export const ComputedInput = ({ config, pathPrefix }: ComputedInputProps) => {
 
   let value = evaluateEquation(config.equation, data);
 
-  return (
+  const input = (
     <TextField
       {...register(path)}
       label={label}
@@ -25,5 +25,12 @@ export const ComputedInput = ({ config, pathPrefix }: ComputedInputProps) => {
       fullWidth
       value={value ?? ""}
     />
+  );
+  if (!tooltip) return input;
+
+  return (
+    <Tooltip title={tooltip} placement="top-start" arrow>
+      {input}
+    </Tooltip>
   );
 };
