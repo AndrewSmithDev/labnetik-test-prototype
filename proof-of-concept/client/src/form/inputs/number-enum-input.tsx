@@ -6,26 +6,29 @@ import {
   SelectProps,
 } from "@mui/material";
 import { useController } from "react-hook-form";
-import { CustomStringEnumConfig } from "../type";
+import { CustomNumberEnumConfig } from "../../type";
 
-export type StringInputProps = {
-  config: CustomStringEnumConfig;
+export type NumberEnumInputProps = {
+  config: CustomNumberEnumConfig;
   pathPrefix: string;
   showLabel?: boolean;
 };
 
-export const StringEnumInput = ({
+export const NumberEnumInput = ({
   config,
   pathPrefix,
   showLabel = true,
-}: StringInputProps) => {
+}: NumberInputProps) => {
   const { label, name, options, tooltip, hidden, validation } = config;
   const path = `${pathPrefix}.${name}`;
 
   const controller = useController({ name: path });
 
-  const handlechange: SelectProps<string>["onChange"] = (e) => {
-    controller.field.onChange(e);
+  const handlechange: SelectProps<number>["onChange"] = (event) => {
+    const { value } = event.target;
+    const newNumber = typeof value === "string" ? parseFloat(value) : value;
+    if (typeof newNumber === "number" && !isNaN(newNumber))
+      controller.field.onChange(event, newNumber);
   };
 
   return (

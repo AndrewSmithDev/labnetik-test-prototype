@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 import { useFormContext } from "react-hook-form";
-import { CustomStringConfig } from "../type";
+import { CustomStringConfig } from "../../type";
 
 export type StringInputProps = {
   config: CustomStringConfig;

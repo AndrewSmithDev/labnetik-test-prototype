@@ -1,6 +1,6 @@
 import { Button, TextField, Typography } from "@mui/material";
 import { useFormContext } from "react-hook-form";
-import { CustomArrayConfig } from "../type";
+import { CustomArrayConfig } from "../../type";
 import { NumberEnumInput } from "./number-enum-input";
 import { NumberInput } from "./number-input";
 import { StringEnumInput } from "./string-enum-input";

@@ -5,14 +5,16 @@ import {
   CustomArraySection,
   SectionConfig,
 } from "../type";
-import { ArrayInput } from "./array-input";
+import { ArrayInput } from "./inputs/array-input";
 import { ArraySection } from "./array-section";
-import { BooleanInput } from "./boolean-input";
-import { ComputedInput } from "./computed-input";
-import { NumberEnumInput } from "./number-enum-input";
-import { NumberInput } from "./number-input";
-import { StringEnumInput } from "./string-enum-input";
-import { StringInput } from "./string-input";
+import {
+  BooleanInput,
+  ComputedInput,
+  NumberEnumInput,
+  NumberInput,
+  StringEnumInput,
+  StringInput,
+} from "./inputs";
 
 export type FormSectionProps = {
   config: SectionConfig;

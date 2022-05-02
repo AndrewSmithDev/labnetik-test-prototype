@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
 import { useFormContext } from "react-hook-form";
-import { evaluateEquation } from "../evaluator";
-import { CustomComputedConfig } from "../type";
+import { evaluateEquation } from "../../evaluator";
+import { CustomComputedConfig } from "../../type";
 
 export type ComputedInputProps = {
   config: CustomComputedConfig;

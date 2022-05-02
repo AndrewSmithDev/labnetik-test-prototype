@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 import { useFormContext } from "react-hook-form";
-import { CustomNumberConfig } from "../type";
+import { CustomNumberConfig } from "../../type";
 
 export type NumberInputProps = {
   config: CustomNumberConfig;
