@@ -67,8 +67,6 @@ WIP
   - hide properties based on stage
     - i.e. dont show in creation but show in login
 - phase 4
-  - unique constraint
-- phase 5
   - conditional validation
     - based on predicate determine if a validation should be used
       - predicate operators `==`, `===`, `!=`, `!==`, `>`, `<`, `>=`, `<=`, `&&`, `||`, `()`
@@ -77,9 +75,11 @@ WIP
         - i cant think of a good way to resolve indexing
     - will require a custom parser similiar to [math js's parser](https://mathjs.org/docs/expressions/parsing.html)
       - see example below
-- phase 6
+- phase 5
   - conditionally hide fields
     - use the same predicate method described in the section above
+- phase 6 (?)
+  - unique constraint
 
 # Approach
 
