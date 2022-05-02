@@ -99,7 +99,8 @@ type Section = {
   name: Name;
   label: string;
   fields: { [n in Name]: CustomField };
-  hideInReport?: boolean;
+  hideInReport?: Predicate;
+  hidden?: Predicate; 
 }
 ```
 
@@ -118,7 +119,7 @@ type BaseCustomField = {
   tooltip?: string;
   hidden?: Predicate; 
   validation?: { Predicate, Validation }[];
-  hideInReport?: boolean;
+  hideInReport?: Predicate;
 }
 
 type CustomLiteralField = BaseCustomField & {
