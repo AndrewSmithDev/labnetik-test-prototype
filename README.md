@@ -77,7 +77,7 @@ The custom fields should be validated in the mongoose pre `validate` hook using 
 
 ## Phase 2
 
-A fully featured test configuration
+A fully featured test configuration, as well as the ability to add test configurations to every test.
 
 ## Phase 3
 
