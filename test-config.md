@@ -18,8 +18,8 @@ type BaseTest =
   | "marshall"
 
 type TestConfig = 
-  | { baseTest: BaseTest, testConfig?: ObjectID };
-  | { baseTest: "other", completeBaseTest: ObjectID, testConfig?: ObjectID }
+  | { baseTest: BaseTest, testConfig?: ObjectID }
+  | { baseTest: "other", testConfig?: ObjectID };
 
 type LabConfig = {
   tests: TestConfig[]
@@ -61,9 +61,6 @@ WIP
   - basic zod validation
     - i.e. options on, `z.string()` or, `z.number()`
     - no `refine`s or `superRefine`
-  - validation can be set differently for each stage
-    - by default set the same validation on all following stages
-    - allow user to override if they want
 - phase 3
   - hide properties based on stage
     - i.e. dont show in creation but show in login
@@ -102,7 +99,8 @@ type Section = {
   name: Name;
   label: string;
   fields: { [n in Name]: CustomField };
-  hideInReport?: boolean;
+  hideInReport?: Predicate;
+  hidden?: Predicate; 
 }
 ```
 
@@ -121,7 +119,7 @@ type BaseCustomField = {
   tooltip?: string;
   hidden?: Predicate; 
   validation?: { Predicate, Validation }[];
-  hideInReport?: boolean;
+  hideInReport?: Predicate;
 }
 
 type CustomLiteralField = BaseCustomField & {
@@ -220,11 +218,13 @@ const schema = {
 parser(expression, schema); 
 // The calculated average length
 // 
-// Value = ((field: Length 1) + (feild: Length 2)) / 2
+// Value = (`Length 1` + `Length 2`) / 2
 ```
 
 
 ## Predicates
+
+predicate operators `==`, `===`, `!=`, `!==`, `>`, `<`, `>=`, `<=`, `&&`, `||`, `()`
 
 ```typescript
 type KeyInExpression = string;
