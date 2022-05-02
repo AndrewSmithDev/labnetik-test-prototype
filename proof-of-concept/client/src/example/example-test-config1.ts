@@ -60,17 +60,8 @@ export const exampleConfig1: TestConfig = {
     },
     computedExample: {
       name: "computedExample",
-      label: "Computed field Demo",
+      label: "Computed Fields Demo",
       fields: {
-        computedExample: {
-          type: "computed",
-          label: "10 + 5",
-          name: "computedExample",
-          equation: {
-            expression: "x + y",
-            variables: { x: 10, y: 5 },
-          },
-        },
         number1: {
           type: "number",
           label: "Number 1 Input",
@@ -90,6 +81,28 @@ export const exampleConfig1: TestConfig = {
             variables: {
               x: ["computedExample", "number1"],
               y: ["computedExample", "number2"],
+            },
+          },
+        },
+        cos: {
+          type: "computed",
+          label: "Cosine of Number 1",
+          name: "cos",
+          equation: {
+            expression: "cos(x)",
+            variables: {
+              x: ["computedExample", "number1"],
+            },
+          },
+        },
+        computedExample: {
+          type: "computed",
+          label: "Number 1 as inches to cm",
+          name: "computedExample",
+          equation: {
+            expression: "x inch to cm",
+            variables: {
+              x: ["computedExample", "number1"],
             },
           },
         },

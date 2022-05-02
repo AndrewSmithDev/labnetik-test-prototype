@@ -15,7 +15,8 @@ export const ComputedInput = ({ config, pathPrefix }: ComputedInputProps) => {
   const { label, name, tooltip, hidden, validation } = config;
   const path = `${pathPrefix}.${name}`;
 
-  const value = evaluateEquation(config.equation, data);
+  let value = evaluateEquation(config.equation, data);
+  if (value?.value) value = value.value;
 
   return (
     <TextField
