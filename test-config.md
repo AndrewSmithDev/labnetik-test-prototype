@@ -49,6 +49,9 @@ WIP
       - for sections that contain only a few fields display inline
       - for sections with a lot of fields use a modal to input values
         - use a table to show the values (allow a way to display/hide fields)
+  - inline array section
+    - single section
+    - displayed as inline table with inputs 
 - dates
 - units (length, weight, etc)
 - selectors (projects, contractors, etc)
