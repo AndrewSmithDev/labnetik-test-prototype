@@ -1,14 +1,14 @@
 import { Button, TextField, Typography } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { CustomArrayConfig } from "../../type";
+import { BaseInputProps } from "./base-input";
 import { NumberEnumInput } from "./number-enum-input";
 import { NumberInput } from "./number-input";
 import { StringEnumInput } from "./string-enum-input";
 import { StringInput } from "./string-input";
 
-export type ArrayInputProps = {
+export type ArrayInputProps = BaseInputProps & {
   config: CustomArrayConfig;
-  pathPrefix?: string;
 };
 
 const getInput = (
@@ -23,7 +23,12 @@ const getInput = (
   return null;
 };
 
-export const ArrayInput = ({ config, pathPrefix }: ArrayInputProps) => {
+export const ArrayInput = ({
+  config,
+  pathPrefix,
+  showLabel,
+  variant,
+}: ArrayInputProps) => {
   const { register, watch, setValue } = useFormContext();
   const { label, name, tooltip, hidden, validation } = config;
   const path = pathPrefix ? `${pathPrefix}.${name}` : name;
@@ -45,9 +50,13 @@ export const ArrayInput = ({ config, pathPrefix }: ArrayInputProps) => {
   return (
     <>
       <div style={{ display: "flex" }}>
-        <Typography sx={{ flexGrow: 1, lineHeight: "30px" }}>
-          {label}
-        </Typography>
+        {showLabel ? (
+          <Typography sx={{ flexGrow: 1, lineHeight: "30px" }}>
+            {label}
+          </Typography>
+        ) : (
+          <div style={{ flexGrow: 1 }} />
+        )}
         <Button onClick={handleAdd} size="small">
           ➕
         </Button>
@@ -61,6 +70,7 @@ export const ArrayInput = ({ config, pathPrefix }: ArrayInputProps) => {
                 pathPrefix={valuePath}
                 config={config.config as any}
                 showLabel={false}
+                variant={variant}
               />
             )}
             <Button onClick={() => handleDelete(index)}>❌</Button>

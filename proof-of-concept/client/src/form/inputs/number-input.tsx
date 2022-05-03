@@ -11,6 +11,7 @@ export const NumberInput = ({
   config,
   pathPrefix,
   showLabel = true,
+  variant,
 }: NumberInputProps) => {
   const { register } = useFormContext();
   const { label, name, tooltip, hidden, validation } = config;
@@ -22,6 +23,7 @@ export const NumberInput = ({
       label={showLabel ? label : undefined}
       fullWidth
       type="number"
+      variant={variant}
     />
   );
 

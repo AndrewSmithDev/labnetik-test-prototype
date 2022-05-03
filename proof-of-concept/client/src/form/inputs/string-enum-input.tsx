@@ -18,6 +18,7 @@ export const StringEnumInput = ({
   config,
   pathPrefix,
   showLabel = true,
+  variant,
 }: StringEnumInputProps) => {
   const { label, name, options, tooltip, hidden, validation } = config;
   const path = pathPrefix ? `${pathPrefix}.${name}` : name;
@@ -37,6 +38,7 @@ export const StringEnumInput = ({
         value={controller.field.value}
         label={showLabel ? label : undefined}
         onChange={handlechange}
+        variant={variant}
       >
         {options.values.map((option) => (
           <MenuItem value={option} key={option}>

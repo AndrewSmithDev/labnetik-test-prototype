@@ -11,6 +11,7 @@ export const StringInput = ({
   config,
   pathPrefix,
   showLabel = true,
+  variant,
 }: StringInputProps) => {
   const { register } = useFormContext();
   const { label, name, tooltip, hidden, validation } = config;
@@ -21,6 +22,7 @@ export const StringInput = ({
       {...register(path)}
       label={showLabel ? label : undefined}
       fullWidth
+      variant={variant}
     />
   );
 

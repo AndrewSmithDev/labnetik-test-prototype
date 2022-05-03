@@ -12,6 +12,7 @@ export const ComputedInput = ({
   config,
   pathPrefix,
   showLabel,
+  variant,
 }: ComputedInputProps) => {
   const { watch, register } = useFormContext();
   const data = watch();
@@ -28,6 +29,7 @@ export const ComputedInput = ({
       disabled={true}
       fullWidth
       value={value ?? ""}
+      variant={variant}
     />
   );
   if (!tooltip) return input;

@@ -18,6 +18,7 @@ export const NumberEnumInput = ({
   config,
   pathPrefix,
   showLabel = true,
+  variant,
 }: NumberEnumInputProps) => {
   const { label, name, options, tooltip, hidden, validation } = config;
   const path = pathPrefix ? `${pathPrefix}.${name}` : name;
@@ -40,6 +41,7 @@ export const NumberEnumInput = ({
         value={controller.field.value}
         label={showLabel ? label : undefined}
         onChange={handlechange}
+        variant={variant}
       >
         {options.values.map((option) => (
           <MenuItem value={option} key={option}>

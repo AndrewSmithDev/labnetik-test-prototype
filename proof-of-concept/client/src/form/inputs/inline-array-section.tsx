@@ -26,19 +26,63 @@ export type InlineArraySectionProps = {
 
 const getInput = (fieldConfig: any, path: string) => {
   if (fieldConfig.type === "string")
-    return <StringInput config={fieldConfig} pathPrefix={path} />;
+    return (
+      <StringInput
+        config={fieldConfig}
+        pathPrefix={path}
+        showLabel={false}
+        variant="standard"
+      />
+    );
   if (fieldConfig.type === "number")
-    return <NumberInput config={fieldConfig} pathPrefix={path} />;
+    return (
+      <NumberInput
+        config={fieldConfig}
+        pathPrefix={path}
+        showLabel={false}
+        variant="standard"
+      />
+    );
   if (fieldConfig.type === "boolean")
-    return <BooleanInput config={fieldConfig} pathPrefix={path} />;
+    return (
+      <BooleanInput config={fieldConfig} pathPrefix={path} showLabel={false} />
+    );
   if (fieldConfig.type === "enum" && fieldConfig.options.type === "string")
-    return <StringEnumInput config={fieldConfig} pathPrefix={path} />;
+    return (
+      <StringEnumInput
+        config={fieldConfig}
+        pathPrefix={path}
+        showLabel={false}
+        variant="standard"
+      />
+    );
   if (fieldConfig.type === "enum" && fieldConfig.options.type === "number")
-    return <NumberEnumInput config={fieldConfig} pathPrefix={path} />;
+    return (
+      <NumberEnumInput
+        config={fieldConfig}
+        pathPrefix={path}
+        showLabel={false}
+        variant="standard"
+      />
+    );
   if (fieldConfig.type === "computed")
-    return <ComputedInput config={fieldConfig} pathPrefix={path} />;
+    return (
+      <ComputedInput
+        config={fieldConfig}
+        pathPrefix={path}
+        showLabel={false}
+        variant="standard"
+      />
+    );
   if (fieldConfig.type === "array")
-    return <ArrayInput config={fieldConfig} pathPrefix={path} />;
+    return (
+      <ArrayInput
+        config={fieldConfig}
+        pathPrefix={path}
+        showLabel={false}
+        variant="standard"
+      />
+    );
 };
 
 export const InlineArraySection = ({
@@ -51,12 +95,15 @@ export const InlineArraySection = ({
   const { watch, setValue } = useFormContext();
   const values = watch(path) ?? [];
 
-  useEffect(() => {
-    console.log(values);
-  }, [values]);
-
   const handleAdd = () => {
     setValue(path, [...values, {}]);
+  };
+
+  const handleDelete = (index: number) => {
+    setValue(
+      path,
+      values.filter((_: unknown, i: number) => i !== index)
+    );
   };
 
   return (
@@ -80,15 +127,20 @@ export const InlineArraySection = ({
             {Object.values(fields).map(({ label }) => (
               <TableCell>{label}</TableCell>
             ))}
+            <TableCell />
           </TableHead>
           <TableBody>
-            {values?.map((data: any) => {
-              console.log(data, fields);
+            {values?.map((_: unknown, index: number) => {
               return (
                 <TableRow>
                   {Object.values(fields).map((config) => (
-                    <TableCell>{getInput(config, path)}</TableCell>
+                    <TableCell sx={{ padding: "8px 4px" }}>
+                      {getInput(config, path + "." + index)}
+                    </TableCell>
                   ))}
+                  <TableCell>
+                    <Button onClick={() => handleDelete(index)}>➖</Button>
+                  </TableCell>
                 </TableRow>
               );
             })}

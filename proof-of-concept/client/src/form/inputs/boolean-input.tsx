@@ -3,7 +3,7 @@ import { useFormContext } from "react-hook-form";
 import { CustomBooleanConfig } from "../../type";
 import { BaseInputProps } from "./base-input";
 
-export type BooleanInputProps = BaseInputProps & {
+export type BooleanInputProps = Omit<BaseInputProps, "variant"> & {
   config: CustomBooleanConfig;
 };
 
