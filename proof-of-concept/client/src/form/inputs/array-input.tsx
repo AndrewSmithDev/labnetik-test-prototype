@@ -2,10 +2,13 @@ import { Button, TextField, Typography } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { CustomArrayConfig } from "../../type";
 import { BaseInputProps } from "./base-input";
+import { DateInput } from "./date-input";
+import { DateTimeInput } from "./date-time-input";
 import { NumberEnumInput } from "./number-enum-input";
 import { NumberInput } from "./number-input";
 import { StringEnumInput } from "./string-enum-input";
 import { StringInput } from "./string-input";
+import { TimeInput } from "./time-input";
 
 export type ArrayInputProps = BaseInputProps & {
   config: CustomArrayConfig;
@@ -20,6 +23,9 @@ const getInput = (
     return StringEnumInput;
   if (config.type === "enum" && config.options.type === "number")
     return NumberEnumInput;
+  if (config.type === "date") return DateInput;
+  if (config.type === "date-time") return DateTimeInput;
+  if (config.type === "time") return TimeInput;
   return null;
 };
 

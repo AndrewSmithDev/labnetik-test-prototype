@@ -183,11 +183,11 @@ export const exampleConfig1: TestConfig = {
           name: "boolean",
           tooltip: "Tooltip for Boolean Input",
         },
-        num: {
-          type: "number",
-          label: "Number Input",
-          name: "number",
-          tooltip: "Tooltip for Number Input",
+        date: {
+          type: "date",
+          label: "Date Input",
+          name: "date",
+          tooltip: "Tooltip for Date Input",
         },
         str: {
           type: "string",

@@ -14,10 +14,13 @@ import { CustomInlineArraySectionConfig } from "../../type";
 import { ArrayInput } from "./array-input";
 import { BooleanInput } from "./boolean-input";
 import { ComputedInput } from "./computed-input";
+import { DateInput } from "./date-input";
+import { DateTimeInput } from "./date-time-input";
 import { NumberEnumInput } from "./number-enum-input";
 import { NumberInput } from "./number-input";
 import { StringEnumInput } from "./string-enum-input";
 import { StringInput } from "./string-input";
+import { TimeInput } from "./time-input";
 
 export type InlineArraySectionProps = {
   config: CustomInlineArraySectionConfig;
@@ -77,6 +80,34 @@ const getInput = (fieldConfig: any, path: string) => {
   if (fieldConfig.type === "array")
     return (
       <ArrayInput
+        config={fieldConfig}
+        pathPrefix={path}
+        showLabel={false}
+        variant="standard"
+      />
+    );
+
+  if (fieldConfig.type === "date")
+    return (
+      <DateInput
+        config={fieldConfig}
+        pathPrefix={path}
+        showLabel={false}
+        variant="standard"
+      />
+    );
+  if (fieldConfig.type === "date-time")
+    return (
+      <DateTimeInput
+        config={fieldConfig}
+        pathPrefix={path}
+        showLabel={false}
+        variant="standard"
+      />
+    );
+  if (fieldConfig.type === "time")
+    return (
+      <TimeInput
         config={fieldConfig}
         pathPrefix={path}
         showLabel={false}
