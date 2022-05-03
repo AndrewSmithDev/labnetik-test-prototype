@@ -170,7 +170,7 @@ export const InlineArraySection = ({
                     </TableCell>
                   ))}
                   <TableCell align="center">
-                    <Button onClick={() => handleDelete(index)}>➖</Button>
+                    <Button onClick={() => handleDelete(index)}>❌</Button>
                   </TableCell>
                 </TableRow>
               );
