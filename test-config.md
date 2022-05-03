@@ -11,7 +11,7 @@ WIP
 - enum (elector)
 - booleans (checkbox)
 - numbers
-- computed
+- [computed](https://github.com/AndrewSmithDev/labnetik-test-prototype/blob/master/test-config.md#math-equations)
   - use [mathjs parsing](https://mathjs.org/docs/expressions/parsing.html)
 - sections
   - Objects with nested fields
@@ -38,7 +38,7 @@ WIP
   - required based on stage
     - required on and following stages
 - Phase 2
-  - basic zod validation
+  - [basic zod validation](https://github.com/AndrewSmithDev/labnetik-test-prototype/blob/master/test-config.md#math-equations)
     - i.e. options on, `z.string()` or, `z.number()`
     - no `refine`s or `superRefine`
 - phase 3
@@ -46,7 +46,7 @@ WIP
     - i.e. dont show in creation but show in login
 - phase 4
   - conditional validation
-    - based on predicate determine if a validation should be used
+    - based on [predicate](https://github.com/AndrewSmithDev/labnetik-test-prototype/blob/master/test-config.md#math-equations) determine if a validation should be used
       - predicate operators `==`, `===`, `!=`, `!==`, `>`, `<`, `>=`, `<=`, `&&`, `||`, `()`
       - comparison between fields (including computed fields) or literals
       - a ancestor fields cannot access decendent fields if the decendent field is nested in an array
