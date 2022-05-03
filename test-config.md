@@ -19,7 +19,7 @@ type BaseTest =
 
 type TestConfig = 
   | { baseTest: BaseTest, testConfig?: ObjectID }
-  | { baseTest: "other", testConfig?: ObjectID };
+  | { baseTest: "none", testConfig?: ObjectID };
 
 type LabConfig = {
   tests: TestConfig[]
@@ -33,15 +33,14 @@ WIP
 
 ## Custom Field Types
 - string / text
-- sections
-  - Objects with nested fields
-  - with custom sections/titles
 - enum (elector)
 - booleans (checkbox)
 - numbers
-- dates
 - computed
   - use [mathjs parsing](https://mathjs.org/docs/expressions/parsing.html)
+- sections
+  - Objects with nested fields
+  - with custom sections/titles
 - arrays
   - of primitives (strings, enum, numbers)
     - display as a list of inputs
@@ -50,6 +49,9 @@ WIP
       - for sections that contain only a few fields display inline
       - for sections with a lot of fields use a modal to input values
         - use a table to show the values (allow a way to display/hide fields)
+- dates
+- units (length, weight, etc)
+- selectors (projects, contractors, etc)
 
 ## Field Validation
 - Phase 0
@@ -65,8 +67,6 @@ WIP
   - hide properties based on stage
     - i.e. dont show in creation but show in login
 - phase 4
-  - unique constraint
-- phase 5
   - conditional validation
     - based on predicate determine if a validation should be used
       - predicate operators `==`, `===`, `!=`, `!==`, `>`, `<`, `>=`, `<=`, `&&`, `||`, `()`
@@ -75,9 +75,11 @@ WIP
         - i cant think of a good way to resolve indexing
     - will require a custom parser similiar to [math js's parser](https://mathjs.org/docs/expressions/parsing.html)
       - see example below
-- phase 6
+- phase 5
   - conditionally hide fields
     - use the same predicate method described in the section above
+- phase 6 (?)
+  - unique constraint
 
 # Approach
 
