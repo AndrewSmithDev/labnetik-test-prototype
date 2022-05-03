@@ -2,31 +2,6 @@ These are notes written by Andrew for himself, so that he doesn't forget them
 
 # Overview 
 
-### Lab Config
-
-A lab configuration will be used to determine what test a lab has and what testConfigs they're using
-
-```typescript
-type BaseTest =
-  | "compressive-strength"
-  | "soil-moisture"
-  | "gradation-soil"
-  | "gradation-aggregate"
-  | "proctor"
-  | "hydrometer"
-  | "super-pave"
-  | "marshall"
-
-type TestConfig = 
-  | { baseTest: BaseTest, testConfig?: ObjectID }
-  | { baseTest: "none", testConfig?: ObjectID };
-
-type LabConfig = {
-  tests: TestConfig[]
-}
-```
-
-
 ## Complete Base Test
 
 WIP
@@ -85,6 +60,30 @@ WIP
   - unique constraint
 
 # Approach
+
+## Lab Config
+
+A lab configuration will be used to determine what test a lab has and what testConfigs they're using
+
+```typescript
+type BaseTest =
+  | "compressive-strength"
+  | "soil-moisture"
+  | "gradation-soil"
+  | "gradation-aggregate"
+  | "proctor"
+  | "hydrometer"
+  | "super-pave"
+  | "marshall"
+
+type TestConfig = 
+  | { baseTest: BaseTest, testConfig?: ObjectID }
+  | { baseTest: "none", testConfig?: ObjectID };
+
+type LabConfig = {
+  tests: TestConfig[]
+}
+```
 
 ## Top Level Configurations
 
