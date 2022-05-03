@@ -55,7 +55,7 @@ export const exampleConfig1: TestConfig = {
         dateTime: {
           type: "date-time",
           label: "Date Time Input",
-          name: "date-time",
+          name: "dateTime",
           tooltip: "Tooltip for Date Time Input",
         },
         time: {
