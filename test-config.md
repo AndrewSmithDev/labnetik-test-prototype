@@ -6,6 +6,8 @@ These are notes written by Andrew for himself, so that he doesn't forget them
 
 WIP
 
+How will test kernals and stock fields be defined?
+
 ## Custom Field Types
 - string / text
 - enum (elector)
