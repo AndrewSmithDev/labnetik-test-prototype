@@ -2,7 +2,68 @@ These are notes written by Andrew for himself, so that he doesn't forget them
 
 # Overview 
 
-### Lab Config
+## Complete Base Test
+
+WIP
+
+How will test kernals and stock fields be defined?
+
+## Custom Field Types
+- string / text
+- enum (elector)
+- booleans (checkbox)
+- numbers
+- [computed](https://github.com/AndrewSmithDev/labnetik-test-prototype/blob/master/test-config.md#math-equations)
+  - use [mathjs parsing](https://mathjs.org/docs/expressions/parsing.html)
+- sections
+  - Objects with nested fields
+  - with custom sections/titles
+- arrays
+  - of primitives (strings, enum, numbers)
+    - display as a list of inputs
+  - of sections/objects
+    - displayed in a table
+      - for sections that contain only a few fields display inline
+      - for sections with a lot of fields use a modal to input values
+        - use a table to show the values (allow a way to display/hide fields)
+  - inline array section
+    - single section
+    - displayed as inline table with inputs 
+- dates
+- units (length, weight, etc)
+- selectors (projects, contractors, etc)
+
+## Field Validation
+- Phase 0
+  - everything is optional
+- Phase 1
+  - required based on stage
+    - required on and following stages
+- Phase 2
+  - [basic zod validation](https://github.com/AndrewSmithDev/labnetik-test-prototype/blob/master/test-config.md#math-equations)
+    - i.e. options on, `z.string()` or, `z.number()`
+    - no `refine`s or `superRefine`
+- phase 3
+  - hide properties based on stage
+    - i.e. dont show in creation but show in login
+- phase 4
+  - conditional validation
+    - based on [predicate](https://github.com/AndrewSmithDev/labnetik-test-prototype/blob/master/test-config.md#math-equations) determine if a validation should be used
+      - predicate operators `==`, `===`, `!=`, `!==`, `>`, `<`, `>=`, `<=`, `&&`, `||`, `()`
+      - comparison between fields (including computed fields) or literals
+      - a ancestor fields cannot access decendent fields if the decendent field is nested in an array
+        - i cant think of a good way to resolve indexing
+    - will require a custom parser similiar to [math js's parser](https://mathjs.org/docs/expressions/parsing.html)
+      - see example below
+- phase 5
+  - conditionally hide fields
+    - use the same predicate method described in the section above
+- phase 6 (?)
+  - unique constraint
+
+# Approach
+
+## Lab Config
 
 A lab configuration will be used to determine what test a lab has and what testConfigs they're using
 
@@ -25,63 +86,6 @@ type LabConfig = {
   tests: TestConfig[]
 }
 ```
-
-
-## Complete Base Test
-
-WIP
-
-## Custom Field Types
-- string / text
-- enum (elector)
-- booleans (checkbox)
-- numbers
-- computed
-  - use [mathjs parsing](https://mathjs.org/docs/expressions/parsing.html)
-- sections
-  - Objects with nested fields
-  - with custom sections/titles
-- arrays
-  - of primitives (strings, enum, numbers)
-    - display as a list of inputs
-  - of sections/objects
-    - displayed in a table
-      - for sections that contain only a few fields display inline
-      - for sections with a lot of fields use a modal to input values
-        - use a table to show the values (allow a way to display/hide fields)
-- dates
-- units (length, weight, etc)
-- selectors (projects, contractors, etc)
-
-## Field Validation
-- Phase 0
-  - everything is optional
-- Phase 1
-  - required based on stage
-    - required on and following stages
-- Phase 2
-  - basic zod validation
-    - i.e. options on, `z.string()` or, `z.number()`
-    - no `refine`s or `superRefine`
-- phase 3
-  - hide properties based on stage
-    - i.e. dont show in creation but show in login
-- phase 4
-  - conditional validation
-    - based on predicate determine if a validation should be used
-      - predicate operators `==`, `===`, `!=`, `!==`, `>`, `<`, `>=`, `<=`, `&&`, `||`, `()`
-      - comparison between fields (including computed fields) or literals
-      - a ancestor fields cannot access decendent fields if the decendent field is nested in an array
-        - i cant think of a good way to resolve indexing
-    - will require a custom parser similiar to [math js's parser](https://mathjs.org/docs/expressions/parsing.html)
-      - see example below
-- phase 5
-  - conditionally hide fields
-    - use the same predicate method described in the section above
-- phase 6 (?)
-  - unique constraint
-
-# Approach
 
 ## Top Level Configurations
 
