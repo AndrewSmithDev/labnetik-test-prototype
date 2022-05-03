@@ -11,7 +11,7 @@ export type ComputedInputProps = BaseInputProps & {
 export const ComputedInput = ({
   config,
   pathPrefix,
-  showLabel,
+  showLabel = true,
   variant,
 }: ComputedInputProps) => {
   const { watch, register } = useFormContext();

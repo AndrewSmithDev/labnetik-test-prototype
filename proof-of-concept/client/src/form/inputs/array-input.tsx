@@ -26,7 +26,7 @@ const getInput = (
 export const ArrayInput = ({
   config,
   pathPrefix,
-  showLabel,
+  showLabel = true,
   variant,
 }: ArrayInputProps) => {
   const { register, watch, setValue } = useFormContext();
