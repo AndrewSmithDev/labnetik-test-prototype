@@ -6,3 +6,4 @@ export * from "./number-input";
 export * from "./string-enum-input";
 export * from "./string-input";
 export * from "./inline-array-section";
+export * from "./date-input";

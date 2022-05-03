@@ -45,6 +45,27 @@ export const baseCustomFieldSchema = z.object({
 
 // Form [x]
 // Report [ ]
+export type CustomDateConfig = z.infer<typeof customDateConfigSchema>;
+export const customDateConfigSchema = baseCustomFieldSchema.extend({
+  type: z.literal("date"),
+});
+
+// Form [x]
+// Report [ ]
+export type CustomDateTimeConfig = z.infer<typeof customDateTimeConfigSchema>;
+export const customDateTimeConfigSchema = baseCustomFieldSchema.extend({
+  type: z.literal("date-time"),
+});
+
+// Form [x]
+// Report [ ]
+export type CustomTimeConfig = z.infer<typeof customTimeConfigSchema>;
+export const customTimeConfigSchema = baseCustomFieldSchema.extend({
+  type: z.literal("time"),
+});
+
+// Form [x]
+// Report [ ]
 export type CustomStringConfig = z.infer<typeof customStringConfigSchema>;
 export const customStringConfigSchema = baseCustomFieldSchema.extend({
   type: z.literal("string"),
@@ -98,6 +119,9 @@ export type CustomArrayConfig = z.infer<typeof customArrayConfigSchema>;
 export const customArrayConfigSchema = baseCustomFieldSchema.extend({
   type: z.literal("array"),
   config: z.union([
+    customDateConfigSchema,
+    customDateTimeConfigSchema,
+    customTimeConfigSchema,
     customStringConfigSchema,
     customNumberConfigSchema,
     customStringEnumConfigSchema,
@@ -105,7 +129,7 @@ export const customArrayConfigSchema = baseCustomFieldSchema.extend({
   ]),
 });
 
-// Form [ ]
+// Form [x]
 // Report [ ]
 export type CustomInlineArraySectionConfig = z.infer<
   typeof customInlineArraySectionConfigSchema
@@ -115,6 +139,9 @@ export const customInlineArraySectionConfigSchema =
     type: z.literal("inline-array-section"),
     fields: z.record(
       z.union([
+        customDateConfigSchema,
+        customDateTimeConfigSchema,
+        customTimeConfigSchema,
         customStringConfigSchema,
         customNumberConfigSchema,
         customComputedConfigSchema,
@@ -129,6 +156,9 @@ export const customInlineArraySectionConfigSchema =
 // Report [ ]
 export type CustomFieldConfig = z.infer<typeof customFieldConfigSchema>;
 export const customFieldConfigSchema = z.union([
+  customDateConfigSchema,
+  customDateTimeConfigSchema,
+  customTimeConfigSchema,
   customStringConfigSchema,
   customNumberConfigSchema,
   customComputedConfigSchema,

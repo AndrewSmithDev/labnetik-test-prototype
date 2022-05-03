@@ -10,12 +10,15 @@ import { ArraySection } from "./array-section";
 import {
   BooleanInput,
   ComputedInput,
+  DateInput,
   NumberEnumInput,
   NumberInput,
   StringEnumInput,
   StringInput,
 } from "./inputs";
 import { InlineArraySection } from "./inputs";
+import { DateTimeInput } from "./inputs/date-time-input";
+import { TimeInput } from "./inputs/time-input";
 
 export type FormSectionProps = {
   config: Omit<SectionConfig, "name"> & Partial<Pick<SectionConfig, "name">>;
@@ -64,6 +67,12 @@ export const FormSection = ({ config }: FormSectionProps) => {
           );
         if (fieldConfig.type === "computed")
           return <ComputedInput config={fieldConfig} pathPrefix={path} />;
+        if (fieldConfig.type === "date")
+          return <DateInput config={fieldConfig} pathPrefix={path} />;
+        if (fieldConfig.type === "date-time")
+          return <DateTimeInput config={fieldConfig} pathPrefix={path} />;
+        if (fieldConfig.type === "time")
+          return <TimeInput config={fieldConfig} pathPrefix={path} />;
         if (fieldConfig.type === "array")
           return <ArrayInput config={fieldConfig} pathPrefix={path} />;
       })}
