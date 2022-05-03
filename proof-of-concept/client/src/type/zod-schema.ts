@@ -92,7 +92,7 @@ export const customNumberEnumConfigSchema = baseCustomFieldSchema.extend({
   options: z.object({ type: z.literal("number"), values: z.array(z.number()) }),
 });
 
-// Form [ ]
+// Form [x]
 // Report [ ]
 export type CustomArrayConfig = z.infer<typeof customArrayConfigSchema>;
 export const customArrayConfigSchema = baseCustomFieldSchema.extend({
@@ -129,7 +129,7 @@ export const sectionConfigSchema = z.object({
   hideInReport: z.boolean().optional(),
 });
 
-// Form [ ]
+// Form [x]
 // Report [ ]
 export type CustomArraySection = z.infer<typeof customArraySectionSchema>;
 export const customArraySectionSchema = z.object({
