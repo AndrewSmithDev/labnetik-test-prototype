@@ -1,11 +1,10 @@
 import { TextField, Tooltip } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { CustomStringConfig } from "../../type";
+import { BaseInputProps } from "./base-input";
 
-export type StringInputProps = {
+export type StringInputProps = BaseInputProps & {
   config: CustomStringConfig;
-  pathPrefix?: string;
-  showLabel?: boolean;
 };
 
 export const StringInput = ({

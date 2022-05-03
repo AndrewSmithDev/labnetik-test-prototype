@@ -1,11 +1,10 @@
 import { TextField, Tooltip } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { CustomNumberConfig } from "../../type";
+import { BaseInputProps } from "./base-input";
 
-export type NumberInputProps = {
+export type NumberInputProps = BaseInputProps & {
   config: CustomNumberConfig;
-  pathPrefix?: string;
-  showLabel?: boolean;
 };
 
 export const NumberInput = ({

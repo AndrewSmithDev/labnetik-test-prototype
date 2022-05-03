@@ -1,13 +1,17 @@
 import { Checkbox, FormControlLabel, Tooltip } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { CustomBooleanConfig } from "../../type";
+import { BaseInputProps } from "./base-input";
 
-export type BooleanInputProps = {
+export type BooleanInputProps = BaseInputProps & {
   config: CustomBooleanConfig;
-  pathPrefix?: string;
 };
 
-export const BooleanInput = ({ config, pathPrefix }: BooleanInputProps) => {
+export const BooleanInput = ({
+  config,
+  pathPrefix,
+  showLabel,
+}: BooleanInputProps) => {
   const { register } = useFormContext();
   const { label, name, tooltip, hidden, validation } = config;
   const path = pathPrefix ? `${pathPrefix}.${name}` : name;
@@ -16,7 +20,7 @@ export const BooleanInput = ({ config, pathPrefix }: BooleanInputProps) => {
     <FormControlLabel
       {...register(path)}
       control={<Checkbox {...register(path)} />}
-      label={label}
+      label={showLabel ? label : undefined}
     />
   );
 

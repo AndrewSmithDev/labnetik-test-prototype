@@ -8,11 +8,10 @@ import {
 } from "@mui/material";
 import { useController } from "react-hook-form";
 import { CustomStringEnumConfig } from "../../type";
+import { BaseInputProps } from "./base-input";
 
-export type StringEnumInputProps = {
+export type StringEnumInputProps = BaseInputProps & {
   config: CustomStringEnumConfig;
-  pathPrefix?: string;
-  showLabel?: boolean;
 };
 
 export const StringEnumInput = ({

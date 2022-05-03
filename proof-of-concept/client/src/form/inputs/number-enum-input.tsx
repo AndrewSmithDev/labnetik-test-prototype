@@ -8,11 +8,10 @@ import {
 } from "@mui/material";
 import { useController } from "react-hook-form";
 import { CustomNumberEnumConfig } from "../../type";
+import { BaseInputProps } from "./base-input";
 
-export type NumberEnumInputProps = {
+export type NumberEnumInputProps = BaseInputProps & {
   config: CustomNumberEnumConfig;
-  pathPrefix?: string;
-  showLabel?: boolean;
 };
 
 export const NumberEnumInput = ({
