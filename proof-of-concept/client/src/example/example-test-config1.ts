@@ -8,28 +8,60 @@ export const exampleConfig1: TestConfig = {
       type: "array-section",
       name: "arrayDemo",
       label: "Array Section Demo",
-      fields: {
-        number1: {
-          type: "number",
-          label: "Number 1 Input",
-          name: "number1",
-          showInFormPreview: true,
+      showInFormPreview: [
+        ["firstSection", "number1"],
+        ["secondSection", "string2"],
+      ],
+      sections: {
+        firstSection: {
+          type: "section",
+          name: "firstSection",
+          label: "First Section",
+          fields: {
+            number1: {
+              type: "number",
+              label: "First Number Input",
+              name: "number1",
+              tooltip: "Example Tooltip",
+            },
+            number2: {
+              type: "number",
+              label: "Second Number Input",
+              name: "number2",
+              tooltip: "Tooltip for Second Number Input",
+            },
+            number3: {
+              type: "number",
+              label: "Third Number Input",
+              name: "number3",
+              tooltip: "Tooltip for Third Number Input",
+            },
+          },
         },
-        number2: {
-          type: "number",
-          label: "Number 2 Input",
-          name: "number2",
-          showInFormPreview: true,
-        },
-        number3: {
-          type: "number",
-          label: "Number 2 Input",
-          name: "number3",
-        },
-        number4: {
-          type: "number",
-          label: "Number 2 Input",
-          name: "number4",
+        secondSection: {
+          type: "section",
+          name: "secondSection",
+          label: "Second Section",
+          fields: {
+            string1: {
+              type: "string",
+              label: "First String Input",
+              name: "string1",
+              tooltip: "Example Tooltip",
+            },
+            string2: {
+              type: "string",
+              label: "Second String Input",
+              name: "string2",
+              tooltip: "Tooltip for Second String Input",
+            },
+            string3: {
+              type: "string",
+              label: "Third String Input",
+              name: "string3",
+              tooltip: "Tooltip for Third String Input",
+            },
+          },
         },
       },
     },

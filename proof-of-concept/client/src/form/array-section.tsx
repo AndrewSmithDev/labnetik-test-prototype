@@ -14,6 +14,7 @@ import { useState, DOMAttributes, useEffect } from "react";
 import { FormProvider, useForm, useFormContext } from "react-hook-form";
 import { CustomArraySection } from "../type";
 import { FormSection } from "./form-section";
+import * as R from "ramda";
 
 export type ArraySectionProps = {
   config: CustomArraySection;
@@ -21,8 +22,12 @@ export type ArraySectionProps = {
 };
 
 export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
-  const { label, name, fields } = config;
+  const { label, name, sections, showInFormPreview } = config;
   const path = pathPrefix ? `${pathPrefix}.${name}` : name;
+
+  const fields = Object.values(sections).flatMap((sections) =>
+    Object.values(sections.fields)
+  );
 
   const containerForm = useFormContext();
   const containerValues = containerForm.watch(path);
@@ -51,6 +56,8 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
     setOpen(false);
   };
 
+  console.log({ showInFormPreview, config });
+
   return (
     <section
       style={{
@@ -69,21 +76,20 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
       <TableContainer>
         <Table>
           <TableHead>
-            {Object.values(fields)
-              .filter((field) => field.showInFormPreview)
-              .map((field) => (
-                <TableCell>{field.label}</TableCell>
-              ))}
+            {showInFormPreview.map(([section, field]) => {
+              return (
+                <TableCell>
+                  {config.sections[section]?.fields[field]?.label}
+                </TableCell>
+              );
+            })}
           </TableHead>
           <TableBody>
             {containerValues?.map((data: any) => {
-              const valuesToShow = Object.values(fields)
-                .filter((field) => field.showInFormPreview)
-                .map((field) => field.name);
               return (
                 <TableRow>
-                  {valuesToShow.map((name) => (
-                    <TableCell>{data[name]}</TableCell>
+                  {showInFormPreview?.map((path) => (
+                    <TableCell>{R.view(R.lensPath(path), data)}</TableCell>
                   ))}
                 </TableRow>
               );
@@ -97,9 +103,9 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
             <div style={{ padding: 32 }}>
               <FormProvider {...innerForm}>
                 <form onSubmit={handleSubmit}>
-                  <FormSection
-                    config={{ ...config, type: "section", name: undefined }}
-                  />
+                  {Object.values(sections).map((section) => (
+                    <FormSection config={section} />
+                  ))}
                   <Button onClick={handleClose} fullWidth>
                     Cancel
                   </Button>

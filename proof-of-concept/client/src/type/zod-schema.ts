@@ -94,40 +94,6 @@ export const customNumberEnumConfigSchema = baseCustomFieldSchema.extend({
 
 // Form [ ]
 // Report [ ]
-export type CustomArrayField = z.infer<typeof customArrayFieldConfig>;
-export const customArrayFieldConfig = z.union([
-  customStringConfigSchema.extend({
-    showInFormPreview: z.boolean().optional(),
-  }),
-  customNumberConfigSchema.extend({
-    showInFormPreview: z.boolean().optional(),
-  }),
-  customBooleanConfigSchema.extend({
-    showInFormPreview: z.boolean().optional(),
-  }),
-  customStringEnumConfigSchema.extend({
-    showInFormPreview: z.boolean().optional(),
-  }),
-  customNumberEnumConfigSchema.extend({
-    showInFormPreview: z.boolean().optional(),
-  }),
-  customComputedConfigSchema.extend({
-    showInFormPreview: z.boolean().optional(),
-  }),
-]);
-
-// Form [ ]
-// Report [ ]
-export type CustomArraySection = z.infer<typeof customArraySectionSchema>;
-export const customArraySectionSchema = z.object({
-  type: z.literal("array-section"),
-  name: nameSchema,
-  label: z.string(),
-  fields: z.record(customArrayFieldConfig),
-});
-
-// Form [ ]
-// Report [ ]
 export type CustomArrayConfig = z.infer<typeof customArrayConfigSchema>;
 export const customArrayConfigSchema = baseCustomFieldSchema.extend({
   type: z.literal("array"),
@@ -149,7 +115,6 @@ export const customFieldConfigSchema = z.union([
   customBooleanConfigSchema,
   customStringEnumConfigSchema,
   customNumberEnumConfigSchema,
-  customArraySectionSchema,
   customArrayConfigSchema,
 ]);
 
@@ -162,6 +127,17 @@ export const sectionConfigSchema = z.object({
   label: z.string(),
   fields: z.record(customFieldConfigSchema),
   hideInReport: z.boolean().optional(),
+});
+
+// Form [ ]
+// Report [ ]
+export type CustomArraySection = z.infer<typeof customArraySectionSchema>;
+export const customArraySectionSchema = z.object({
+  type: z.literal("array-section"),
+  showInFormPreview: z.array(pathToFieldSchema).min(1),
+  name: nameSchema,
+  label: z.string(),
+  sections: z.record(sectionConfigSchema),
 });
 
 // Form [ ]
