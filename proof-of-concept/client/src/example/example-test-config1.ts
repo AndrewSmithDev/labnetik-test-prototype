@@ -65,6 +65,31 @@ export const exampleConfig1: TestConfig = {
         },
       },
     },
+    inlineArray: {
+      type: "inline-array-section",
+      name: "inlineArray",
+      label: "Inline Array",
+      fields: {
+        string1: {
+          type: "string",
+          label: "First String Input",
+          name: "string1",
+          tooltip: "Example Tooltip",
+        },
+        string2: {
+          type: "string",
+          label: "Second String Input",
+          name: "string2",
+          tooltip: "Tooltip for Second String Input",
+        },
+        string3: {
+          type: "string",
+          label: "Third String Input",
+          name: "string3",
+          tooltip: "Tooltip for Third String Input",
+        },
+      },
+    },
     firstSection: {
       type: "section",
       name: "firstSection",

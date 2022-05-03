@@ -3,6 +3,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { TestConfig } from "../type";
 import { ArraySection } from "./array-section";
 import { FormSection } from "./form-section";
+import { InlineArraySection } from "./inputs";
 
 export type FormGeneratorProps = {
   config: TestConfig;
@@ -30,7 +31,9 @@ export const FormGenerator = ({ config }: FormGeneratorProps) => {
           {Object.values(sections).map((section) => {
             if (section.type === "section")
               return <FormSection config={section} />;
-            else return <ArraySection config={section} />;
+            if (section.type === "inline-array-section")
+              return <InlineArraySection config={section} />;
+            return <ArraySection config={section} />;
           })}
         </form>
       </FormProvider>

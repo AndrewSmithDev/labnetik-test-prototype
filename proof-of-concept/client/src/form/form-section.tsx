@@ -15,6 +15,7 @@ import {
   StringEnumInput,
   StringInput,
 } from "./inputs";
+import { InlineArraySection } from "./inputs";
 
 export type FormSectionProps = {
   config: Omit<SectionConfig, "name"> & Partial<Pick<SectionConfig, "name">>;
@@ -63,8 +64,6 @@ export const FormSection = ({ config }: FormSectionProps) => {
           );
         if (fieldConfig.type === "computed")
           return <ComputedInput config={fieldConfig} pathPrefix={path} />;
-        if (fieldConfig.type === "array-section")
-          return <ArraySection config={fieldConfig} pathPrefix={path} />;
         if (fieldConfig.type === "array")
           return <ArrayInput config={fieldConfig} pathPrefix={path} />;
       })}

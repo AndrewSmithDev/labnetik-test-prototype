@@ -15,6 +15,7 @@ import { FormProvider, useForm, useFormContext } from "react-hook-form";
 import { CustomArraySection } from "../type";
 import { FormSection } from "./form-section";
 import * as R from "ramda";
+import { InlineArraySection } from "./inputs";
 
 export type ArraySectionProps = {
   config: CustomArraySection;
@@ -55,8 +56,6 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
   const handleClose = () => {
     setOpen(false);
   };
-
-  console.log({ showInFormPreview, config });
 
   return (
     <section
@@ -103,9 +102,11 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
             <div style={{ padding: 32 }}>
               <FormProvider {...innerForm}>
                 <form onSubmit={handleSubmit}>
-                  {Object.values(sections).map((section) => (
-                    <FormSection config={section} />
-                  ))}
+                  {Object.values(sections).map((section) => {
+                    if (section.type === "inline-array-section")
+                      return <InlineArraySection config={section} />;
+                    return <FormSection config={section} />;
+                  })}
                   <Button onClick={handleClose} fullWidth>
                     Cancel
                   </Button>

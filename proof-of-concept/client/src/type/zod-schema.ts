@@ -105,6 +105,26 @@ export const customArrayConfigSchema = baseCustomFieldSchema.extend({
   ]),
 });
 
+// Form [ ]
+// Report [ ]
+export type CustomInlineArraySectionConfig = z.infer<
+  typeof customInlineArraySectionConfigSchema
+>;
+export const customInlineArraySectionConfigSchema =
+  baseCustomFieldSchema.extend({
+    type: z.literal("inline-array-section"),
+    fields: z.record(
+      z.union([
+        customStringConfigSchema,
+        customNumberConfigSchema,
+        customComputedConfigSchema,
+        customBooleanConfigSchema,
+        customStringEnumConfigSchema,
+        customNumberEnumConfigSchema,
+      ])
+    ),
+  });
+
 // Form [x]
 // Report [ ]
 export type CustomFieldConfig = z.infer<typeof customFieldConfigSchema>;
@@ -137,7 +157,9 @@ export const customArraySectionSchema = z.object({
   showInFormPreview: z.array(pathToFieldSchema).min(1),
   name: nameSchema,
   label: z.string(),
-  sections: z.record(sectionConfigSchema),
+  sections: z.record(
+    z.union([sectionConfigSchema, customInlineArraySectionConfigSchema])
+  ),
 });
 
 // Form [ ]
@@ -147,5 +169,11 @@ export const testConfigSchema = z.object({
   title: z.string(),
   stages: z.array(z.string()).optional(),
   disabledStockFields: pathToFieldSchema.array().optional(),
-  sections: z.record(z.union([sectionConfigSchema, customArraySectionSchema])),
+  sections: z.record(
+    z.union([
+      sectionConfigSchema,
+      customArraySectionSchema,
+      customInlineArraySectionConfigSchema,
+    ])
+  ),
 });
