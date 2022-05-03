@@ -17,13 +17,12 @@ import {
 } from "./inputs";
 
 export type FormSectionProps = {
-  config: SectionConfig;
-  pathPrefix?: string;
+  config: Omit<SectionConfig, "name"> & Partial<Pick<SectionConfig, "name">>;
 };
 
-export const FormSection = ({ config, pathPrefix }: FormSectionProps) => {
+export const FormSection = ({ config }: FormSectionProps) => {
   const { label, name, fields } = config;
-  const path = pathPrefix ? `${pathPrefix}.${name}` : name;
+  const path = name;
 
   return (
     <section

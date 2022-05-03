@@ -11,7 +11,7 @@ import { CustomStringEnumConfig } from "../../type";
 
 export type StringEnumInputProps = {
   config: CustomStringEnumConfig;
-  pathPrefix: string;
+  pathPrefix?: string;
   showLabel?: boolean;
 };
 
@@ -21,7 +21,7 @@ export const StringEnumInput = ({
   showLabel = true,
 }: StringEnumInputProps) => {
   const { label, name, options, tooltip, hidden, validation } = config;
-  const path = `${pathPrefix}.${name}`;
+  const path = pathPrefix ? `${pathPrefix}.${name}` : name;
 
   const controller = useController({ name: path });
 

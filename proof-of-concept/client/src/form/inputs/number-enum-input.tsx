@@ -11,7 +11,7 @@ import { CustomNumberEnumConfig } from "../../type";
 
 export type NumberEnumInputProps = {
   config: CustomNumberEnumConfig;
-  pathPrefix: string;
+  pathPrefix?: string;
   showLabel?: boolean;
 };
 
@@ -21,7 +21,7 @@ export const NumberEnumInput = ({
   showLabel = true,
 }: NumberEnumInputProps) => {
   const { label, name, options, tooltip, hidden, validation } = config;
-  const path = `${pathPrefix}.${name}`;
+  const path = pathPrefix ? `${pathPrefix}.${name}` : name;
 
   const controller = useController({ name: path });
 

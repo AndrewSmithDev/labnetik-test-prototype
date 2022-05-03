@@ -4,13 +4,13 @@ import { CustomBooleanConfig } from "../../type";
 
 export type BooleanInputProps = {
   config: CustomBooleanConfig;
-  pathPrefix: string;
+  pathPrefix?: string;
 };
 
 export const BooleanInput = ({ config, pathPrefix }: BooleanInputProps) => {
   const { register } = useFormContext();
   const { label, name, tooltip, hidden, validation } = config;
-  const path = `${pathPrefix}.${name}`;
+  const path = pathPrefix ? `${pathPrefix}.${name}` : name;
 
   const input = (
     <FormControlLabel

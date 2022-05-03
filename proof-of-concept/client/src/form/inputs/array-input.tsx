@@ -8,7 +8,7 @@ import { StringInput } from "./string-input";
 
 export type ArrayInputProps = {
   config: CustomArrayConfig;
-  pathPrefix: string;
+  pathPrefix?: string;
 };
 
 const getInput = (
@@ -26,7 +26,7 @@ const getInput = (
 export const ArrayInput = ({ config, pathPrefix }: ArrayInputProps) => {
   const { register, watch, setValue } = useFormContext();
   const { label, name, tooltip, hidden, validation } = config;
-  const path = `${pathPrefix}.${name}`;
+  const path = pathPrefix ? `${pathPrefix}.${name}` : name;
   const values = watch(path) ?? [undefined];
 
   const handleAdd = () => {

@@ -4,7 +4,7 @@ import { CustomNumberConfig } from "../../type";
 
 export type NumberInputProps = {
   config: CustomNumberConfig;
-  pathPrefix: string;
+  pathPrefix?: string;
   showLabel?: boolean;
 };
 
@@ -15,7 +15,7 @@ export const NumberInput = ({
 }: NumberInputProps) => {
   const { register } = useFormContext();
   const { label, name, tooltip, hidden, validation } = config;
-  const path = `${pathPrefix}.${name}`;
+  const path = pathPrefix ? `${pathPrefix}.${name}` : name;
 
   const input = (
     <TextField

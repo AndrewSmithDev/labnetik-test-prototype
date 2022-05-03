@@ -5,7 +5,7 @@ import { CustomComputedConfig } from "../../type";
 
 export type ComputedInputProps = {
   config: CustomComputedConfig;
-  pathPrefix: string;
+  pathPrefix?: string;
 };
 
 export const ComputedInput = ({ config, pathPrefix }: ComputedInputProps) => {
@@ -13,7 +13,7 @@ export const ComputedInput = ({ config, pathPrefix }: ComputedInputProps) => {
   const data = watch();
 
   const { label, name, tooltip, hidden, validation } = config;
-  const path = `${pathPrefix}.${name}`;
+  const path = pathPrefix ? `${pathPrefix}.${name}` : name;
 
   let value = evaluateEquation(config.equation, data);
 

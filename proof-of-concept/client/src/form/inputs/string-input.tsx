@@ -4,7 +4,7 @@ import { CustomStringConfig } from "../../type";
 
 export type StringInputProps = {
   config: CustomStringConfig;
-  pathPrefix: string;
+  pathPrefix?: string;
   showLabel?: boolean;
 };
 
@@ -15,7 +15,7 @@ export const StringInput = ({
 }: StringInputProps) => {
   const { register } = useFormContext();
   const { label, name, tooltip, hidden, validation } = config;
-  const path = `${pathPrefix}.${name}`;
+  const path = pathPrefix ? `${pathPrefix}.${name}` : name;
 
   const input = (
     <TextField
