@@ -93,7 +93,7 @@ export const InlineArraySection = ({
   const path = pathPrefix ? `${pathPrefix}.${name}` : name;
 
   const { watch, setValue } = useFormContext();
-  const values = watch(path) ?? [];
+  const values = watch(path) ?? [{}];
 
   const handleAdd = () => {
     setValue(path, [...values, {}]);
@@ -125,7 +125,7 @@ export const InlineArraySection = ({
         <Table>
           <TableHead>
             {Object.values(fields).map(({ label }) => (
-              <TableCell>{label}</TableCell>
+              <TableCell align="center">{label}</TableCell>
             ))}
             <TableCell />
           </TableHead>
@@ -134,11 +134,11 @@ export const InlineArraySection = ({
               return (
                 <TableRow>
                   {Object.values(fields).map((config) => (
-                    <TableCell sx={{ padding: "8px 4px" }}>
+                    <TableCell align="center" sx={{ padding: "8px 4px" }}>
                       {getInput(config, path + "." + index)}
                     </TableCell>
                   ))}
-                  <TableCell>
+                  <TableCell align="center">
                     <Button onClick={() => handleDelete(index)}>➖</Button>
                   </TableCell>
                 </TableRow>

@@ -77,7 +77,7 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
           <TableHead>
             {showInFormPreview.map(([section, field]) => {
               return (
-                <TableCell>
+                <TableCell align="center">
                   {config.sections[section]?.fields[field]?.label}
                 </TableCell>
               );
@@ -88,7 +88,9 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
               return (
                 <TableRow>
                   {showInFormPreview?.map((path) => (
-                    <TableCell>{R.view(R.lensPath(path), data)}</TableCell>
+                    <TableCell align="center">
+                      {R.view(R.lensPath(path), data)}
+                    </TableCell>
                   ))}
                 </TableRow>
               );

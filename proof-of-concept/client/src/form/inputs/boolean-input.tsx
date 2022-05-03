@@ -10,18 +10,20 @@ export type BooleanInputProps = Omit<BaseInputProps, "variant"> & {
 export const BooleanInput = ({
   config,
   pathPrefix,
-  showLabel,
+  showLabel = true,
 }: BooleanInputProps) => {
   const { register } = useFormContext();
   const { label, name, tooltip, hidden, validation } = config;
   const path = pathPrefix ? `${pathPrefix}.${name}` : name;
 
-  const input = (
+  const input = showLabel ? (
     <FormControlLabel
       {...register(path)}
       control={<Checkbox {...register(path)} />}
-      label={showLabel ? label : undefined}
+      label={label}
     />
+  ) : (
+    <Checkbox {...register(path)} />
   );
 
   if (!tooltip) return input;
