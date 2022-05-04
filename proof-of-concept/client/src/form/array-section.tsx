@@ -54,10 +54,12 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
   const handleClose = () => {
     setOpen(false);
     setSelectedIndex(undefined);
-    innerForm.reset();
+    innerForm.reset({});
   };
 
-  const handleDelete = (index: number) => {
+  const handleDelete = (event: React.MouseEvent, index: number) => {
+    event.stopPropagation();
+
     containerForm.setValue(
       path,
       containerValues.filter((_: unknown, i: number) => i !== index)
@@ -111,7 +113,7 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
                       {R.view(R.lensPath(path), data)}
                     </TableCell>
                   ))}
-                  <TableCell onClick={() => handleDelete(index)}>
+                  <TableCell onClick={(event) => handleDelete(event, index)}>
                     <Button>❌</Button>
                   </TableCell>
                 </TableRow>
