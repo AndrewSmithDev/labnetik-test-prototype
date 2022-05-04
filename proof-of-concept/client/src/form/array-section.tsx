@@ -100,25 +100,36 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
             <TableCell />
           </TableHead>
           <TableBody>
-            {containerValues?.map((data: unknown, index: number) => {
-              return (
-                <TableRow
-                  onClick={() => handleEdit(index)}
-                  hover
-                  selected={index === selectedIndex}
-                  sx={{ cursor: "pointer" }}
+            {!containerValues || containerValues.length === 0 ? (
+              <TableRow>
+                <TableCell
+                  colSpan={showInFormPreview.length + 1}
+                  align="center"
                 >
-                  {showInFormPreview?.map((path) => (
-                    <TableCell align="center">
-                      {R.view(R.lensPath(path), data)}
+                  No Entries
+                </TableCell>
+              </TableRow>
+            ) : (
+              containerValues.map((data: unknown, index: number) => {
+                return (
+                  <TableRow
+                    onClick={() => handleEdit(index)}
+                    hover
+                    selected={index === selectedIndex}
+                    sx={{ cursor: "pointer" }}
+                  >
+                    {showInFormPreview?.map((path) => (
+                      <TableCell align="center">
+                        {R.view(R.lensPath(path), data)}
+                      </TableCell>
+                    ))}
+                    <TableCell onClick={(event) => handleDelete(event, index)}>
+                      <Button>❌</Button>
                     </TableCell>
-                  ))}
-                  <TableCell onClick={(event) => handleDelete(event, index)}>
-                    <Button>❌</Button>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
+                  </TableRow>
+                );
+              })
+            )}
           </TableBody>
         </Table>
       </TableContainer>
