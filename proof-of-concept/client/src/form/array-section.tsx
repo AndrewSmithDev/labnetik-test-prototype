@@ -40,17 +40,12 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
 
   const innerForm = useForm();
 
-  const values = innerForm.watch();
-  useEffect(() => {
-    console.log({ innerForm: values });
-  }, [values]);
-
   const handleSubmit: DOMAttributes<HTMLFormElement>["onSubmit"] = (event) => {
     event.preventDefault();
     event.stopPropagation();
 
     innerForm.handleSubmit((data) => {
-      const index = containerValues?.length ?? 0;
+      const index = selectedIndex ?? containerValues?.length ?? 0;
       containerForm.setValue(`${path}.${index}`, data);
       handleClose();
     })(event);
