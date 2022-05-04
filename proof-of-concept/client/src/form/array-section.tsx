@@ -57,6 +57,13 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
     setOpen(false);
   };
 
+  const handleDelete = (index: number) => {
+    containerForm.setValue(
+      path,
+      containerValues.filter((_: unknown, i: number) => i !== index)
+    );
+  };
+
   return (
     <section
       style={{
@@ -82,9 +89,10 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
                 </TableCell>
               );
             })}
+            <TableCell />
           </TableHead>
           <TableBody>
-            {containerValues?.map((data: any) => {
+            {containerValues?.map((data: unknown, index: number) => {
               return (
                 <TableRow>
                   {showInFormPreview?.map((path) => (
@@ -92,6 +100,9 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
                       {R.view(R.lensPath(path), data)}
                     </TableCell>
                   ))}
+                  <TableCell onClick={() => handleDelete(index)}>
+                    <Button>❌</Button>
+                  </TableCell>
                 </TableRow>
               );
             })}
