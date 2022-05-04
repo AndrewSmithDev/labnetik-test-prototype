@@ -23,6 +23,9 @@ export type ArraySectionProps = {
 };
 
 export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
+  const [selectedIndex, setSelectedIndex] = useState<undefined | number>(
+    undefined
+  );
   const { label, name, sections, showInFormPreview } = config;
   const path = pathPrefix ? `${pathPrefix}.${name}` : name;
 
@@ -37,9 +40,10 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
 
   const innerForm = useForm();
 
+  const values = innerForm.watch();
   useEffect(() => {
-    console.log(containerValues);
-  }, [containerValues]);
+    console.log({ innerForm: values });
+  }, [values]);
 
   const handleSubmit: DOMAttributes<HTMLFormElement>["onSubmit"] = (event) => {
     event.preventDefault();
@@ -48,13 +52,14 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
     innerForm.handleSubmit((data) => {
       const index = containerValues?.length ?? 0;
       containerForm.setValue(`${path}.${index}`, data);
-      setOpen(false);
-      innerForm.reset();
+      handleClose();
     })(event);
   };
 
   const handleClose = () => {
     setOpen(false);
+    setSelectedIndex(undefined);
+    innerForm.reset();
   };
 
   const handleDelete = (index: number) => {
@@ -62,6 +67,12 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
       path,
       containerValues.filter((_: unknown, i: number) => i !== index)
     );
+  };
+
+  const handleEdit = (index: number) => {
+    setSelectedIndex(index);
+    innerForm.reset({ ...containerValues[index] });
+    setOpen(true);
   };
 
   return (
@@ -94,7 +105,12 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
           <TableBody>
             {containerValues?.map((data: unknown, index: number) => {
               return (
-                <TableRow>
+                <TableRow
+                  onClick={() => handleEdit(index)}
+                  hover
+                  selected={index === selectedIndex}
+                  sx={{ cursor: "pointer" }}
+                >
                   {showInFormPreview?.map((path) => (
                     <TableCell align="center">
                       {R.view(R.lensPath(path), data)}

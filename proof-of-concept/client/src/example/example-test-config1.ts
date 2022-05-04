@@ -6,7 +6,7 @@ export const exampleConfig1: TestConfig = {
   sections: {
     arraySectionDemo: {
       type: "array-section",
-      name: "arrayDemo",
+      name: "arraySectionDemo",
       label: "Array Section Demo",
       showInFormPreview: [
         ["firstSection", "number1"],

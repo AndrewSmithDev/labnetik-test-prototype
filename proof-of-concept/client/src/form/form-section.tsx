@@ -22,11 +22,12 @@ import { TimeInput } from "./inputs/time-input";
 
 export type FormSectionProps = {
   config: Omit<SectionConfig, "name"> & Partial<Pick<SectionConfig, "name">>;
+  pathPrefix?: string;
 };
 
-export const FormSection = ({ config }: FormSectionProps) => {
+export const FormSection = ({ config, pathPrefix }: FormSectionProps) => {
   const { label, name, fields } = config;
-  const path = name;
+  const path = pathPrefix ? `${pathPrefix}.${name}` : name;
 
   return (
     <section

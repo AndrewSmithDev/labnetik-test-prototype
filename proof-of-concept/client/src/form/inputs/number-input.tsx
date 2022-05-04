@@ -1,5 +1,5 @@
 import { TextField, Tooltip } from "@mui/material";
-import { useFormContext } from "react-hook-form";
+import { useController, useFormContext } from "react-hook-form";
 import { CustomNumberConfig } from "../../type";
 import { BaseInputProps } from "./base-input";
 
@@ -13,17 +13,18 @@ export const NumberInput = ({
   showLabel = true,
   variant,
 }: NumberInputProps) => {
-  const { register } = useFormContext();
   const { label, name, tooltip, hidden, validation } = config;
   const path = pathPrefix ? `${pathPrefix}.${name}` : name;
+  const controller = useController({ name: path });
+
+  console.log({ controller });
 
   const input = (
     <TextField
-      {...register(path)}
+      {...controller.field}
       label={showLabel ? label : undefined}
       fullWidth
       type="number"
-      variant={variant}
     />
   );
 
