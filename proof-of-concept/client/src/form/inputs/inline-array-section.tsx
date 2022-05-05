@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
-import { CustomInlineArraySectionConfig } from "../../config";
+import { CustomInlineArraySectionConfig } from "../../config-schema";
 import { ArrayInput } from "./array-input";
 import { BooleanInput } from "./boolean-input";
 import { ComputedInput } from "./computed-input";

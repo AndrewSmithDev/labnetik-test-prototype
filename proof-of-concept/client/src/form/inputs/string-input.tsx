@@ -1,6 +1,6 @@
 import { TextField, Tooltip } from "@mui/material";
 import { useFormContext } from "react-hook-form";
-import { CustomStringConfig } from "../../config";
+import { CustomStringConfig } from "../../config-schema";
 import { BaseInputProps } from "./base-input";
 import * as R from "ramda";
 

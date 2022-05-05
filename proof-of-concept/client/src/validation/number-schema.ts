@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { CustomNumberConfig } from "../config";
+import { CustomNumberConfig } from "../config-schema";
 
 export const numberProcessor = (value: unknown): unknown => {
   if (value === "") return undefined;

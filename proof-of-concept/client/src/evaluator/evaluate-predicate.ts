@@ -1,4 +1,4 @@
-import { PathToField, Predicate } from "../config";
+import { PathToField, Predicate } from "../config-schema";
 import { lensPath, view } from "ramda";
 
 export const getValue = (path: PathToField, value: unknown) => {

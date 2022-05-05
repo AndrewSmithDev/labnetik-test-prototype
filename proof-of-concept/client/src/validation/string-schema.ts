@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { CustomStringConfig } from "../config";
+import { CustomStringConfig } from "../config-schema";
 
 export const stringProcessor = (value: unknown): unknown => {
   if (value === "") return undefined;

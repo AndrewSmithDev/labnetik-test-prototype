@@ -1,6 +1,6 @@
 import { Button, TextField, Typography } from "@mui/material";
 import { useFormContext } from "react-hook-form";
-import { CustomArrayConfig } from "../../config";
+import { CustomArrayConfig } from "../../config-schema";
 import { BaseInputProps } from "./base-input";
 import { DateInput } from "./date-input";
 import { DateTimeInput } from "./date-time-input";

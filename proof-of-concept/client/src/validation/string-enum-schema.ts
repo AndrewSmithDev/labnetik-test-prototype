@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { CustomStringEnumConfig } from "../config";
+import { CustomStringEnumConfig } from "../config-schema";
 import { stringProcessor } from "./string-schema";
 
 const createValidation = (

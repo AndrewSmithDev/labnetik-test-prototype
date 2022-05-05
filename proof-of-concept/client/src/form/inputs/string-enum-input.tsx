@@ -8,7 +8,7 @@ import {
   Tooltip,
 } from "@mui/material";
 import { useController, useFormContext } from "react-hook-form";
-import { CustomStringEnumConfig } from "../../config";
+import { CustomStringEnumConfig } from "../../config-schema";
 import { BaseInputProps } from "./base-input";
 import * as R from "ramda";
 

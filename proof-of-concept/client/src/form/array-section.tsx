@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { useState, DOMAttributes, useEffect } from "react";
 import { FormProvider, useForm, useFormContext } from "react-hook-form";
-import { CustomArraySection } from "../config";
+import { CustomArraySection } from "../config-schema";
 import { FormSection } from "./form-section";
 import * as R from "ramda";
 import { InlineArraySection } from "./inputs";
