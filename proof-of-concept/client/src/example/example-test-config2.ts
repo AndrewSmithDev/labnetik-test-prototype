@@ -20,6 +20,9 @@ export const exampleConfig2: TestConfig = {
           label: "Number Input",
           name: "number",
           tooltip: "Tooltip for Number Input",
+          validation: {
+            gt: { value: 0, message: "Must be greater than 0" },
+          },
         },
         {
           type: "date",

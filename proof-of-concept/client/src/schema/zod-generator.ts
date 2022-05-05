@@ -13,6 +13,7 @@ import {
   CustomInlineArraySectionConfig,
   SectionConfig,
 } from "../type";
+import { numberProcessor, createNumberSchema } from "./number-schema";
 import { createStringEnumSchema } from "./string-enum-schema";
 import { createStringSchema } from "./string-schema";
 
@@ -37,21 +38,6 @@ export const createDateSchema = (
 export const createDateTimeSchema = (config: CustomDateTimeConfig) => {
   const schema = z.date().optional();
   return z.preprocess(dateProcessor, schema);
-};
-
-const numberProcessor = (value: unknown): unknown => {
-  if (value === "") return undefined;
-  if (typeof value === "string") {
-    const number = Number.parseFloat(value);
-    if (Number.isNaN(number)) return value;
-    return number;
-  }
-  return value;
-};
-
-export const createNumberSchema = (config: CustomNumberConfig) => {
-  const schema = z.number().optional();
-  return z.preprocess(numberProcessor, schema);
 };
 
 export const createBooleanSchema = (config: CustomBooleanConfig) => {
