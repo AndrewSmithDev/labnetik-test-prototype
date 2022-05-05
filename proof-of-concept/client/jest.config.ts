@@ -11,7 +11,7 @@ export default {
     },
   },
   transform: {
-    "^.+\\.[tj]sx?$": "ts-jest",
+    "^.+\\.(t|j)sx?$": "@swc/jest",
   },
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
   // All imported modules in your tests should be mocked automatically
