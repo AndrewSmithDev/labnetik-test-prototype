@@ -3,11 +3,9 @@ import {
   TestConfig,
   CustomDateConfig,
   CustomDateTimeConfig,
-  CustomTimeConfig,
   CustomStringConfig,
   CustomNumberConfig,
   CustomArraySection,
-  CustomComputedConfig,
   CustomBooleanConfig,
   CustomStringEnumConfig,
   CustomNumberEnumConfig,
@@ -46,8 +44,30 @@ const stringProcessor = (value: unknown): unknown => {
 };
 
 export const createStringSchema = (config: CustomStringConfig) => {
-  const schema = z.string().optional();
-  return z.preprocess(stringProcessor, schema);
+  if (!config.validations) {
+    const schema = z.string().optional();
+    return z.preprocess(stringProcessor, schema);
+  }
+
+  const possibleValidations = config.validations.map((config) => {
+    let schema: z.ZodString | z.ZodOptional<z.ZodString> = z.string();
+    if (config.min) schema = schema.min(config.min.value, config.min.message);
+    if (config.max) schema = schema.max(config.max.value, config.max.message);
+    if (config.length)
+      schema = schema.length(config.length.value, config.length.message);
+    if (config.email) schema = schema.email(config.email.message);
+    if (config.url) schema = schema.url(config.url.message);
+    if (config.regex) {
+      try {
+        const regex = new RegExp(config.regex.value);
+        schema = schema.regex(regex, config.regex.message);
+      } catch {}
+    }
+    if (!config.required) schema = schema.optional();
+    return schema;
+  });
+
+  return z.preprocess(stringProcessor, z.union(possibleValidations as any));
 };
 
 const numberProcessor = (value: unknown): unknown => {

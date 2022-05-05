@@ -1,7 +1,7 @@
 import { TestConfig } from "../type";
 
 export const exampleConfig2: TestConfig = {
-  title: "Example Test Configuration 1",
+  title: "Example Test Configuration 2",
   stages: ["creation", "submission"],
   sections: [
     {
@@ -38,6 +38,13 @@ export const exampleConfig2: TestConfig = {
           label: "String Input",
           name: "string",
           tooltip: "Tooltip for String Input",
+          validations: [
+            {
+              min: { value: 3 },
+              max: { value: 10 },
+              required: {},
+            },
+          ],
         },
         {
           type: "enum",

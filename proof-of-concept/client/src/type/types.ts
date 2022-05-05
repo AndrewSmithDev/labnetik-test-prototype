@@ -126,7 +126,7 @@ export type Validation<
     : BaseValidationOptions;
 };
 
-export type BaseValidationOptions = { optional: boolean } | { unique: boolean }; // unqiue to lab & test
+export type BaseValidationOptions = { required: boolean } | { unique: boolean }; // unqiue to lab & test
 
 export type StringValidationOptions =
   | { min: number }

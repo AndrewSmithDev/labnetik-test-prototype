@@ -1,14 +1,16 @@
 import {
   FormControl,
+  FormHelperText,
   InputLabel,
   MenuItem,
   Select,
   SelectProps,
   Tooltip,
 } from "@mui/material";
-import { useController } from "react-hook-form";
+import { useController, useFormContext } from "react-hook-form";
 import { CustomStringEnumConfig } from "../../type";
 import { BaseInputProps } from "./base-input";
+import * as R from "ramda";
 
 export type StringEnumInputProps = BaseInputProps & {
   config: CustomStringEnumConfig;
@@ -20,10 +22,13 @@ export const StringEnumInput = ({
   showLabel = true,
   variant,
 }: StringEnumInputProps) => {
-  const { label, name, options, tooltip, hidden, validation } = config;
+  const { label, name, options, tooltip, hidden } = config;
   const path = pathPrefix ? `${pathPrefix}.${name}` : name;
 
+  const { formState } = useFormContext();
   const controller = useController({ name: path });
+
+  const error = R.view(R.lensPath(path.split(".")), formState.errors);
 
   const handlechange: SelectProps<string>["onChange"] = (e) => {
     controller.field.onChange(e);
@@ -46,6 +51,9 @@ export const StringEnumInput = ({
           </MenuItem>
         ))}
       </Select>
+      {error.message && (
+        <FormHelperText error={!!error}>{error.message}</FormHelperText>
+      )}
     </FormControl>
   );
 
