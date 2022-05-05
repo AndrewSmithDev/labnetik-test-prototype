@@ -5,7 +5,7 @@ import { TestConfig } from "../type";
 import { ArraySection } from "./array-section";
 import { FormSection } from "./form-section";
 import { InlineArraySection } from "./inputs";
-import { zodSchemaGenerator } from "../schema";
+import { zodSchemaGenerator } from "../validation";
 import { useEffect } from "react";
 
 export type FormGeneratorProps = {
