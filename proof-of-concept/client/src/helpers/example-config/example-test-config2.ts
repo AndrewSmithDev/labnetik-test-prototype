@@ -112,13 +112,13 @@ export const exampleConfig2: TestConfig = {
     },
     {
       type: "section",
-      name: "array-demo",
+      name: "arrayDemo",
       label: "Array Demos",
       fields: [
         {
           type: "array",
           label: "String Array Input",
-          name: "array-string",
+          name: "arrayString",
           tooltip: "Tooltip for String Array Input",
           validation: { min: { value: 3 } },
           config: {
