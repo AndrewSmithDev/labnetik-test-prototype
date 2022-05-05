@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { baseCustomFieldSchema } from "./base-field";
-import { pathToFieldSchema } from "./zod-schema";
+import { pathToFieldSchema } from "./path-to-field";
 
 // Report [ ]
 export type MathEquation = z.infer<typeof mathEquationSchema>;

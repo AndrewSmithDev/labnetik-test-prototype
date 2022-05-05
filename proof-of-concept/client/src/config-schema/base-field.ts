@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { nameSchema } from "./name";
-import { predicateSchema } from "./zod-schema";
+import { predicateSchema } from "./predicate";
 
 // Report [ ]
 export type BaseCustomField = z.infer<typeof baseCustomFieldSchema>;

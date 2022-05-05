@@ -1,14 +1,16 @@
 import {
   FormControl,
+  FormHelperText,
   InputLabel,
   MenuItem,
   Select,
   SelectProps,
   Tooltip,
 } from "@mui/material";
-import { useController } from "react-hook-form";
+import { useController, useFormContext } from "react-hook-form";
 import { CustomNumberEnumConfig } from "../../config-schema";
 import { BaseInputProps } from "./base-input";
+import * as R from "ramda";
 
 export type NumberEnumInputProps = BaseInputProps & {
   config: CustomNumberEnumConfig;
@@ -23,7 +25,10 @@ export const NumberEnumInput = ({
   const { label, name, options, tooltip, hidden, validation } = config;
   const path = pathPrefix ? `${pathPrefix}.${name}` : name;
 
+  const { formState } = useFormContext();
   const controller = useController({ name: path });
+
+  const error = R.view(R.lensPath(path.split(".")), formState.errors);
 
   const handlechange: SelectProps<number>["onChange"] = (event) => {
     const { value } = event.target;
@@ -42,6 +47,7 @@ export const NumberEnumInput = ({
         label={showLabel ? label : undefined}
         onChange={handlechange}
         variant={variant}
+        error={!!error}
       >
         {options.values.map((option) => (
           <MenuItem value={option} key={option}>
@@ -49,6 +55,9 @@ export const NumberEnumInput = ({
           </MenuItem>
         ))}
       </Select>
+      {error?.message && (
+        <FormHelperText error={!!error}>{error.message}</FormHelperText>
+      )}
     </FormControl>
   );
 

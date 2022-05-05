@@ -61,6 +61,7 @@ export const exampleConfig2: TestConfig = {
           label: "Number Enum Input",
           name: "numEnum",
           tooltip: "Tooltip for Number Enum Input",
+          validation: { required: {} },
         },
       ],
     },

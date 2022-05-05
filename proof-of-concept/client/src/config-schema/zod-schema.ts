@@ -3,16 +3,10 @@ import { baseCustomFieldSchema } from "./base-field";
 import { customComputedConfigSchema } from "./computed";
 import { nameSchema } from "./name";
 import { customNumberConfigSchema } from "./number";
+import { customNumberEnumConfigSchema } from "./number-enum";
+import { pathToFieldSchema } from "./path-to-field";
 import { customStringConfigSchema } from "./string";
 import { customStringEnumConfigSchema } from "./string-enum";
-
-export type PathToField = z.infer<typeof pathToFieldSchema>;
-export const pathToFieldSchema = z.union([z.string(), z.number()]).array();
-
-// Form [ ]
-// Report [ ]
-export type Predicate = z.infer<typeof predicateSchema>;
-export const predicateSchema = z.any();
 
 // Form [x]
 // Report [ ]
@@ -33,16 +27,6 @@ export const customDateTimeConfigSchema = baseCustomFieldSchema.extend({
 export type CustomBooleanConfig = z.infer<typeof customBooleanConfigSchema>;
 export const customBooleanConfigSchema = baseCustomFieldSchema.extend({
   type: z.literal("boolean"),
-});
-
-// Form [x]
-// Report [ ]
-export type CustomNumberEnumConfig = z.infer<
-  typeof customNumberEnumConfigSchema
->;
-export const customNumberEnumConfigSchema = baseCustomFieldSchema.extend({
-  type: z.literal("enum"),
-  options: z.object({ type: z.literal("number"), values: z.array(z.number()) }),
 });
 
 // Form [x]

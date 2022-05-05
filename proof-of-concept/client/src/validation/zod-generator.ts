@@ -13,6 +13,7 @@ import {
   CustomInlineArraySectionConfig,
   SectionConfig,
 } from "../config-schema";
+import { createNumberEnumSchema } from "./number-enum-schema";
 import { numberProcessor, createNumberSchema } from "./number-schema";
 import { createStringEnumSchema } from "./string-enum-schema";
 import { createStringSchema } from "./string-schema";
@@ -42,11 +43,6 @@ export const createDateTimeSchema = (config: CustomDateTimeConfig) => {
 
 export const createBooleanSchema = (config: CustomBooleanConfig) => {
   return z.boolean().optional();
-};
-
-export const createNumberEnumSchema = (config: CustomNumberEnumConfig) => {
-  const schema = z.enum(config.options.values as any).optional();
-  return z.preprocess(numberProcessor, schema);
 };
 
 export const createArraySchema = ({ config }: CustomArrayConfig) => {
