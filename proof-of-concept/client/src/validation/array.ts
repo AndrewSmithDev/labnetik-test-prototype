@@ -12,12 +12,6 @@ import { createNumberEnumSchema } from "./number-enum";
 import { createStringEnumSchema } from "./string-enum";
 import { createStringSchema } from "./string";
 
-export const stringProcessor = (value: unknown): unknown => {
-  if (value === "") return undefined;
-  if (typeof value === "string") return value.trim();
-  return value;
-};
-
 const createValidation = (
   baseSchema: z.ZodArray<any>,
   validation?: CustomStringConfig["validation"]
@@ -53,5 +47,5 @@ export const createArraySchema = ({
 
   const schema = z.array(nestedSchema);
 
-  return z.preprocess(stringProcessor, createValidation(schema, validation));
+  return createValidation(schema, validation);
 };

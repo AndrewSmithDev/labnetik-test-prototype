@@ -12,18 +12,13 @@ import { createArraySchema } from "./array";
 import { createBooleanSchema } from "./boolean";
 import { createDateSchema } from "./date";
 import { createDateTimeSchema } from "./date-time";
+import { createInlineArraySectionSchema } from "./inline-array-section";
 import { createNumberEnumSchema } from "./number-enum";
 import { createNumberSchema } from "./number";
 import { createStringEnumSchema } from "./string-enum";
 import { createStringSchema } from "./string";
 
 export const createArraySectionSchema = (config: CustomArraySection) => {
-  return z.any().optional();
-};
-
-export const createInlineArraySectionSchema = (
-  config: CustomInlineArraySectionConfig
-) => {
   return z.any().optional();
 };
 

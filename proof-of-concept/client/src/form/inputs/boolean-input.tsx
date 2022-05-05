@@ -13,7 +13,7 @@ export const BooleanInput = ({
   showLabel = true,
 }: BooleanInputProps) => {
   const { register } = useFormContext();
-  const { label, name, tooltip, hidden, validation } = config;
+  const { label, name, tooltip, hidden } = config;
   const path = pathPrefix ? `${pathPrefix}.${name}` : name;
 
   const input = showLabel ? (
@@ -23,7 +23,7 @@ export const BooleanInput = ({
       label={label}
     />
   ) : (
-    <Checkbox {...register(path)} />
+    <Checkbox {...register(path)} size="small" />
   );
 
   if (!tooltip) return input;

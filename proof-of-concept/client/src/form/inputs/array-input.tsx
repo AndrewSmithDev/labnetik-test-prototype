@@ -67,22 +67,12 @@ export const ArrayInput = ({
         >
           {label}
         </Typography>
-        <FormHelperText
-          error={!!error}
-          sx={{
-            marginLeft: "16px",
-            marginTop: 0,
-            flexGrow: 1,
-            lineHeight: "30px",
-          }}
-        >
-          {error?.message}
-        </FormHelperText>
+        <div style={{ flexGrow: 1 }} />
         <Button onClick={handleAdd} size="small">
           ➕
         </Button>
       </div>
-
+      {error?.message && <FormHelperText error>{error.message}</FormHelperText>}
       {values.map((_: unknown, index: number) => {
         const valuePath = `${path}.${index}`;
         return (

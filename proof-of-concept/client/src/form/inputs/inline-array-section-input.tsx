@@ -1,5 +1,6 @@
 import {
   Button,
+  FormHelperText,
   Table,
   TableBody,
   TableCell,
@@ -20,6 +21,7 @@ import { NumberEnumInput } from "./number-enum-input";
 import { NumberInput } from "./number-input";
 import { StringEnumInput } from "./string-enum-input";
 import { StringInput } from "./string-input";
+import * as R from "ramda";
 
 export type InlineArraySectionProps = {
   config: CustomInlineArraySectionConfig;
@@ -113,11 +115,14 @@ export const InlineArraySectionInput = ({
   const { fields, name, label } = config;
   const path = pathPrefix ? `${pathPrefix}.${name}` : name;
 
-  const { watch, setValue } = useFormContext();
+  const { trigger, watch, setValue, formState } = useFormContext();
   const values = watch(path) ?? [{}];
+
+  const error = R.view(R.lensPath(path.split(".")), formState.errors);
 
   const handleAdd = () => {
     setValue(path, [...values, {}]);
+    trigger(path);
   };
 
   const handleDelete = (index: number) => {
@@ -125,23 +130,30 @@ export const InlineArraySectionInput = ({
       path,
       values.filter((_: unknown, i: number) => i !== index)
     );
+    trigger(path);
   };
 
   return (
     <section
       style={{
         display: "flex",
-        gap: 16,
         flexDirection: "column",
         marginBottom: 16,
       }}
     >
       <div style={{ display: "flex" }}>
-        <Typography variant="h5" sx={{ flexGrow: 1 }}>
+        <Typography
+          variant="h5"
+          sx={{ color: error?.message ? "#d32f2f" : "inherit" }}
+        >
           {label}
         </Typography>
-        <Button onClick={handleAdd}>➕</Button>
+        <div style={{ flexGrow: 1 }} />
+        <Button onClick={handleAdd} size="small">
+          ➕
+        </Button>
       </div>
+      {error?.message && <FormHelperText error>{error.message}</FormHelperText>}
       <TableContainer>
         <Table>
           <TableHead>
