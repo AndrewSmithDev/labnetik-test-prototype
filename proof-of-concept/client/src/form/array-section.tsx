@@ -93,7 +93,11 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
             {showInFormPreview.map(([section, field]) => {
               return (
                 <TableCell align="center">
-                  {config.sections[section]?.fields[field]?.label}
+                  {
+                    config.sections
+                      .find((s) => s.name === section)
+                      ?.fields.find((x) => x.name === field)?.label
+                  }
                 </TableCell>
               );
             })}

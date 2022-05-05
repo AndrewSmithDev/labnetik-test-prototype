@@ -5,6 +5,69 @@ export const exampleConfig2: TestConfig = {
   stages: ["creation", "submission"],
   sections: [
     {
+      type: "array-section",
+      name: "arraySectionDemo",
+      label: "Array Section Demo",
+      showInFormPreview: [
+        ["firstSection", "number1"],
+        ["firstSection", "number2"],
+        ["secondSection", "string1"],
+        ["secondSection", "string2"],
+      ],
+      sections: [
+        {
+          type: "section",
+          name: "firstSection",
+          label: "First Section",
+          fields: [
+            {
+              type: "number",
+              label: "First Number Input",
+              name: "number1",
+              tooltip: "Example Tooltip",
+            },
+            {
+              type: "number",
+              label: "Second Number Input",
+              name: "number2",
+              tooltip: "Tooltip for Second Number Input",
+            },
+            {
+              type: "number",
+              label: "Third Number Input",
+              name: "number3",
+              tooltip: "Tooltip for Third Number Input",
+            },
+          ],
+        },
+        {
+          type: "section",
+          name: "secondSection",
+          label: "Second Section",
+          fields: [
+            {
+              type: "string",
+              label: "First String Input",
+              name: "string1",
+              tooltip: "Example Tooltip",
+            },
+            {
+              type: "string",
+              label: "Second String Input",
+              name: "string2",
+              tooltip: "Tooltip for Second String Input",
+            },
+            {
+              type: "string",
+              label: "Third String Input",
+              name: "string3",
+              tooltip: "Tooltip for Third String Input",
+            },
+          ],
+        },
+      ],
+    },
+    {
       type: "inline-array-section",
       name: "inlineArray",
       label: "Inline Array",
