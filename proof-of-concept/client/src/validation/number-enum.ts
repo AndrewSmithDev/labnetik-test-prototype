@@ -1,10 +1,10 @@
 import { z } from "zod";
-import { CustomStringEnumConfig } from "../config-schema";
-import { stringProcessor } from "./string-schema";
+import { CustomNumberEnumConfig } from "../config-schema";
+import { numberProcessor } from "./number";
 
 const createValidation = (
   baseSchema: z.ZodEnum<any>,
-  validation?: CustomStringEnumConfig["validation"]
+  validation?: CustomNumberEnumConfig["validation"]
 ) => {
   if (!validation) return baseSchema.optional();
 
@@ -13,11 +13,11 @@ const createValidation = (
   return schema;
 };
 
-export const createStringEnumSchema = (config: CustomStringEnumConfig) => {
+export const createNumberEnumSchema = (config: CustomNumberEnumConfig) => {
   const schema = z.enum(config.options.values as any);
 
   return z.preprocess(
-    stringProcessor,
+    numberProcessor,
     createValidation(schema, config.validation)
   );
 };

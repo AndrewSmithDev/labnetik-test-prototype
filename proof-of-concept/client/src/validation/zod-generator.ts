@@ -9,12 +9,12 @@ import {
   SectionConfig,
 } from "../config-schema";
 import { createBooleanSchema } from "./boolean";
-import { createDateSchema } from "./date-schema";
-import { createDateTimeSchema } from "./date-time-schema";
-import { createNumberEnumSchema } from "./number-enum-schema";
-import { createNumberSchema } from "./number-schema";
-import { createStringEnumSchema } from "./string-enum-schema";
-import { createStringSchema } from "./string-schema";
+import { createDateSchema } from "./date";
+import { createDateTimeSchema } from "./date-time";
+import { createNumberEnumSchema } from "./number-enum";
+import { createNumberSchema } from "./number";
+import { createStringEnumSchema } from "./string-enum";
+import { createStringSchema } from "./string";
 
 export const createArraySchema = ({ config }: CustomArrayConfig) => {
   let nestedSchema: z.ZodTypeAny;

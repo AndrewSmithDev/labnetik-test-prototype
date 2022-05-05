@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { CustomDateConfig } from "../config-schema";
-import { dateTimeProcessor } from "./date-time-schema";
+import { dateTimeProcessor } from "./date-time";
 
 const createValidation = (
   baseSchema: z.ZodDate,
