@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { CustomStringEnumConfig } from "../type";
-import { stringProcessor } from "./generate-string-schema";
+import { stringProcessor } from "./string-schema";
 
 const createValidation = (
   baseSchema: z.ZodEnum<any>,

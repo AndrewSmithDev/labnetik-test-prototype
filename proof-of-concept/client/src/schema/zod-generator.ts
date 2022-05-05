@@ -13,8 +13,8 @@ import {
   CustomInlineArraySectionConfig,
   SectionConfig,
 } from "../type";
-import { createStringEnumSchema } from "./generate-string-enum-schema";
-import { createStringSchema } from "./generate-string-schema";
+import { createStringEnumSchema } from "./string-enum-schema";
+import { createStringSchema } from "./string-schema";
 
 const dateProcessor = (value: unknown): unknown => {
   if (value === "") return undefined;
