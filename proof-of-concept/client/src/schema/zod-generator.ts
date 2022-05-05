@@ -13,6 +13,8 @@ import {
   CustomInlineArraySectionConfig,
   SectionConfig,
 } from "../type";
+import { createStringEnumSchema } from "./generate-string-enum-schema";
+import { createStringSchema } from "./generate-string-schema";
 
 const dateProcessor = (value: unknown): unknown => {
   if (value === "") return undefined;
@@ -37,39 +39,6 @@ export const createDateTimeSchema = (config: CustomDateTimeConfig) => {
   return z.preprocess(dateProcessor, schema);
 };
 
-const stringProcessor = (value: unknown): unknown => {
-  if (value === "") return undefined;
-  if (typeof value === "string") return value.trim();
-  return value;
-};
-
-export const createStringSchema = (config: CustomStringConfig) => {
-  if (!config.validations) {
-    const schema = z.string().optional();
-    return z.preprocess(stringProcessor, schema);
-  }
-
-  const possibleValidations = config.validations.map((config) => {
-    let schema: z.ZodString | z.ZodOptional<z.ZodString> = z.string();
-    if (config.min) schema = schema.min(config.min.value, config.min.message);
-    if (config.max) schema = schema.max(config.max.value, config.max.message);
-    if (config.length)
-      schema = schema.length(config.length.value, config.length.message);
-    if (config.email) schema = schema.email(config.email.message);
-    if (config.url) schema = schema.url(config.url.message);
-    if (config.regex) {
-      try {
-        const regex = new RegExp(config.regex.value);
-        schema = schema.regex(regex, config.regex.message);
-      } catch {}
-    }
-    if (!config.required) schema = schema.optional();
-    return schema;
-  });
-
-  return z.preprocess(stringProcessor, z.union(possibleValidations as any));
-};
-
 const numberProcessor = (value: unknown): unknown => {
   if (value === "") return undefined;
   if (typeof value === "string") {
@@ -87,20 +56,6 @@ export const createNumberSchema = (config: CustomNumberConfig) => {
 
 export const createBooleanSchema = (config: CustomBooleanConfig) => {
   return z.boolean().optional();
-};
-
-export const createStringEnumSchema = (config: CustomStringEnumConfig) => {
-  if (!config.validations) {
-    const schema = z.enum(config.options.values as any).optional();
-    return z.preprocess(stringProcessor, schema);
-  }
-
-  const possibleValidations = config.validations.map((config) => {
-    let schema: z.ZodString | z.ZodOptional<z.ZodString> = z.string();
-    if (!config.required) schema = schema.optional();
-    return schema;
-  });
-  return z.preprocess(stringProcessor, z.union(possibleValidations as any));
 };
 
 export const createNumberEnumSchema = (config: CustomNumberEnumConfig) => {

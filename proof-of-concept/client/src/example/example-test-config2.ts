@@ -38,13 +38,11 @@ export const exampleConfig2: TestConfig = {
           label: "String Input",
           name: "string",
           tooltip: "Tooltip for String Input",
-          validations: [
-            {
-              min: { value: 3 },
-              max: { value: 10 },
-              required: {},
-            },
-          ],
+          validation: {
+            min: { value: 3 },
+            max: { value: 10 },
+            required: {},
+          },
         },
         {
           type: "enum",
@@ -52,7 +50,7 @@ export const exampleConfig2: TestConfig = {
           label: "String Enum Input",
           name: "strEnum",
           tooltip: "Tooltip for String Enum Input",
-          validations: [{ required: {} }],
+          validation: { required: {} },
         },
         {
           type: "enum",

@@ -100,7 +100,7 @@ const stringValidationSchema = z.object({
 export type CustomStringConfig = z.infer<typeof customStringConfigSchema>;
 export const customStringConfigSchema = baseCustomFieldSchema.extend({
   type: z.literal("string"),
-  validations: z.array(stringValidationSchema).optional(),
+  validation: stringValidationSchema.optional(),
 });
 
 // Form [x]
@@ -141,7 +141,7 @@ export type CustomStringEnumConfig = z.infer<
 export const customStringEnumConfigSchema = baseCustomFieldSchema.extend({
   type: z.literal("enum"),
   options: z.object({ type: z.literal("string"), values: z.array(z.string()) }),
-  validations: z.array(stringEnumValidationSchema).optional(),
+  validation: stringEnumValidationSchema.optional(),
 });
 
 // Form [x]
