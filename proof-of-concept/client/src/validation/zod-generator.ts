@@ -12,7 +12,7 @@ import {
   CustomArrayConfig,
   CustomInlineArraySectionConfig,
   SectionConfig,
-} from "../type";
+} from "../config";
 import { numberProcessor, createNumberSchema } from "./number-schema";
 import { createStringEnumSchema } from "./string-enum-schema";
 import { createStringSchema } from "./string-schema";

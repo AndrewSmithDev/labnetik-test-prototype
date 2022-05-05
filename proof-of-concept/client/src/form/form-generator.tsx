@@ -1,7 +1,7 @@
 import { Button, Typography } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { TestConfig } from "../type";
+import { TestConfig } from "../config";
 import { ArraySection } from "./array-section";
 import { FormSection } from "./form-section";
 import { InlineArraySection } from "./inputs";

@@ -1,7 +1,7 @@
 import { TextField, Tooltip } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { evaluateEquation } from "../../evaluator";
-import { CustomComputedConfig } from "../../type";
+import { CustomComputedConfig } from "../../config";
 import { BaseInputProps } from "./base-input";
 
 export type ComputedInputProps = BaseInputProps & {

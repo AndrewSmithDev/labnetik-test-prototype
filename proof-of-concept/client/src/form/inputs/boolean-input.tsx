@@ -1,6 +1,6 @@
 import { Checkbox, FormControlLabel, Tooltip } from "@mui/material";
 import { useFormContext } from "react-hook-form";
-import { CustomBooleanConfig } from "../../type";
+import { CustomBooleanConfig } from "../../config";
 import { BaseInputProps } from "./base-input";
 
 export type BooleanInputProps = Omit<BaseInputProps, "variant"> & {

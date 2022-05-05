@@ -1,4 +1,4 @@
-import { TestConfig } from "../type";
+import { TestConfig } from "../../config";
 
 export const exampleConfig2: TestConfig = {
   title: "Example Test Configuration 2",

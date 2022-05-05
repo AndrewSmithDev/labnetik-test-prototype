@@ -7,7 +7,7 @@ import {
   Tooltip,
 } from "@mui/material";
 import { useController } from "react-hook-form";
-import { CustomNumberEnumConfig } from "../../type";
+import { CustomNumberEnumConfig } from "../../config";
 import { BaseInputProps } from "./base-input";
 
 export type NumberEnumInputProps = BaseInputProps & {

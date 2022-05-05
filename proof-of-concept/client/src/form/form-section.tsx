@@ -4,7 +4,7 @@ import {
   CustomNumberEnumConfig,
   CustomArraySection,
   SectionConfig,
-} from "../type";
+} from "../config";
 import { ArrayInput } from "./inputs/array-input";
 import { ArraySection } from "./array-section";
 import {

@@ -1,6 +1,6 @@
 import { TextField, Tooltip } from "@mui/material";
 import { useFormContext } from "react-hook-form";
-import { CustomDateConfig } from "../../type";
+import { CustomDateConfig } from "../../config";
 import { BaseInputProps } from "./base-input";
 
 export type DateInputProps = BaseInputProps & {

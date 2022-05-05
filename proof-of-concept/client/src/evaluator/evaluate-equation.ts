@@ -1,5 +1,5 @@
 import * as math from "mathjs";
-import { MathEquation } from "../type";
+import { MathEquation } from "../config";
 import * as R from "ramda";
 
 export const evaluateEquation = (mathEquation: MathEquation, value: any) => {

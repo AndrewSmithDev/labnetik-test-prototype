@@ -1,5 +1,5 @@
 import { DOMAttributes, useState } from "react";
-import { TestConfig, testConfigSchema } from "../type";
+import { TestConfig, testConfigSchema } from "../../config";
 
 export type ConfigEditorProps = {
   config: TestConfig;
