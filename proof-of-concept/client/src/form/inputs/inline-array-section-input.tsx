@@ -163,20 +163,37 @@ export const InlineArraySectionInput = ({
             <TableCell />
           </TableHead>
           <TableBody>
-            {values?.map((_: unknown, index: number) => {
-              return (
-                <TableRow>
-                  {Object.values(fields).map((config) => (
-                    <TableCell align="center" sx={{ padding: "8px 4px" }}>
-                      {getInput(config, path + "." + index)}
+            {!values || values.length === 0 ? (
+              <TableRow>
+                <TableCell
+                  colSpan={Object.values(fields).length + 1}
+                  align="center"
+                >
+                  No Entries
+                </TableCell>
+              </TableRow>
+            ) : (
+              values.map((_: unknown, index: number) => {
+                return (
+                  <TableRow>
+                    {Object.values(fields).map((config) => (
+                      <TableCell
+                        align="center"
+                        sx={{ padding: "8px 4px", verticalAlign: "top" }}
+                      >
+                        {getInput(config, path + "." + index)}
+                      </TableCell>
+                    ))}
+                    <TableCell
+                      align="center"
+                      sx={{ padding: "8px 4px", verticalAlign: "top" }}
+                    >
+                      <Button onClick={() => handleDelete(index)}>❌</Button>
                     </TableCell>
-                  ))}
-                  <TableCell align="center">
-                    <Button onClick={() => handleDelete(index)}>❌</Button>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
+                  </TableRow>
+                );
+              })
+            )}
           </TableBody>
         </Table>
       </TableContainer>

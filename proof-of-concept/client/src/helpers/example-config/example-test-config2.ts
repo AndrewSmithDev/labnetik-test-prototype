@@ -25,6 +25,7 @@ export const exampleConfig2: TestConfig = {
               label: "First Number Input",
               name: "number1",
               tooltip: "Example Tooltip",
+              validation: { required: {}, gt: { value: 3 } },
             },
             {
               type: "number",
