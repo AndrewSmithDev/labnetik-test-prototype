@@ -52,6 +52,7 @@ export const exampleConfig2: TestConfig = {
           label: "String Enum Input",
           name: "strEnum",
           tooltip: "Tooltip for String Enum Input",
+          validations: [{ required: {} }],
         },
         {
           type: "enum",

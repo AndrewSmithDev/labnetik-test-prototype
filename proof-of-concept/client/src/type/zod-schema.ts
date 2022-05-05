@@ -53,7 +53,7 @@ export const customDateTimeConfigSchema = baseCustomFieldSchema.extend({
   type: z.literal("date-time"),
 });
 
-export const stringValidationSchema = z.object({
+const stringValidationSchema = z.object({
   required: z
     .object({
       message: z.string().optional(),
@@ -125,6 +125,14 @@ export const customBooleanConfigSchema = baseCustomFieldSchema.extend({
   type: z.literal("boolean"),
 });
 
+const stringEnumValidationSchema = z.object({
+  required: z
+    .object({
+      message: z.string().optional(),
+    })
+    .optional(),
+});
+
 // Form [x]
 // Report [ ]
 export type CustomStringEnumConfig = z.infer<
@@ -133,6 +141,7 @@ export type CustomStringEnumConfig = z.infer<
 export const customStringEnumConfigSchema = baseCustomFieldSchema.extend({
   type: z.literal("enum"),
   options: z.object({ type: z.literal("string"), values: z.array(z.string()) }),
+  validations: z.array(stringEnumValidationSchema).optional(),
 });
 
 // Form [x]

@@ -44,6 +44,7 @@ export const StringEnumInput = ({
         label={showLabel ? label : undefined}
         onChange={handlechange}
         variant={variant}
+        error={!!error}
       >
         {options.values.map((option) => (
           <MenuItem value={option} key={option}>
@@ -51,7 +52,7 @@ export const StringEnumInput = ({
           </MenuItem>
         ))}
       </Select>
-      {error.message && (
+      {error?.message && (
         <FormHelperText error={!!error}>{error.message}</FormHelperText>
       )}
     </FormControl>

@@ -90,8 +90,17 @@ export const createBooleanSchema = (config: CustomBooleanConfig) => {
 };
 
 export const createStringEnumSchema = (config: CustomStringEnumConfig) => {
-  const schema = z.enum(config.options.values as any).optional();
-  return z.preprocess(stringProcessor, schema);
+  if (!config.validations) {
+    const schema = z.enum(config.options.values as any).optional();
+    return z.preprocess(stringProcessor, schema);
+  }
+
+  const possibleValidations = config.validations.map((config) => {
+    let schema: z.ZodString | z.ZodOptional<z.ZodString> = z.string();
+    if (!config.required) schema = schema.optional();
+    return schema;
+  });
+  return z.preprocess(stringProcessor, z.union(possibleValidations as any));
 };
 
 export const createNumberEnumSchema = (config: CustomNumberEnumConfig) => {
