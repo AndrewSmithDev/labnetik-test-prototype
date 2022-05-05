@@ -1,9 +1,12 @@
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { TestConfig } from "../type";
 import { ArraySection } from "./array-section";
 import { FormSection } from "./form-section";
 import { InlineArraySection } from "./inputs";
+import { zodSchemaGenerator } from "../schema";
+import { useEffect } from "react";
 
 export type FormGeneratorProps = {
   config: TestConfig;
@@ -12,14 +15,21 @@ export type FormGeneratorProps = {
 export const FormGenerator = ({ config }: FormGeneratorProps) => {
   const { sections } = config;
 
-  const methods = useForm();
+  const zodSchema = zodSchemaGenerator(config);
+
+  // console.log(zodSchema);
+
+  const methods = useForm({ resolver: zodResolver(zodSchema) });
+  // const methods = useForm();
+
+  const { errors } = methods.formState;
 
   // const values = methods.watch();
-  // useEffect(() => {
-  //   console.log(values);
-  // }, [values]);
+  useEffect(() => {
+    console.log({ errors });
+  }, [errors]);
 
-  const onSubmit = console.log;
+  const onSubmit = (data: any) => console.log({ data });
 
   return (
     <div style={{ width: "50%" }}>
@@ -35,6 +45,9 @@ export const FormGenerator = ({ config }: FormGeneratorProps) => {
               return <InlineArraySection config={section} />;
             return <ArraySection config={section} />;
           })}
+          <Button type="submit" variant="contained" fullWidth>
+            Submit
+          </Button>
         </form>
       </FormProvider>
     </div>
