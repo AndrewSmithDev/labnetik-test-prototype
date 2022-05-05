@@ -16,26 +16,53 @@ import {
   SectionConfig,
 } from "../type";
 
+const dateProcessor = (value: unknown): unknown => {
+  if (value === "") return undefined;
+  if (value instanceof Date) return value;
+  if (typeof value === "string" || typeof value === "number") {
+    const date = new Date(value);
+    if (!isNaN(date.getTime())) return date;
+    return value;
+  }
+  return value;
+};
+
 export const createDateSchema = (
   config: CustomDateConfig | CustomDateTimeConfig
 ) => {
-  return z.date().optional();
+  const schema = z.date().optional();
+  return z.preprocess(dateProcessor, schema);
 };
 
 export const createDateTimeSchema = (config: CustomDateTimeConfig) => {
-  return z.date().optional();
+  const schema = z.date().optional();
+  return z.preprocess(dateProcessor, schema);
 };
 
-export const createTimeSchema = (config: CustomTimeConfig) => {
-  return z.date().optional();
+const stringProcessor = (value: unknown): unknown => {
+  if (value === "") return undefined;
+  if (typeof value === "string") return value.trim();
+  return value;
 };
 
 export const createStringSchema = (config: CustomStringConfig) => {
-  return z.string().optional();
+  const schema = z.string().optional();
+  return z.preprocess(stringProcessor, schema);
+};
+
+const numberProcessor = (value: unknown): unknown => {
+  if (value === "") return undefined;
+  if (typeof value === "string") {
+    const number = Number.parseFloat(value);
+    if (Number.isNaN(number)) return value;
+    return number;
+  }
+  return value;
 };
 
 export const createNumberSchema = (config: CustomNumberConfig) => {
-  return z.number().optional();
+  const schema = z.number().optional();
+  return z.preprocess(numberProcessor, schema);
 };
 
 export const createBooleanSchema = (config: CustomBooleanConfig) => {
@@ -43,11 +70,13 @@ export const createBooleanSchema = (config: CustomBooleanConfig) => {
 };
 
 export const createStringEnumSchema = (config: CustomStringEnumConfig) => {
-  return z.enum(config.options.values as any).optional();
+  const schema = z.enum(config.options.values as any).optional();
+  return z.preprocess(stringProcessor, schema);
 };
 
 export const createNumberEnumSchema = (config: CustomNumberEnumConfig) => {
-  return z.enum(config.options.values as any).optional();
+  const schema = z.enum(config.options.values as any).optional();
+  return z.preprocess(numberProcessor, schema);
 };
 
 export const createArraySchema = ({ config }: CustomArrayConfig) => {
@@ -56,7 +85,6 @@ export const createArraySchema = ({ config }: CustomArrayConfig) => {
   if (config.type === "date") nestedSchema = createDateSchema(config);
   else if (config.type === "date-time")
     nestedSchema = createDateTimeSchema(config);
-  else if (config.type === "time") nestedSchema = createTimeSchema(config);
   else if (config.type === "string") nestedSchema = createStringSchema(config);
   else if (config.type === "number") nestedSchema = createNumberSchema(config);
   else if (config.type === "enum" && config.options.type === "string")
@@ -84,7 +112,6 @@ export const createSectionSchema = (config: SectionConfig) => {
     if (field.type === "date") nestedSchema = createDateSchema(field);
     else if (field.type === "date-time")
       nestedSchema = createDateTimeSchema(field);
-    else if (field.type === "time") nestedSchema = createTimeSchema(field);
     else if (field.type === "string") nestedSchema = createStringSchema(field);
     else if (field.type === "number") nestedSchema = createNumberSchema(field);
     else if (field.type === "boolean")

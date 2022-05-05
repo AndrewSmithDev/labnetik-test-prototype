@@ -20,7 +20,6 @@ import { NumberEnumInput } from "./number-enum-input";
 import { NumberInput } from "./number-input";
 import { StringEnumInput } from "./string-enum-input";
 import { StringInput } from "./string-input";
-import { TimeInput } from "./time-input";
 
 export type InlineArraySectionProps = {
   config: CustomInlineArraySectionConfig;
@@ -99,15 +98,6 @@ const getInput = (fieldConfig: any, path: string) => {
   if (fieldConfig.type === "date-time")
     return (
       <DateTimeInput
-        config={fieldConfig}
-        pathPrefix={path}
-        showLabel={false}
-        variant="standard"
-      />
-    );
-  if (fieldConfig.type === "time")
-    return (
-      <TimeInput
         config={fieldConfig}
         pathPrefix={path}
         showLabel={false}

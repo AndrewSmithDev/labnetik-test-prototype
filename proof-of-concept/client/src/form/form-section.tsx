@@ -18,7 +18,6 @@ import {
 } from "./inputs";
 import { InlineArraySection } from "./inputs";
 import { DateTimeInput } from "./inputs/date-time-input";
-import { TimeInput } from "./inputs/time-input";
 
 export type FormSectionProps = {
   config: Omit<SectionConfig, "name"> & Partial<Pick<SectionConfig, "name">>;
@@ -72,8 +71,6 @@ export const FormSection = ({ config, pathPrefix }: FormSectionProps) => {
           return <DateInput config={fieldConfig} pathPrefix={path} />;
         if (fieldConfig.type === "date-time")
           return <DateTimeInput config={fieldConfig} pathPrefix={path} />;
-        if (fieldConfig.type === "time")
-          return <TimeInput config={fieldConfig} pathPrefix={path} />;
         if (fieldConfig.type === "array")
           return <ArrayInput config={fieldConfig} pathPrefix={path} />;
       })}

@@ -26,7 +26,7 @@ export const FormGenerator = ({ config }: FormGeneratorProps) => {
 
   // const values = methods.watch();
   useEffect(() => {
-    console.log({ errors });
+    if (Object.keys(errors).length > 0) console.log({ errors });
   }, [errors]);
 
   const onSubmit = (data: any) => console.log({ data });

@@ -122,12 +122,6 @@ export const exampleConfig1: TestConfig = {
           tooltip: "Tooltip for Date Time Input",
         },
         {
-          type: "time",
-          label: "Time Input",
-          name: "time",
-          tooltip: "Tooltip for Time Input",
-        },
-        {
           type: "string",
           label: "String Input",
           name: "string",

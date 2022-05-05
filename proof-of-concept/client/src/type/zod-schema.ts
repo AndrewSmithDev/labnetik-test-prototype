@@ -59,13 +59,6 @@ export const customDateTimeConfigSchema = baseCustomFieldSchema.extend({
 
 // Form [x]
 // Report [ ]
-export type CustomTimeConfig = z.infer<typeof customTimeConfigSchema>;
-export const customTimeConfigSchema = baseCustomFieldSchema.extend({
-  type: z.literal("time"),
-});
-
-// Form [x]
-// Report [ ]
 export type CustomStringConfig = z.infer<typeof customStringConfigSchema>;
 export const customStringConfigSchema = baseCustomFieldSchema.extend({
   type: z.literal("string"),
@@ -121,7 +114,6 @@ export const customArrayConfigSchema = baseCustomFieldSchema.extend({
   config: z.union([
     customDateConfigSchema,
     customDateTimeConfigSchema,
-    customTimeConfigSchema,
     customStringConfigSchema,
     customNumberConfigSchema,
     customStringEnumConfigSchema,
@@ -141,7 +133,6 @@ export const customInlineArraySectionConfigSchema =
       z.union([
         customDateConfigSchema,
         customDateTimeConfigSchema,
-        customTimeConfigSchema,
         customStringConfigSchema,
         customNumberConfigSchema,
         customComputedConfigSchema,
@@ -158,7 +149,6 @@ export type CustomFieldConfig = z.infer<typeof customFieldConfigSchema>;
 export const customFieldConfigSchema = z.union([
   customDateConfigSchema,
   customDateTimeConfigSchema,
-  customTimeConfigSchema,
   customStringConfigSchema,
   customNumberConfigSchema,
   customComputedConfigSchema,

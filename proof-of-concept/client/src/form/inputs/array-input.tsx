@@ -8,7 +8,6 @@ import { NumberEnumInput } from "./number-enum-input";
 import { NumberInput } from "./number-input";
 import { StringEnumInput } from "./string-enum-input";
 import { StringInput } from "./string-input";
-import { TimeInput } from "./time-input";
 
 export type ArrayInputProps = BaseInputProps & {
   config: CustomArrayConfig;
@@ -25,7 +24,6 @@ const getInput = (
     return NumberEnumInput;
   if (config.type === "date") return DateInput;
   if (config.type === "date-time") return DateTimeInput;
-  if (config.type === "time") return TimeInput;
   return null;
 };
 
