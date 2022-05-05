@@ -2,23 +2,19 @@ import { z } from "zod";
 import {
   TestConfig,
   CustomArraySection,
-  CustomBooleanConfig,
   CustomStringEnumConfig,
   CustomNumberEnumConfig,
   CustomArrayConfig,
   CustomInlineArraySectionConfig,
   SectionConfig,
 } from "../config-schema";
+import { createBooleanSchema } from "./boolean";
 import { createDateSchema } from "./date-schema";
 import { createDateTimeSchema } from "./date-time-schema";
 import { createNumberEnumSchema } from "./number-enum-schema";
 import { createNumberSchema } from "./number-schema";
 import { createStringEnumSchema } from "./string-enum-schema";
 import { createStringSchema } from "./string-schema";
-
-export const createBooleanSchema = (config: CustomBooleanConfig) => {
-  return z.boolean().optional();
-};
 
 export const createArraySchema = ({ config }: CustomArrayConfig) => {
   let nestedSchema: z.ZodTypeAny;
