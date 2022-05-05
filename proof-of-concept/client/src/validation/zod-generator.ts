@@ -1,10 +1,6 @@
 import { z } from "zod";
 import {
   TestConfig,
-  CustomDateConfig,
-  CustomDateTimeConfig,
-  CustomStringConfig,
-  CustomNumberConfig,
   CustomArraySection,
   CustomBooleanConfig,
   CustomStringEnumConfig,
@@ -13,33 +9,12 @@ import {
   CustomInlineArraySectionConfig,
   SectionConfig,
 } from "../config-schema";
+import { createDateSchema } from "./date-schema";
+import { createDateTimeSchema } from "./date-time-schema";
 import { createNumberEnumSchema } from "./number-enum-schema";
-import { numberProcessor, createNumberSchema } from "./number-schema";
+import { createNumberSchema } from "./number-schema";
 import { createStringEnumSchema } from "./string-enum-schema";
 import { createStringSchema } from "./string-schema";
-
-const dateProcessor = (value: unknown): unknown => {
-  if (value === "") return undefined;
-  if (value instanceof Date) return value;
-  if (typeof value === "string" || typeof value === "number") {
-    const date = new Date(value);
-    if (!isNaN(date.getTime())) return date;
-    return value;
-  }
-  return value;
-};
-
-export const createDateSchema = (
-  config: CustomDateConfig | CustomDateTimeConfig
-) => {
-  const schema = z.date().optional();
-  return z.preprocess(dateProcessor, schema);
-};
-
-export const createDateTimeSchema = (config: CustomDateTimeConfig) => {
-  const schema = z.date().optional();
-  return z.preprocess(dateProcessor, schema);
-};
 
 export const createBooleanSchema = (config: CustomBooleanConfig) => {
   return z.boolean().optional();

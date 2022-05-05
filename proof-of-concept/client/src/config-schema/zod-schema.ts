@@ -1,26 +1,14 @@
 import { z } from "zod";
 import { baseCustomFieldSchema } from "./base-field";
 import { customComputedConfigSchema } from "./computed";
+import { customDateConfigSchema } from "./date";
+import { customDateTimeConfigSchema } from "./date-time";
 import { nameSchema } from "./name";
 import { customNumberConfigSchema } from "./number";
 import { customNumberEnumConfigSchema } from "./number-enum";
 import { pathToFieldSchema } from "./path-to-field";
 import { customStringConfigSchema } from "./string";
 import { customStringEnumConfigSchema } from "./string-enum";
-
-// Form [x]
-// Report [ ]
-export type CustomDateConfig = z.infer<typeof customDateConfigSchema>;
-export const customDateConfigSchema = baseCustomFieldSchema.extend({
-  type: z.literal("date"),
-});
-
-// Form [x]
-// Report [ ]
-export type CustomDateTimeConfig = z.infer<typeof customDateTimeConfigSchema>;
-export const customDateTimeConfigSchema = baseCustomFieldSchema.extend({
-  type: z.literal("date-time"),
-});
 
 // Form [x]
 // Report [ ]

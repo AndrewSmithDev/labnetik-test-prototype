@@ -2,6 +2,7 @@ import { TextField, Tooltip } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { CustomDateConfig } from "../../config-schema";
 import { BaseInputProps } from "./base-input";
+import * as R from "ramda";
 
 export type DateInputProps = BaseInputProps & {
   config: CustomDateConfig;
@@ -13,9 +14,10 @@ export const DateInput = ({
   showLabel = true,
   variant,
 }: DateInputProps) => {
-  const { register } = useFormContext();
+  const { register, formState } = useFormContext();
   const { label, name, tooltip, hidden, validation } = config;
   const path = pathPrefix ? `${pathPrefix}.${name}` : name;
+  const error = R.view(R.lensPath(path.split(".")), formState.errors);
 
   const input = (
     <TextField
@@ -25,6 +27,8 @@ export const DateInput = ({
       fullWidth
       variant={variant}
       type="date"
+      error={!!error}
+      helperText={error?.message}
     />
   );
 

@@ -22,6 +22,7 @@ export const exampleConfig2: TestConfig = {
           tooltip: "Tooltip for Number Input",
           validation: {
             gt: { value: 0, message: "Must be greater than 0" },
+            required: {},
           },
         },
         {
@@ -29,12 +30,14 @@ export const exampleConfig2: TestConfig = {
           label: "Date Input",
           name: "date",
           tooltip: "Tooltip for Date Input",
+          validation: { required: {} },
         },
         {
           type: "date-time",
           label: "Date Time Input",
           name: "dateTime",
           tooltip: "Tooltip for Date Time Input",
+          validation: { required: {} },
         },
         {
           type: "string",
