@@ -16,7 +16,7 @@ import {
   StringEnumInput,
   StringInput,
 } from "./inputs";
-import { InlineArraySection } from "./inputs";
+import { InlineArraySectionInput } from "./inputs";
 import { DateTimeInput } from "./inputs/date-time-input";
 
 export type FormSectionProps = {

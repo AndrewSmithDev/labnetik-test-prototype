@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { TestConfig } from "../config-schema";
 import { ArraySection } from "./array-section";
 import { FormSection } from "./form-section";
-import { InlineArraySection } from "./inputs";
+import { InlineArraySectionInput } from "./inputs";
 import { zodSchemaGenerator } from "../validation";
 import { useEffect } from "react";
 
@@ -42,7 +42,7 @@ export const FormGenerator = ({ config }: FormGeneratorProps) => {
             if (section.type === "section")
               return <FormSection config={section} />;
             if (section.type === "inline-array-section")
-              return <InlineArraySection config={section} />;
+              return <InlineArraySectionInput config={section} />;
             return <ArraySection config={section} />;
           })}
           <Button type="submit" variant="contained" fullWidth>

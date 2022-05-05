@@ -5,5 +5,5 @@ export * from "./number-enum-input";
 export * from "./number-input";
 export * from "./string-enum-input";
 export * from "./string-input";
-export * from "./inline-array-section";
+export * from "./inline-array-section-input";
 export * from "./date-input";

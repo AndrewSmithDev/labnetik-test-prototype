@@ -15,7 +15,7 @@ import { FormProvider, useForm, useFormContext } from "react-hook-form";
 import { CustomArraySection } from "../config-schema";
 import { FormSection } from "./form-section";
 import * as R from "ramda";
-import { InlineArraySection } from "./inputs";
+import { InlineArraySectionInput } from "./inputs";
 
 export type ArraySectionProps = {
   config: CustomArraySection;
@@ -141,7 +141,7 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
                 <form onSubmit={handleSubmit}>
                   {Object.values(sections).map((section) => {
                     if (section.type === "inline-array-section")
-                      return <InlineArraySection config={section} />;
+                      return <InlineArraySectionInput config={section} />;
                     return <FormSection config={section} />;
                   })}
                   <Button onClick={handleClose} fullWidth>

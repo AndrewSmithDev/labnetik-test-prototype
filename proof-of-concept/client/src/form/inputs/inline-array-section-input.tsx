@@ -106,7 +106,7 @@ const getInput = (fieldConfig: any, path: string) => {
     );
 };
 
-export const InlineArraySection = ({
+export const InlineArraySectionInput = ({
   config,
   pathPrefix,
 }: InlineArraySectionProps) => {
