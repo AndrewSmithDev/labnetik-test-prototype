@@ -1,4 +1,4 @@
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, FormHelperText, TextField, Typography } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { CustomArrayConfig } from "../../config-schema";
 import { BaseInputProps } from "./base-input";
@@ -8,6 +8,7 @@ import { NumberEnumInput } from "./number-enum-input";
 import { NumberInput } from "./number-input";
 import { StringEnumInput } from "./string-enum-input";
 import { StringInput } from "./string-input";
+import * as R from "ramda";
 
 export type ArrayInputProps = BaseInputProps & {
   config: CustomArrayConfig;
@@ -33,13 +34,16 @@ export const ArrayInput = ({
   showLabel = true,
   variant,
 }: ArrayInputProps) => {
-  const { register, watch, setValue } = useFormContext();
+  const { register, trigger, watch, setValue, formState } = useFormContext();
   const { label, name, tooltip, hidden, validation } = config;
   const path = pathPrefix ? `${pathPrefix}.${name}` : name;
   const values = watch(path) ?? [undefined];
 
+  const error = R.view(R.lensPath(path.split(".")), formState.errors);
+
   const handleAdd = () => {
     setValue(path, [...values, undefined]);
+    trigger(path);
   };
 
   const handleDelete = (index: number) => {
@@ -47,6 +51,7 @@ export const ArrayInput = ({
       path,
       values.filter((_: unknown, i: number) => i !== index)
     );
+    trigger(path);
   };
 
   const Input = getInput(config.config);
@@ -54,17 +59,30 @@ export const ArrayInput = ({
   return (
     <>
       <div style={{ display: "flex" }}>
-        {showLabel ? (
-          <Typography sx={{ flexGrow: 1, lineHeight: "30px" }}>
-            {label}
-          </Typography>
-        ) : (
-          <div style={{ flexGrow: 1 }} />
-        )}
+        <Typography
+          sx={{
+            lineHeight: "30px",
+            color: error?.message ? "#d32f2f" : "inherit",
+          }}
+        >
+          {label}
+        </Typography>
+        <FormHelperText
+          error={!!error}
+          sx={{
+            marginLeft: "16px",
+            marginTop: 0,
+            flexGrow: 1,
+            lineHeight: "30px",
+          }}
+        >
+          {error?.message}
+        </FormHelperText>
         <Button onClick={handleAdd} size="small">
           ➕
         </Button>
       </div>
+
       {values.map((_: unknown, index: number) => {
         const valuePath = `${path}.${index}`;
         return (

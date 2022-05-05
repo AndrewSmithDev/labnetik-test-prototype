@@ -8,6 +8,7 @@ import {
   CustomInlineArraySectionConfig,
   SectionConfig,
 } from "../config-schema";
+import { createArraySchema } from "./array";
 import { createBooleanSchema } from "./boolean";
 import { createDateSchema } from "./date";
 import { createDateTimeSchema } from "./date-time";
@@ -15,22 +16,6 @@ import { createNumberEnumSchema } from "./number-enum";
 import { createNumberSchema } from "./number";
 import { createStringEnumSchema } from "./string-enum";
 import { createStringSchema } from "./string";
-
-export const createArraySchema = ({ config }: CustomArrayConfig) => {
-  let nestedSchema: z.ZodTypeAny;
-
-  if (config.type === "date") nestedSchema = createDateSchema(config);
-  else if (config.type === "date-time")
-    nestedSchema = createDateTimeSchema(config);
-  else if (config.type === "string") nestedSchema = createStringSchema(config);
-  else if (config.type === "number") nestedSchema = createNumberSchema(config);
-  else if (config.type === "enum" && config.options.type === "string")
-    nestedSchema = createStringEnumSchema(config as CustomStringEnumConfig);
-  // if (config.type === "enum" && config.options.type === "number")
-  else nestedSchema = createNumberEnumSchema(config as CustomNumberEnumConfig);
-
-  return z.array(nestedSchema).optional();
-};
 
 export const createArraySectionSchema = (config: CustomArraySection) => {
   return z.any().optional();

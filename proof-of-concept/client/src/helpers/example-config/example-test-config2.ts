@@ -6,6 +6,25 @@ export const exampleConfig2: TestConfig = {
   sections: [
     {
       type: "section",
+      name: "firstSection",
+      label: "Array Demos",
+      fields: [
+        {
+          type: "array",
+          label: "String Array Input",
+          name: "str",
+          tooltip: "Tooltip for String Array Input",
+          validation: { min: { value: 3 } },
+          config: {
+            type: "string",
+            label: "Number Input",
+            name: "str",
+          },
+        },
+      ],
+    },
+    {
+      type: "section",
       name: "additionalSections",
       label: "Additional  Section",
       fields: [
