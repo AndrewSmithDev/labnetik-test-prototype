@@ -1,11 +1,10 @@
 import { z } from "zod";
-
-const nameSchema = z
-  .string()
-  .regex(
-    /^[a-zA-Z0-9_]+$/,
-    "Can only contain letters, numbers and underscores"
-  );
+import { baseCustomFieldSchema } from "./base-field";
+import { customComputedConfigSchema } from "./computed";
+import { nameSchema } from "./name";
+import { customNumberConfigSchema } from "./number";
+import { customStringConfigSchema } from "./string";
+import { customStringEnumConfigSchema } from "./string-enum";
 
 export type PathToField = z.infer<typeof pathToFieldSchema>;
 export const pathToFieldSchema = z.union([z.string(), z.number()]).array();
@@ -14,30 +13,6 @@ export const pathToFieldSchema = z.union([z.string(), z.number()]).array();
 // Report [ ]
 export type Predicate = z.infer<typeof predicateSchema>;
 export const predicateSchema = z.any();
-
-// Form [ ]
-// Report [ ]
-export type Validation = z.infer<typeof validationSchema>;
-export const validationSchema = z.any();
-
-// Form [x]
-// Report [ ]
-export type MathEquation = z.infer<typeof mathEquationSchema>;
-export const mathEquationSchema = z.object({
-  expression: z.string(),
-  scope: z.record(z.union([pathToFieldSchema, z.number()])),
-});
-
-// Form [x]
-// Report [ ]
-export type BaseCustomField = z.infer<typeof baseCustomFieldSchema>;
-export const baseCustomFieldSchema = z.object({
-  label: z.string(),
-  name: nameSchema,
-  tooltip: z.string().optional(),
-  hidden: predicateSchema.optional(),
-  hideInReport: z.boolean().optional(),
-});
 
 // Form [x]
 // Report [ ]
@@ -53,124 +28,11 @@ export const customDateTimeConfigSchema = baseCustomFieldSchema.extend({
   type: z.literal("date-time"),
 });
 
-const stringValidationSchema = z.object({
-  required: z
-    .object({
-      message: z.string().optional(),
-    })
-    .optional(),
-  min: z
-    .object({
-      value: z.number(),
-      message: z.string().optional(),
-    })
-    .optional(),
-  max: z
-    .object({
-      value: z.number(),
-      message: z.string().optional(),
-    })
-    .optional(),
-  length: z
-    .object({
-      value: z.number(),
-      message: z.string().optional(),
-    })
-    .optional(),
-  email: z
-    .object({
-      message: z.string().optional(),
-    })
-    .optional(),
-  url: z
-    .object({
-      message: z.string().optional(),
-    })
-    .optional(),
-  regex: z
-    .object({
-      value: z.string(),
-      message: z.string().optional(),
-    })
-    .optional(),
-});
-
-// Form [x]
-// Report [ ]
-export type CustomStringConfig = z.infer<typeof customStringConfigSchema>;
-export const customStringConfigSchema = baseCustomFieldSchema.extend({
-  type: z.literal("string"),
-  validation: stringValidationSchema.optional(),
-});
-
-// Form [x]
-// Report [ ]
-export type CustomComputedConfig = z.infer<typeof customComputedConfigSchema>;
-export const customComputedConfigSchema = baseCustomFieldSchema.extend({
-  type: z.literal("computed"),
-  equation: mathEquationSchema,
-});
-
 // Form [x]
 // Report [ ]
 export type CustomBooleanConfig = z.infer<typeof customBooleanConfigSchema>;
 export const customBooleanConfigSchema = baseCustomFieldSchema.extend({
   type: z.literal("boolean"),
-});
-
-const stringEnumValidationSchema = z.object({
-  required: z
-    .object({
-      message: z.string().optional(),
-    })
-    .optional(),
-});
-
-// Form [x]
-// Report [ ]
-export type CustomStringEnumConfig = z.infer<
-  typeof customStringEnumConfigSchema
->;
-export const customStringEnumConfigSchema = baseCustomFieldSchema.extend({
-  type: z.literal("enum"),
-  options: z.object({ type: z.literal("string"), values: z.array(z.string()) }),
-  validation: stringEnumValidationSchema.optional(),
-});
-
-const numberValidationSchema = z.object({
-  required: z
-    .object({
-      message: z.string().optional(),
-    })
-    .optional(),
-  gt: z
-    .object({ value: z.number(), message: z.string().optional() })
-    .optional(),
-  gte: z
-    .object({ value: z.number(), message: z.string().optional() })
-    .optional(),
-  lt: z
-    .object({ value: z.number(), message: z.string().optional() })
-    .optional(),
-  lte: z
-    .object({ value: z.number(), message: z.string().optional() })
-    .optional(),
-  int: z.object({ message: z.string().optional() }).optional(),
-  positive: z.object({ message: z.string().optional() }).optional(),
-  nonnegative: z.object({ message: z.string().optional() }).optional(),
-  negative: z.object({ message: z.string().optional() }).optional(),
-  nonpositive: z.object({ message: z.string().optional() }).optional(),
-  multipleOf: z
-    .object({ value: z.number(), message: z.string().optional() })
-    .optional(),
-});
-
-// Form [x]
-// Report [ ]
-export type CustomNumberConfig = z.infer<typeof customNumberConfigSchema>;
-export const customNumberConfigSchema = baseCustomFieldSchema.extend({
-  type: z.literal("number"),
-  validation: numberValidationSchema.optional(),
 });
 
 // Form [x]
