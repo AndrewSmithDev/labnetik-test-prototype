@@ -24,10 +24,14 @@ export const FormGenerator = ({ config }: FormGeneratorProps) => {
 
   const { errors } = methods.formState;
 
-  // const values = methods.watch();
   useEffect(() => {
     if (Object.keys(errors).length > 0) console.log({ errors });
   }, [errors]);
+
+  const values = methods.watch();
+  useEffect(() => {
+    console.log({ values });
+  }, [values]);
 
   const onSubmit = (data: any) => console.log({ data });
 

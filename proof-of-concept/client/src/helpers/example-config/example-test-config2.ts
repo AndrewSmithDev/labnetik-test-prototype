@@ -28,7 +28,7 @@ export const exampleConfig2: TestConfig = {
           label: "String Input",
           name: "string",
           tooltip: "Tooltip for String Input",
-          validation: { min: { value: 5 } },
+          validation: { required: {}, min: { value: 3 } },
         },
         {
           type: "enum",
@@ -48,19 +48,20 @@ export const exampleConfig2: TestConfig = {
     },
     {
       type: "section",
-      name: "firstSection",
+      name: "array-demo",
       label: "Array Demos",
       fields: [
         {
           type: "array",
           label: "String Array Input",
-          name: "str",
+          name: "array-string",
           tooltip: "Tooltip for String Array Input",
           validation: { min: { value: 3 } },
           config: {
             type: "string",
             label: "Number Input",
             name: "str",
+            validation: { min: { value: 3 }, required: {} },
           },
         },
       ],

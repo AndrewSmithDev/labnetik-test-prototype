@@ -83,6 +83,7 @@ export const ArrayInput = ({
                 config={config.config as any}
                 showLabel={false}
                 variant={variant}
+                isInArray
               />
             )}
             <Button onClick={() => handleDelete(index)}>❌</Button>

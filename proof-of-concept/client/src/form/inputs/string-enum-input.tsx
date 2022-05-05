@@ -21,9 +21,14 @@ export const StringEnumInput = ({
   pathPrefix,
   showLabel = true,
   variant,
+  isInArray,
 }: StringEnumInputProps) => {
   const { label, name, options, tooltip, hidden } = config;
-  const path = pathPrefix ? `${pathPrefix}.${name}` : name;
+  const path = (() => {
+    if (isInArray) return pathPrefix ?? "0";
+    if (pathPrefix) return `${pathPrefix}.${name}`;
+    return name;
+  })();
 
   const { formState } = useFormContext();
   const controller = useController({ name: path });

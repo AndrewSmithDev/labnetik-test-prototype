@@ -1,8 +1,9 @@
 import { TextField, Tooltip } from "@mui/material";
-import { useFormContext } from "react-hook-form";
+import { useController, useFormContext } from "react-hook-form";
 import { CustomStringConfig } from "../../config-schema";
 import { BaseInputProps } from "./base-input";
 import * as R from "ramda";
+import { useMemo } from "react";
 
 export type StringInputProps = BaseInputProps & {
   config: CustomStringConfig;
@@ -13,16 +14,30 @@ export const StringInput = ({
   pathPrefix,
   showLabel = true,
   variant,
+  isInArray,
 }: StringInputProps) => {
-  const { register, formState } = useFormContext();
+  const { trigger, formState } = useFormContext();
   const { label, name, tooltip, hidden } = config;
-  const path = pathPrefix ? `${pathPrefix}.${name}` : name;
+
+  const path = (() => {
+    if (isInArray) return pathPrefix ?? "0";
+    if (pathPrefix) return `${pathPrefix}.${name}`;
+    return name;
+  })();
+
+  console.log({ path, isInArray });
+
+  const { field } = useController({ name: path });
 
   const error = R.view(R.lensPath(path.split(".")), formState.errors);
 
   const input = (
     <TextField
-      {...register(path)}
+      {...field}
+      onChange={(e) => {
+        field.onChange(e);
+        trigger(path);
+      }}
       label={showLabel ? label : undefined}
       fullWidth
       variant={variant}

@@ -13,10 +13,15 @@ export const DateInput = ({
   pathPrefix,
   showLabel = true,
   variant,
+  isInArray,
 }: DateInputProps) => {
   const { register, formState } = useFormContext();
   const { label, name, tooltip, hidden, validation } = config;
-  const path = pathPrefix ? `${pathPrefix}.${name}` : name;
+  const path = (() => {
+    if (isInArray) return pathPrefix ?? "0";
+    if (pathPrefix) return `${pathPrefix}.${name}`;
+    return name;
+  })();
   const error = R.view(R.lensPath(path.split(".")), formState.errors);
 
   const input = (
