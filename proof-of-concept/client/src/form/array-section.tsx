@@ -10,7 +10,7 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { useState, DOMAttributes, useEffect } from "react";
+import { useState, DOMAttributes, useMemo } from "react";
 import { FormProvider, useForm, useFormContext } from "react-hook-form";
 import { CustomArraySection } from "../config-schema";
 import { FormSection } from "./form-section";
@@ -29,8 +29,22 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
   const { label, name, sections, showInFormPreview } = config;
   const path = pathPrefix ? `${pathPrefix}.${name}` : name;
 
-  const fields = Object.values(sections).flatMap((sections) =>
-    Object.values(sections.fields)
+  const fields = useMemo(
+    () =>
+      Object.values(sections).flatMap((sections) =>
+        Object.values(sections.fields)
+      ),
+    [sections]
+  );
+
+  const headers = useMemo(
+    () =>
+      showInFormPreview.map(([section, field]) => {
+        return sections
+          .find((s) => s.name === section)
+          ?.fields.find((x) => x.name === field)?.label;
+      }),
+    [sections, fields, showInFormPreview]
   );
 
   const containerForm = useFormContext();
@@ -90,17 +104,9 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
       <TableContainer>
         <Table>
           <TableHead>
-            {showInFormPreview.map(([section, field]) => {
-              return (
-                <TableCell align="center">
-                  {
-                    config.sections
-                      .find((s) => s.name === section)
-                      ?.fields.find((x) => x.name === field)?.label
-                  }
-                </TableCell>
-              );
-            })}
+            {headers.map((h) => (
+              <TableCell>{h}</TableCell>
+            ))}
             <TableCell />
           </TableHead>
           <TableBody>
