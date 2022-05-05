@@ -137,7 +137,7 @@ export type CustomInlineArraySectionConfig = z.infer<
 export const customInlineArraySectionConfigSchema =
   baseCustomFieldSchema.extend({
     type: z.literal("inline-array-section"),
-    fields: z.record(
+    fields: z.array(
       z.union([
         customDateConfigSchema,
         customDateTimeConfigSchema,
@@ -175,7 +175,7 @@ export const sectionConfigSchema = z.object({
   type: z.literal("section"),
   name: nameSchema,
   label: z.string(),
-  fields: z.record(customFieldConfigSchema),
+  fields: z.array(customFieldConfigSchema),
   hideInReport: z.boolean().optional(),
 });
 
@@ -187,7 +187,7 @@ export const customArraySectionSchema = z.object({
   showInFormPreview: z.array(pathToFieldSchema).min(1),
   name: nameSchema,
   label: z.string(),
-  sections: z.record(
+  sections: z.array(
     z.union([sectionConfigSchema, customInlineArraySectionConfigSchema])
   ),
 });
@@ -199,7 +199,7 @@ export const testConfigSchema = z.object({
   title: z.string(),
   stages: z.array(z.string()).optional(),
   disabledStockFields: pathToFieldSchema.array().optional(),
-  sections: z.record(
+  sections: z.array(
     z.union([
       sectionConfigSchema,
       customArraySectionSchema,
