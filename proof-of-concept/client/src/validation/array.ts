@@ -14,7 +14,7 @@ import { createStringSchema } from "./string";
 
 const createValidation = (
   baseSchema: z.ZodArray<any>,
-  validation?: CustomStringConfig["validation"]
+  validation?: CustomArrayConfig["validation"]
 ) => {
   if (!validation) return baseSchema.optional();
 

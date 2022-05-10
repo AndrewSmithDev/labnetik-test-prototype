@@ -16,6 +16,9 @@ import { CustomArraySection } from "../config-schema";
 import { FormSection } from "./form-section";
 import * as R from "ramda";
 import { InlineArraySectionInput } from "./inputs";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { createArraySectionSchema } from "../validation/array-section";
+import { ZodOptional } from "zod";
 
 export type ArraySectionProps = {
   config: CustomArraySection;
@@ -52,7 +55,12 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
 
   const [open, setOpen] = useState(false);
 
-  const innerForm = useForm();
+  const schema = createArraySectionSchema(config);
+  const innerForm = useForm({
+    resolver: zodResolver(
+      schema instanceof ZodOptional ? schema.unwrap().element : schema.element
+    ),
+  });
 
   const handleSubmit: DOMAttributes<HTMLFormElement>["onSubmit"] = (event) => {
     event.preventDefault();

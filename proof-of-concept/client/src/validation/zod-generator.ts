@@ -17,10 +17,7 @@ import { createNumberEnumSchema } from "./number-enum";
 import { createNumberSchema } from "./number";
 import { createStringEnumSchema } from "./string-enum";
 import { createStringSchema } from "./string";
-
-export const createArraySectionSchema = (config: CustomArraySection) => {
-  return z.any().optional();
-};
+import { createArraySectionSchema } from "./array-section";
 
 export const createSectionSchema = (config: SectionConfig) => {
   const fieldSchemas = config.fields.reduce((output, field) => {
