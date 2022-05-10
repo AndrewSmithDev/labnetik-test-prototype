@@ -7,7 +7,7 @@ import { createSectionSchema } from "./zod-generator";
 
 const createValidation = (
   baseSchema: z.ZodArray<any>,
-  validation?: CustomStringConfig["validation"]
+  validation?: CustomInlineArraySectionConfig["validation"]
 ) => {
   if (!validation) return baseSchema.optional();
 
