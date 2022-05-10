@@ -25,8 +25,6 @@ export const StringInput = ({
     return name;
   })();
 
-  console.log({ path, isInArray });
-
   const { field } = useController({ name: path });
 
   const error = R.view(R.lensPath(path.split(".")), formState.errors);
