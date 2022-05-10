@@ -9,6 +9,7 @@ import {
   TableHead,
   TableRow,
   Typography,
+  FormHelperText,
 } from "@mui/material";
 import { useState, DOMAttributes, useMemo } from "react";
 import { FormProvider, useForm, useFormContext } from "react-hook-form";
@@ -52,6 +53,11 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
 
   const containerForm = useFormContext();
   const containerValues = containerForm.watch(path);
+  const errors = R.view(
+    R.lensPath(path.split(".")),
+    containerForm.formState.errors
+  );
+  console.log({ path, errors });
 
   const [open, setOpen] = useState(false);
 
@@ -104,11 +110,23 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
       }}
     >
       <div style={{ display: "flex" }}>
-        <Typography variant="h5" sx={{ flexGrow: 1 }}>
+        <Typography
+          variant="h5"
+          sx={{
+            lineHeight: "30px",
+            color: errors?.message ? "#d32f2f" : "inherit",
+          }}
+        >
           {label}
         </Typography>
-        <Button onClick={() => setOpen(true)}>➕</Button>
+        <div style={{ flexGrow: 1 }} />
+        <Button onClick={() => setOpen(true)} size="small">
+          ➕
+        </Button>
       </div>
+      {errors?.message && (
+        <FormHelperText error>{errors.message}</FormHelperText>
+      )}
       <TableContainer>
         <Table>
           <TableHead>
