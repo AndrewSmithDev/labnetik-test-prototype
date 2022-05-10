@@ -6,7 +6,7 @@ export type ConfigEditorProps = {
   setConfig: (config: TestConfig) => void;
 };
 
-export const ConfigEditor = ({ config, setConfig }: ConfigEditorProps) => {
+export const CodeEditor = ({ config, setConfig }: ConfigEditorProps) => {
   const [error, setError] = useState("");
 
   const handleUpdate: DOMAttributes<HTMLTextAreaElement>["onBlur"] = (e) => {
@@ -24,10 +24,12 @@ export const ConfigEditor = ({ config, setConfig }: ConfigEditorProps) => {
 
   return (
     <div style={{ width: "50%" }}>
-      <pre>
-        <code style={{ color: "red" }}>{error}</code>
-      </pre>
-      <textarea style={{ width: "100%", height: "90vh" }} onBlur={handleUpdate}>
+      {error && (
+        <pre>
+          <code style={{ color: "red" }}>{error}</code>
+        </pre>
+      )}
+      <textarea style={{ width: "100%", height: "85vh" }} onBlur={handleUpdate}>
         {JSON.stringify(config, null, 2)}
       </textarea>
     </div>
