@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { CodeEditor } from "./config-editor/config-editor";
+import { CodeEditor } from "./code-editor";
 import { exampleConfig2 } from "./example-config";
 import { FormGenerator } from "../form";
 import { exampleData1 } from "./example-data/example-data-1";
 import { Tabs, Tab, Typography, Box } from "@mui/material";
+import { testConfigSchema } from "../config-schema";
 
 function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
@@ -49,13 +50,17 @@ export const Wrapper = () => {
       </Tabs>
       <TabPanel value={tab} index={0}>
         <div style={{ display: "flex", gap: 64, marginTop: 0 }}>
-          <CodeEditor config={config} setConfig={setConfig} />
+          <CodeEditor
+            code={config}
+            setCode={setConfig}
+            validationSchema={testConfigSchema}
+          />
           <FormGenerator config={config} onSubmit={setData} />
         </div>
       </TabPanel>
       <TabPanel value={tab} index={1}>
         <div style={{ display: "flex", gap: 64, marginTop: 0 }}>
-          <CodeEditor config={data} setConfig={setData} />
+          <CodeEditor code={data} setCode={setData} />
           <div>Report</div>
         </div>
       </TabPanel>
