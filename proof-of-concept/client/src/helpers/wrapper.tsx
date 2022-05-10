@@ -3,7 +3,7 @@ import { CodeEditor } from "./code-editor";
 import { exampleConfig2 } from "./example-config";
 import { FormGenerator } from "../form";
 import { exampleData1 } from "./example-data/example-data-1";
-import { Tabs, Tab, Typography, Box } from "@mui/material";
+import { Tabs, Tab, Typography, Box, Button } from "@mui/material";
 import { testConfigSchema } from "../config-schema";
 
 function TabPanel(props: any) {
@@ -37,6 +37,7 @@ export const Wrapper = () => {
   const [config, setConfig] = useState(exampleConfig2);
   const [data, setData] = useState<any>(exampleData1);
   const [tab, setTab] = useState(1);
+  const [showData, setShowData] = useState(false);
 
   const handleChange = (event: any, newTab: number) => {
     setTab(newTab);
@@ -50,18 +51,35 @@ export const Wrapper = () => {
       </Tabs>
       <TabPanel value={tab} index={0}>
         <div style={{ display: "flex", gap: 64, marginTop: 0 }}>
-          <CodeEditor
-            code={config}
-            setCode={setConfig}
-            validationSchema={testConfigSchema}
-          />
-          <FormGenerator config={config} onSubmit={setData} />
+          <div style={{ width: 1, flexGrow: 1 }}>
+            <CodeEditor
+              code={config}
+              setCode={setConfig}
+              validationSchema={testConfigSchema}
+            />
+          </div>
+          <div style={{ width: 1, flexGrow: 1 }}>
+            <FormGenerator config={config} onSubmit={setData} />
+          </div>
         </div>
       </TabPanel>
       <TabPanel value={tab} index={1}>
         <div style={{ display: "flex", gap: 64, marginTop: 0 }}>
-          <CodeEditor code={data} setCode={setData} />
-          <div>Report</div>
+          <div style={{ flexGrow: 1, width: 1 }}>
+            <Button onClick={() => setShowData(!showData)} fullWidth>
+              Show Data
+            </Button>
+            {showData ? (
+              <CodeEditor code={data} setCode={setData} />
+            ) : (
+              <CodeEditor
+                code={config}
+                setCode={setConfig}
+                validationSchema={testConfigSchema}
+              />
+            )}
+          </div>
+          <div style={{ flexGrow: 1, width: 1 }}>Report</div>
         </div>
       </TabPanel>
     </>

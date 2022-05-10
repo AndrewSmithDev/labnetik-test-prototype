@@ -1,4 +1,4 @@
-import { DOMAttributes, useState } from "react";
+import { TextareaHTMLAttributes, useEffect, useState } from "react";
 import { z } from "zod";
 
 export type ConfigEditorProps = {
@@ -8,40 +8,54 @@ export type ConfigEditorProps = {
 };
 
 export const CodeEditor = ({
-  code: code,
-  setCode: setCode,
+  code,
+  setCode,
   validationSchema,
 }: ConfigEditorProps) => {
   const [error, setError] = useState("");
+  const [innerCode, setInnerCode] = useState(JSON.stringify(code, null, 2));
 
-  const handleUpdate: DOMAttributes<HTMLTextAreaElement>["onBlur"] = (e) => {
-    setError("");
+  useEffect(() => {
+    setInnerCode(JSON.stringify(code, null, 2));
+  }, [code]);
 
-    const newCode = JSON.parse(e.target.value);
+  const handleUpdate: TextareaHTMLAttributes<HTMLTextAreaElement>["onChange"] =
+    (e) => {
+      setError("");
 
-    if (!validationSchema) {
-      setCode(newCode);
-    } else {
-      const parseResult = validationSchema.safeParse(newCode);
+      setInnerCode(e.target.value);
 
-      if (parseResult.success) {
-        setCode(parseResult.data);
-      } else {
-        setError(JSON.stringify(parseResult.error, null, 2));
+      try {
+        const newCode = JSON.parse(e.target.value);
+
+        if (!validationSchema) {
+          setCode(newCode);
+        } else {
+          const parseResult = validationSchema.safeParse(newCode);
+
+          if (parseResult.success) {
+            setCode(parseResult.data);
+          } else {
+            setError(JSON.stringify(parseResult.error, null, 2));
+          }
+        }
+      } catch (e: any) {
+        setError(e.message);
       }
-    }
-  };
+    };
 
   return (
-    <div style={{ width: "50%" }}>
+    <>
       {error && (
         <pre>
           <code style={{ color: "red" }}>{error}</code>
         </pre>
       )}
-      <textarea style={{ width: "100%", height: "85vh" }} onBlur={handleUpdate}>
-        {JSON.stringify(code, null, 2)}
-      </textarea>
-    </div>
+      <textarea
+        style={{ width: "100%", height: "85vh" }}
+        onChange={handleUpdate}
+        value={innerCode}
+      />
+    </>
   );
 };

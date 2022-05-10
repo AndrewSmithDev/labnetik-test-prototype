@@ -23,7 +23,7 @@ export const FormGenerator = ({ config, onSubmit }: FormGeneratorProps) => {
   const { errors } = methods.formState;
 
   return (
-    <div style={{ width: "50%" }}>
+    <>
       <Typography variant="h4" align="center" gutterBottom>
         {config.title}
       </Typography>
@@ -41,6 +41,6 @@ export const FormGenerator = ({ config, onSubmit }: FormGeneratorProps) => {
           </Button>
         </form>
       </FormProvider>
-    </div>
+    </>
   );
 };
