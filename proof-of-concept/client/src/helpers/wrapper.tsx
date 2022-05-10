@@ -5,10 +5,12 @@ import { FormGenerator } from "../form";
 
 export const Wrapper = () => {
   const [config, setConfig] = useState(exampleConfig2);
+  const [data, setData] = useState<any>();
+
   return (
     <div style={{ display: "flex", gap: 32, margin: 32 }}>
       <ConfigEditor config={config} setConfig={setConfig} />
-      <FormGenerator config={config} />
+      <FormGenerator config={config} onSubmit={setData} />
     </div>
   );
 };

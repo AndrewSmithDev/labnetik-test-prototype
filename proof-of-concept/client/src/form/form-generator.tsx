@@ -10,30 +10,17 @@ import { useEffect } from "react";
 
 export type FormGeneratorProps = {
   config: TestConfig;
+  onSubmit: (data: any) => void;
 };
 
-export const FormGenerator = ({ config }: FormGeneratorProps) => {
+export const FormGenerator = ({ config, onSubmit }: FormGeneratorProps) => {
   const { sections } = config;
 
   const zodSchema = zodSchemaGenerator(config);
 
-  // console.log(zodSchema);
-
   const methods = useForm({ resolver: zodResolver(zodSchema) });
-  // const methods = useForm();
 
   const { errors } = methods.formState;
-
-  useEffect(() => {
-    if (Object.keys(errors).length > 0) console.log({ errors });
-  }, [errors]);
-
-  const values = methods.watch();
-  useEffect(() => {
-    console.log({ values });
-  }, [values]);
-
-  const onSubmit = (data: any) => console.log({ data });
 
   return (
     <div style={{ width: "50%" }}>
