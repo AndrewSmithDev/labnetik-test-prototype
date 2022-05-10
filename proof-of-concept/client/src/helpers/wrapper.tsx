@@ -67,7 +67,7 @@ export const Wrapper = () => {
         <div style={{ display: "flex", gap: 64, marginTop: 0 }}>
           <div style={{ flexGrow: 1, width: 1 }}>
             <Button onClick={() => setShowData(!showData)} fullWidth>
-              Show Data
+              Show {showData ? "Config" : "Data"}
             </Button>
             {showData ? (
               <CodeEditor code={data} setCode={setData} />
