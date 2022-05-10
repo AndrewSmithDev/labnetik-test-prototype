@@ -57,7 +57,6 @@ export const ArraySection = ({ config, pathPrefix }: ArraySectionProps) => {
     R.lensPath(path.split(".")),
     containerForm.formState.errors
   );
-  console.log({ path, errors });
 
   const [open, setOpen] = useState(false);
 
