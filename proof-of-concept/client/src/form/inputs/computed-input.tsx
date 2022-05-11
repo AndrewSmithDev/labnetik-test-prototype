@@ -17,7 +17,7 @@ export const ComputedInput = ({
   const { watch, register } = useFormContext();
   const data = watch();
 
-  const { label, name, tooltip, hidden, validation } = config;
+  const { label, name, tooltip, hidden } = config;
   const path = pathPrefix ? `${pathPrefix}.${name}` : name;
 
   let value = evaluateEquation(config.equation, data);

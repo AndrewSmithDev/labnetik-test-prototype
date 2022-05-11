@@ -7,6 +7,8 @@ export * from "./date-time";
 export * from "./inline-array-section";
 export * from "./number-enum";
 export * from "./number";
+export * from "./path-to-field";
+export * from "./predicate";
 export * from "./section";
 export * from "./string-enum";
 export * from "./string";

@@ -5,6 +5,8 @@ import { FormGenerator } from "../form";
 import { exampleData1 } from "./example-data/example-data-1";
 import { Tabs, Tab, Typography, Box, Button } from "@mui/material";
 import { testConfigSchema } from "../config-schema";
+import { PDFViewer } from "../pdf";
+import { ExampleDocument } from "../pdf/example";
 
 function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
@@ -52,11 +54,7 @@ export const Wrapper = () => {
       <TabPanel value={tab} index={0}>
         <div style={{ display: "flex", gap: 64, marginTop: 0 }}>
           <div style={{ width: 1, flexGrow: 1 }}>
-            <CodeEditor
-              code={config}
-              setCode={setConfig}
-              validationSchema={testConfigSchema}
-            />
+            <CodeEditor code={config} setCode={setConfig} validationSchema={testConfigSchema} />
           </div>
           <div style={{ width: 1, flexGrow: 1 }}>
             <FormGenerator config={config} onSubmit={setData} />
@@ -72,14 +70,14 @@ export const Wrapper = () => {
             {showData ? (
               <CodeEditor code={data} setCode={setData} />
             ) : (
-              <CodeEditor
-                code={config}
-                setCode={setConfig}
-                validationSchema={testConfigSchema}
-              />
+              <CodeEditor code={config} setCode={setConfig} validationSchema={testConfigSchema} />
             )}
           </div>
-          <div style={{ flexGrow: 1, width: 1 }}>Report</div>
+          <div style={{ flexGrow: 1, width: 1 }}>
+            <PDFViewer title="Example Document">
+              <ExampleDocument />
+            </PDFViewer>
+          </div>
         </div>
       </TabPanel>
     </>
