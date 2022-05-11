@@ -5,8 +5,7 @@ import { FormGenerator } from "../form";
 import { exampleData1 } from "./example-data/example-data-1";
 import { Tabs, Tab, Typography, Box, Button } from "@mui/material";
 import { testConfigSchema } from "../config-schema";
-import { PDFViewer } from "../pdf";
-import { ExampleDocument } from "../pdf/example";
+import { PdfWrapper } from "../pdf/pdf-wrapper";
 
 function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
@@ -39,7 +38,7 @@ export const Wrapper = () => {
   const [config, setConfig] = useState(exampleConfig2);
   const [data, setData] = useState<any>(exampleData1);
   const [tab, setTab] = useState(1);
-  const [showData, setShowData] = useState(false);
+  const [showData, setShowData] = useState(true);
 
   const handleChange = (event: any, newTab: number) => {
     setTab(newTab);
@@ -74,9 +73,7 @@ export const Wrapper = () => {
             )}
           </div>
           <div style={{ flexGrow: 1, width: 1 }}>
-            <PDFViewer title="Example Document">
-              <ExampleDocument />
-            </PDFViewer>
+            <PdfWrapper config={config} data={data} />
           </div>
         </div>
       </TabPanel>

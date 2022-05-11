@@ -35,7 +35,11 @@ export const PDFViewer = ({
         ref={innerRef}
         src={`${instance.url}#toolbar=${showToolbar ? 1 : 0}`}
         className={className}
-        style={style}
+        style={{
+          height: "calc(100vh - 125px)",
+          width: "100%",
+          marginTop: "20px",
+        }}
       />
     </object>
   );
