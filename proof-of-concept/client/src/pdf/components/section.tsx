@@ -1,6 +1,7 @@
 import { Text, StyleSheet, View } from "@react-pdf/renderer";
 import { formatUnknown } from "../formatters";
 import { Field } from "./field";
+import { InlineArray } from "./inline-array";
 
 const styles = StyleSheet.create({
   header: {
@@ -32,16 +33,12 @@ export const Section = ({ label, value }: any) => {
 
   if (typeof value === "object" && !Array.isArray(value)) {
     fields = <Fields values={value} />;
+  } else if (hasNestedFields(value[0])) {
+    fields = value.map((values: any) =>
+      Object.entries(values)?.map(([key, value]) => <Section key={key} label={key} value={value} />)
+    );
   } else {
-    fields = value.map((values: any) => {
-      console.log({ bool: hasNestedFields(values), values });
-      if (hasNestedFields(values))
-        return Object.entries(values)?.map(([key, value]) => (
-          <Section key={key} label={key} value={value} />
-        ));
-
-      return <Fields values={values} />;
-    });
+    fields = <InlineArray values={value} />;
   }
 
   return (
