@@ -30,15 +30,15 @@ export type PdfGeneratorProps = {
 
 // Create Document Component
 export const PdfGenerator = ({ data, config }: PdfGeneratorProps) => {
-  // const sections = Object.entries(data).map(([key, value]) => (
-  //   <Section key={key} label={key} value={value} />
-  // ));
-  // <View style={styles.root}>{sections}</View>
+  const sections = Object.entries(data).map(([key, value]) => (
+    <Section key={key} label={key} value={value} />
+  ));
 
   return (
     <MyDocument>
       <MyPage size="A4" style={styles.page}>
-        <TableExample />
+        <View style={styles.root}>{sections}</View>
+        {/* <TableExample /> */}
       </MyPage>
     </MyDocument>
   );
