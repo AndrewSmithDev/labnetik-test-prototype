@@ -1,6 +1,7 @@
 import { Page, View, Document, StyleSheet } from "@react-pdf/renderer";
 import { TestConfig } from "../config-schema";
 import { Section } from "./components/section";
+import { TableExample } from "./components/table";
 
 // Create styles
 const styles = StyleSheet.create({
@@ -29,14 +30,15 @@ export type PdfGeneratorProps = {
 
 // Create Document Component
 export const PdfGenerator = ({ data, config }: PdfGeneratorProps) => {
-  const sections = Object.entries(data).map(([key, value]) => (
-    <Section key={key} label={key} value={value} />
-  ));
+  // const sections = Object.entries(data).map(([key, value]) => (
+  //   <Section key={key} label={key} value={value} />
+  // ));
+  // <View style={styles.root}>{sections}</View>
 
   return (
     <MyDocument>
       <MyPage size="A4" style={styles.page}>
-        <View style={styles.root}>{sections}</View>
+        <TableExample />
       </MyPage>
     </MyDocument>
   );

@@ -62,7 +62,7 @@ export const Wrapper = () => {
       </TabPanel>
       <TabPanel value={tab} index={1}>
         <div style={{ display: "flex", gap: 64, marginTop: 0 }}>
-          <div style={{ flexGrow: 1, width: 1 }}>
+          {/* <div style={{ flexGrow: 1, width: 1 }}>
             <Button onClick={() => setShowData(!showData)} fullWidth>
               Show {showData ? "Config" : "Data"}
             </Button>
@@ -71,7 +71,7 @@ export const Wrapper = () => {
             ) : (
               <CodeEditor code={config} setCode={setConfig} validationSchema={testConfigSchema} />
             )}
-          </div>
+          </div> */}
           <div style={{ flexGrow: 1, width: 1 }}>
             <PdfWrapper config={config} data={data} />
           </div>
