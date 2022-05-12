@@ -36,7 +36,7 @@ export const TableCell = ({ colSpan = 1, children, style = {}, header }: TableCe
           flexGrow: 1,
           display: "flex",
           justifyContent: "center",
-          alignItems: "left",
+          alignItems: header ? "center" : "left",
           fontFamily: header ? "Helvetica-Bold" : "Helvetica",
           ...style,
         }}
