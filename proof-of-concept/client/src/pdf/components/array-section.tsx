@@ -24,7 +24,7 @@ export const ArraySection = ({ label, values }: any) => {
   }, {});
 
   return (
-    <View style={{ width: "100%" }}>
+    <View style={{ width: "100%", marginBottom: "8px" }}>
       <Text style={styles.header}>{label}</Text>
       <Table>
         <TableRow>
