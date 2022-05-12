@@ -1,5 +1,6 @@
 import { Text, StyleSheet, View } from "@react-pdf/renderer";
 import { formatUnknown } from "../formatters";
+import { ArraySection } from "./array-section";
 import { Field } from "./field";
 import { InlineArray } from "./inline-array";
 
@@ -34,9 +35,7 @@ export const Section = ({ label, value }: any) => {
   if (typeof value === "object" && !Array.isArray(value)) {
     fields = <Fields values={value} />;
   } else if (hasNestedFields(value[0])) {
-    fields = value.map((values: any) =>
-      Object.entries(values)?.map(([key, value]) => <Section key={key} label={key} value={value} />)
-    );
+    fields = <ArraySection values={value} />;
   } else {
     fields = <InlineArray values={value} />;
   }

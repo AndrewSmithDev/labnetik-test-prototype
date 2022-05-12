@@ -12,14 +12,14 @@ const styles = StyleSheet.create({
   },
 });
 
-export const InlineArray = ({ label, values }: any) => {
+export const InlineArray = ({ label, values, nested }: any) => {
   const headers = Object.keys(values[0]);
   const rows = values.map((row: any) => Object.values(row).map((cell: any) => formatUnknown(cell)));
 
   return (
-    <View style={{ width: "100%" }}>
+    <>
       <Text style={styles.header}>{label}</Text>
-      <Table>
+      <Table nested={!!nested}>
         <TableRow>
           {headers.map((header: any) => (
             <TableCell header>{header}</TableCell>
@@ -33,6 +33,6 @@ export const InlineArray = ({ label, values }: any) => {
           </TableRow>
         ))}
       </Table>
-    </View>
+    </>
   );
 };
