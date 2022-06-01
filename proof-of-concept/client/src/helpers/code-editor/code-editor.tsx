@@ -7,11 +7,7 @@ export type ConfigEditorProps = {
   validationSchema?: z.ZodSchema;
 };
 
-export const CodeEditor = ({
-  code,
-  setCode,
-  validationSchema,
-}: ConfigEditorProps) => {
+export const CodeEditor = ({ code, setCode, validationSchema }: ConfigEditorProps) => {
   const [error, setError] = useState("");
   const [innerCode, setInnerCode] = useState(JSON.stringify(code, null, 2));
 
@@ -19,30 +15,29 @@ export const CodeEditor = ({
     setInnerCode(JSON.stringify(code, null, 2));
   }, [code]);
 
-  const handleUpdate: TextareaHTMLAttributes<HTMLTextAreaElement>["onChange"] =
-    (e) => {
-      setError("");
+  const handleUpdate: TextareaHTMLAttributes<HTMLTextAreaElement>["onChange"] = (e) => {
+    setError("");
 
-      setInnerCode(e.target.value);
+    setInnerCode(e.target.value);
 
-      try {
-        const newCode = JSON.parse(e.target.value);
+    try {
+      const newCode = JSON.parse(e.target.value);
 
-        if (!validationSchema) {
-          setCode(newCode);
+      if (!validationSchema) {
+        setCode(newCode);
+      } else {
+        const parseResult = validationSchema.safeParse(newCode);
+
+        if (parseResult.success) {
+          setCode(parseResult.data);
         } else {
-          const parseResult = validationSchema.safeParse(newCode);
-
-          if (parseResult.success) {
-            setCode(parseResult.data);
-          } else {
-            setError(JSON.stringify(parseResult.error, null, 2));
-          }
+          setError(JSON.stringify((parseResult as any).error, null, 2));
         }
-      } catch (e: any) {
-        setError(e.message);
       }
-    };
+    } catch (e: any) {
+      setError(e.message);
+    }
+  };
 
   return (
     <>
